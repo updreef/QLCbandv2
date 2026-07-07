@@ -112,7 +112,7 @@ export default function Footer() {
               <Shield className="w-3.5 h-3.5 text-brand-amber" /> KVK geregistreerd
             </span>
             <span className="text-brand-text-muted/40">|</span>
-            <span>Made with passion by Updreef</span>
+            <span>Made with passion by <a href="https://updreef.nl" target="_blank" rel="noopener" className="text-brand-neon hover:text-brand-amber transition-colors underline underline-offset-4">Updreef</a></span>
           </div>
         </div>
 
