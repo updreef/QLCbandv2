@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { Calendar, MapPin, Clock, ArrowRight, Music, AlertCircle } from "lucide-react";
-import { shows } from "../../data";
+import { Calendar, MapPin, Clock, ArrowRight, AlertCircle, Film, Volume2, VolumeX } from "lucide-react";
+import { shows, liveMoments } from "../../data";
 import SquiggleUnderline from "../SquiggleUnderline";
+import LazyVideo from "../LazyVideo";
 
 export default function Optredens() {
   const [activeTab, setActiveTab] = useState<'all' | 'upcoming' | 'past'>('all');
+  const [unmutedId, setUnmutedId] = useState<string | null>(null);
 
   const filteredShows = shows.filter((show) => {
     if (activeTab === 'all') return true;
@@ -139,6 +141,47 @@ export default function Optredens() {
             })}
           </div>
         )}
+
+        {/* Live Moments — video clips van het podium */}
+        <section className="mt-24">
+          <div className="mb-6">
+            <h2 className="font-display text-3xl sm:text-4xl text-brand-cream uppercase tracking-wider flex items-center gap-2">
+              <Film className="w-6 h-6 text-brand-red" /> LIVE MOMENTS
+            </h2>
+            <p className="text-xs text-brand-text-muted mt-1">Recht van het podium, opgenomen tijdens de bruiloft van T&amp;E. Klik op de speaker voor geluid.</p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {liveMoments.map((m, i) => {
+              const rotate = i % 3 === 0 ? "card-rotate-left" : i % 3 === 1 ? "" : "card-rotate-right";
+              const shadow = i % 3 === 0 ? "hard-shadow-cream" : i % 3 === 1 ? "hard-shadow-red" : "hard-shadow-cyan";
+              const isUnmuted = unmutedId === m.id;
+              return (
+                <figure key={m.id} className={`relative bg-brand-bg-3 border-3 border-brand-cream rounded-2xl overflow-hidden ${rotate} ${shadow}`}>
+                  <LazyVideo
+                    src={m.video}
+                    poster={m.poster}
+                    muted={!isUnmuted}
+                    aria-label={`Quarter Life Crisis spelen ${m.title} live`}
+                    className="w-full aspect-video object-cover"
+                  />
+                  <figcaption className="flex items-center justify-between px-4 py-3 border-t-2 border-brand-cream/10 bg-brand-bg-2">
+                    <span className="font-display uppercase tracking-widest text-sm text-brand-cream">{m.title}</span>
+                    <button
+                      type="button"
+                      onClick={() => setUnmutedId(isUnmuted ? null : m.id)}
+                      className={`p-2 rounded-full border-2 transition-all ${isUnmuted ? "bg-brand-amber border-brand-cream text-brand-bg-3" : "bg-brand-bg-3 border-brand-cream/40 text-brand-cream hover:border-brand-amber hover:text-brand-amber"}`}
+                      aria-label={isUnmuted ? "Geluid uit" : "Geluid aan"}
+                      aria-pressed={isUnmuted}
+                    >
+                      {isUnmuted ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+                    </button>
+                  </figcaption>
+                </figure>
+              );
+            })}
+          </div>
+        </section>
 
         {/* Local Booking Banner */}
         <div className="mt-20 bg-brand-bg-3 border-3 border-brand-cream p-8 sm:p-12 rounded-2xl text-center hard-shadow-neon relative overflow-hidden">

@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { Search, Music, Disc, Film, Radio, Volume2, VolumeX, ExternalLink } from "lucide-react";
-import { repertoire, liveMoments } from "../../data";
+import { Search, Music, Disc, Radio, ExternalLink } from "lucide-react";
+import { repertoire } from "../../data";
 import SquiggleUnderline from "../SquiggleUnderline";
 
 export default function Muziek() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [unmutedId, setUnmutedId] = useState<string | null>(null);
 
   const filteredRepertoire = repertoire.filter((song) => {
     const query = searchQuery.toLowerCase();
@@ -27,55 +26,8 @@ export default function Muziek() {
           </h1>
           <SquiggleUnderline className="mx-auto md:mx-0" />
           <p className="text-brand-text-muted max-w-2xl mt-4 text-sm sm:text-base">
-            Ontdek onze setlist vol rockhits en geniet van onze live-opnames en sfeerimpressies.
+            Ontdek onze setlist vol rockhits. Wil je ons live zien? Bekijk de video's op de <a href="#/optredens" className="text-brand-neon underline">optredens-pagina</a>.
           </p>
-        </div>
-
-        {/* Live Moments — video clips van het podium */}
-        <div className="mb-16">
-          <div className="flex items-end justify-between mb-6 gap-4 flex-wrap">
-            <div>
-              <h2 className="font-display text-3xl sm:text-4xl text-brand-cream uppercase tracking-wider flex items-center gap-2">
-                <Film className="w-6 h-6 text-brand-red" /> LIVE MOMENTS
-              </h2>
-              <p className="text-xs text-brand-text-muted mt-1">Recht van het podium. Klik op de speaker voor geluid.</p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {liveMoments.map((m, i) => {
-              const rotate = i % 3 === 0 ? "card-rotate-left" : i % 3 === 1 ? "" : "card-rotate-right";
-              const shadow = i % 3 === 0 ? "hard-shadow-cream" : i % 3 === 1 ? "hard-shadow-red" : "hard-shadow-cyan";
-              const isUnmuted = unmutedId === m.id;
-              return (
-                <figure key={m.id} className={`relative bg-brand-bg-3 border-3 border-brand-cream rounded-2xl overflow-hidden ${rotate} ${shadow}`}>
-                  <video
-                    src={m.video}
-                    poster={m.poster}
-                    autoPlay
-                    loop
-                    playsInline
-                    preload="metadata"
-                    muted={!isUnmuted}
-                    aria-label={`Quarter Life Crisis spelen ${m.title} live`}
-                    className="w-full aspect-video object-cover"
-                  />
-                  <figcaption className="flex items-center justify-between px-4 py-3 border-t-2 border-brand-cream/10 bg-brand-bg-2">
-                    <span className="font-display uppercase tracking-widest text-sm text-brand-cream">{m.title}</span>
-                    <button
-                      type="button"
-                      onClick={() => setUnmutedId(isUnmuted ? null : m.id)}
-                      className={`p-2 rounded-full border-2 transition-all ${isUnmuted ? "bg-brand-amber border-brand-cream text-brand-bg-3" : "bg-brand-bg-3 border-brand-cream/40 text-brand-cream hover:border-brand-amber hover:text-brand-amber"}`}
-                      aria-label={isUnmuted ? "Geluid uit" : "Geluid aan"}
-                      aria-pressed={isUnmuted}
-                    >
-                      {isUnmuted ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
-                    </button>
-                  </figcaption>
-                </figure>
-              );
-            })}
-          </div>
         </div>
 
         {/* Spotify Playlist (placeholder) */}

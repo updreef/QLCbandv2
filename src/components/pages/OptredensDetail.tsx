@@ -101,7 +101,7 @@ export default function OptredensDetail({ slug }: OptredensDetailProps) {
                         muted
                         loop
                         playsInline
-                        preload="metadata"
+                        preload="none"
                         aria-label={`Quarter Life Crisis spelen ${m.title} live`}
                         className="w-full aspect-video object-cover bg-brand-bg-3"
                       />

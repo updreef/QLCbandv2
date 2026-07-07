@@ -37,15 +37,13 @@ export default function Header({ currentRoute }: HeaderProps) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo */}
-        <a 
-          href="#/" 
-          className="group flex items-center gap-2 font-display text-2xl md:text-3xl tracking-widest text-brand-cream hover:text-brand-neon transition-colors"
+        <a
+          href="#/"
+          aria-label="Quarter Life Crisis — home"
+          className="group flex items-center font-display text-2xl md:text-3xl tracking-widest text-brand-cream hover:text-brand-neon transition-colors"
         >
-          <span className="bg-brand-red px-2 py-1 text-white inline-block border-2 border-brand-cream hard-shadow-neon rotate-[-2deg] group-hover:rotate-0 transition-transform">
+          <span className="bg-brand-red px-3 py-1 text-white inline-block border-2 border-brand-cream hard-shadow-neon rotate-[-2deg] group-hover:rotate-0 transition-transform">
             QLC
-          </span>
-          <span className="font-bold uppercase tracking-[0.2em] hidden sm:inline ml-1">
-            QUARTER LIFE CRISIS
           </span>
         </a>
 

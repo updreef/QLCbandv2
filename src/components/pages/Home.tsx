@@ -14,11 +14,12 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <video
             className="w-full h-full object-cover opacity-40"
+            poster="/images/hero-poster.jpg"
             autoPlay
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             aria-hidden="true"
           >
             <source src="/videos/hero/hero-movie.mp4" type="video/mp4" />

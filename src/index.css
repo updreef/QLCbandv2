@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700;800&display=swap');
+/* Fonts geladen via <link> in index.html (preconnect + display=swap) — geen render-blocking @import hier. */
 @import "tailwindcss";
 
 @theme {

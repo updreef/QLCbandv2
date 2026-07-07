@@ -2,6 +2,7 @@ import { useState } from "react";
 import { members } from "../../data";
 import { Star, Sliders, Zap, X, Instagram } from "lucide-react";
 import SquiggleUnderline from "../SquiggleUnderline";
+import LazyVideo from "../LazyVideo";
 
 export default function Mannen() {
   const [selectedMember, setSelectedMember] = useState<typeof members[0] | null>(null);
@@ -36,14 +37,9 @@ export default function Mannen() {
               >
                 {/* Member Video */}
                 <div className="relative aspect-[4/5] overflow-hidden border-b-2 border-brand-cream bg-brand-bg-3">
-                  <video
+                  <LazyVideo
                     src={member.video}
                     poster={member.avatar}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
                     aria-label={member.name}
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
@@ -94,14 +90,9 @@ export default function Mannen() {
               <div className="grid grid-cols-1 md:grid-cols-12">
                 {/* Left side video */}
                 <div className="md:col-span-5 h-48 md:h-full relative border-b-2 md:border-b-0 md:border-r-2 border-brand-cream bg-brand-bg-3">
-                  <video
+                  <LazyVideo
                     src={selectedMember.video}
                     poster={selectedMember.avatar}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
                     aria-label={selectedMember.name}
                     className="w-full h-full object-cover"
                   />

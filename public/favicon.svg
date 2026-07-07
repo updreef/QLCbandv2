@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect x="26" y="26" width="460" height="460" rx="96" fill="#c0392b" stroke="#f1f1f1" stroke-width="28"/>
+  <text x="256" y="258" text-anchor="middle" dominant-baseline="central"
+        font-family="'Arial Narrow','Roboto Condensed',Impact,sans-serif"
+        font-weight="700" font-size="228" letter-spacing="-6" fill="#ffffff">QLC</text>
+</svg>
