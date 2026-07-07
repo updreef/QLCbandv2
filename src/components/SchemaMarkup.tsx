@@ -20,23 +20,37 @@ export default function SchemaMarkup({ route, slug }: SchemaMarkupProps) {
         "@context": "https://schema.org",
         "@type": "MusicGroup",
         "name": "Quarter Life Crisis",
-        "alternateName": "QLC Band",
-        "genre": "Rock",
-        "homeLocation": {
+        "alternateName": "QLC",
+        "genre": ["Rock", "Pop Rock", "Coverband"],
+        "url": "https://qlcband.nl/",
+        "logo": "https://qlcband.nl/images/logo.png",
+        "image": "https://qlcband.nl/images/band-live.jpg",
+        "foundingLocation": {
           "@type": "Place",
-          "name": "Bunschoten-Spakenburg, Nederland"
+          "name": "Bunschoten-Spakenburg",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bunschoten-Spakenburg",
+            "addressRegion": "Utrecht",
+            "addressCountry": "NL"
+          }
         },
-        "description": "Quarter Life Crisis (QLC) is een energieke 6-koppige rock coverband uit Bunschoten-Spakenburg en Amersfoort. Wij spelen de grootste rockhits en herkenbare anthems.",
+        "areaServed": ["Spakenburg", "Bunschoten", "Amersfoort", "Nijkerk", "Putten", "Eemnes", "Utrecht", "Hilversum"],
+        "description": "Quarter Life Crisis (QLC) is een zeskoppige rockband uit Spakenburg & Amersfoort. Live optredens, covers en eigen werk.",
         "slogan": "Play loud, grow up later",
-        "telephone": "+31 6 40 42 00 54",
+        "telephone": "+31640420054",
         "email": "Ruben_beukers@outlook.com",
+        "sameAs": [
+          "https://instagram.com/quarterlifecrisis.band",
+          "https://open.spotify.com/user/RubenBeukers"
+        ],
         "member": [
-          { "@type": "OrganizationRole", "member": { "@type": "Person", "name": "Ruben Beukers" }, "roleName": "Lead Vocals & Rhythm Guitar" },
-          { "@type": "OrganizationRole", "member": { "@type": "Person", "name": "Daan de Graaf" }, "roleName": "Lead Guitar" },
-          { "@type": "OrganizationRole", "member": { "@type": "Person", "name": "Thijs Hopman" }, "roleName": "Keys & Synths" },
-          { "@type": "OrganizationRole", "member": { "@type": "Person", "name": "Jesse van de Groep" }, "roleName": "Bass Guitar" },
-          { "@type": "OrganizationRole", "member": { "@type": "Person", "name": "Thomas Koelewijn" }, "roleName": "Drums" },
-          { "@type": "OrganizationRole", "member": { "@type": "Person", "name": "Sophie van Diermen" }, "roleName": "Backing Vocals" }
+          { "@type": "OrganizationRole", "member": { "@type": "Person", "name": "Niels Verburg" }, "roleName": "Zang" },
+          { "@type": "OrganizationRole", "member": { "@type": "Person", "name": "Tristan Muijs" }, "roleName": "Gitaar" },
+          { "@type": "OrganizationRole", "member": { "@type": "Person", "name": "Ruben Beukers" }, "roleName": "Gitaar" },
+          { "@type": "OrganizationRole", "member": { "@type": "Person", "name": "Joel van de Groep" }, "roleName": "Gitaar" },
+          { "@type": "OrganizationRole", "member": { "@type": "Person", "name": "Peter Baas" }, "roleName": "Drums" },
+          { "@type": "OrganizationRole", "member": { "@type": "Person", "name": "Julian Hugenholtz" }, "roleName": "Piano" }
         ],
         "event": shows
           .filter((s) => s.status === "upcoming")

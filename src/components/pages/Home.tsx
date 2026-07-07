@@ -1,25 +1,29 @@
 import { motion } from "motion/react";
-import { Calendar, Music, ArrowRight, Play, Star, MapPin, Phone, MessageSquare } from "lucide-react";
-import { shows, members, repertoire } from "../../data";
+import { Calendar, Music, ArrowRight, Play, Star, MapPin } from "lucide-react";
+import { shows, repertoire } from "../../data";
 import SquiggleUnderline from "../SquiggleUnderline";
 
 export default function Home() {
   const upcomingShow = shows.find((s) => s.status === "upcoming");
-  const pastShows = shows.filter((s) => s.status === "past").slice(0, 2);
 
   return (
     <div className="pt-20">
       {/* 1. Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center bg-brand-bg-3 overflow-hidden border-b-4 border-brand-cream">
-        {/* Background Image with absolute overlay */}
+        {/* Background video with dark overlay */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src="/src/assets/images/qlc_band_stage_1783405063846.jpg" 
-            alt="QLC Band Live Performing" 
-            className="w-full h-full object-cover opacity-35 scale-105 animate-pulse duration-[8s]"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-bg to-transparent" />
+          <video
+            className="w-full h-full object-cover opacity-40"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            aria-hidden="true"
+          >
+            <source src="/videos/hero/hero-movie.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-bg to-brand-bg-3/60" />
         </div>
 
         {/* Content container */}
@@ -32,25 +36,25 @@ export default function Home() {
           >
             {/* Stamp badge */}
             <div className="bg-brand-red text-white text-xs font-mono px-3 py-1 uppercase tracking-[0.2em] border-2 border-brand-cream hard-shadow-neon rotate-[-3deg] mb-6">
-              RECHTSTREEKS UIT SPAKENBURG
+              ROCKBAND · SPAKENBURG / AMERSFOORT
             </div>
 
             {/* Title display */}
             <h1 className="font-display text-6xl sm:text-8xl md:text-9xl tracking-[0.05em] uppercase text-brand-cream leading-none">
-              QUARTER LIFE <br/>
-              <span className="text-brand-amber text-stroke">CRISIS</span>
+              QUARTER <span className="text-brand-amber text-stroke">LIFE</span> <br/>
+              CRISIS
             </h1>
 
             {/* Slogan */}
             <p className="font-display uppercase text-2xl sm:text-3xl tracking-[0.25em] text-brand-neon mt-4">
-              "Play loud, grow up later"
+              Play loud, grow up later
             </p>
 
             <div className="w-48 h-1.5 bg-brand-red mt-4 border border-brand-cream rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
 
             {/* Paragraph Description */}
             <p className="text-brand-text-muted max-w-2xl mt-6 text-sm sm:text-base leading-relaxed font-sans">
-              Een 6-koppige rock coverband die weigert mee te gaan in de sleur van de volwassenheid. We brengen de allergrootste rockklassiekers met onuitputtelijke energie en strak gitaargeweld rechtstreeks naar jouw kroeg, festival of feest!
+              Zes mannen midden twintig uit Spakenburg en Amersfoort. Ooit gestopt met muziek, nu weer helemaal terug. Covers, eigen werk en de energie die elke show nodig heeft.
             </p>
 
             {/* Action Buttons */}
@@ -74,7 +78,7 @@ export default function Home() {
         {/* Diagonal Ribbon styling */}
         <div className="absolute bottom-0 right-0 left-0 bg-brand-red border-y-3 border-brand-cream py-3 overflow-hidden select-none transform rotate-[1deg] translate-y-2 origin-bottom-right hidden md:block">
           <div className="whitespace-nowrap flex gap-8 font-display uppercase tracking-widest text-lg text-white">
-            {Array(10).fill("+++ ROCK COVERS FROM THE AC/DC TO MUSE +++ PLAY LOUD GROW UP LATER +++").map((text, i) => (
+            {Array(10).fill("+++ PLAY LOUD, GROW UP LATER +++ ROCKBAND UIT SPAKENBURG & AMERSFOORT +++").map((text, i) => (
               <span key={i} className="animate-marquee">{text}</span>
             ))}
           </div>
@@ -168,9 +172,9 @@ export default function Home() {
             {/* Left side: Photo with organic custom blob style */}
             <div className="relative justify-self-center lg:justify-self-start">
               <div className="absolute -inset-2 bg-brand-neon blob-about-photo border-3 border-brand-cream rotate-[2deg] -z-10" />
-              <img 
-                src="/src/assets/images/booking_lead_1783405090426.jpg" 
-                alt="QLC Band Instruments" 
+              <img
+                src="/images/band-live.jpg"
+                alt="Quarter Life Crisis live op het podium"
                 className="w-full max-w-md object-cover blob-about-photo border-3 border-brand-cream hard-shadow-red"
                 referrerPolicy="no-referrer"
               />
@@ -178,18 +182,18 @@ export default function Home() {
 
             {/* Right side: Story brief */}
             <div className="flex flex-col gap-6">
-              <p className="text-brand-red font-mono uppercase text-xs tracking-[0.25em]">WIE ZIJN WIJ?</p>
+              <p className="text-brand-red font-mono uppercase text-xs tracking-[0.25em]">WIE WE ZIJN</p>
               <h2 className="font-display text-4xl sm:text-5xl text-brand-cream uppercase tracking-wider leading-tight">
-                ZES CO-SLACHTOFFERS VAN EEN <span className="text-brand-amber">QUARTER LIFE CRISIS</span>
+                ZES MANNEN, EEN <span className="text-brand-amber">QUARTER LIFE CRISIS</span>
               </h2>
               <SquiggleUnderline />
 
               <p className="text-brand-text-muted text-sm sm:text-base leading-relaxed mt-4">
-                Quarter Life Crisis (QLC) werd gevormd door zes jonge twintigers uit Spakenburg en Amersfoort die dezelfde dreigende sleur van volwassenheid voelden naderen. Ons antwoord op de crisis? Geen dure racefietsen of retraites, maar de versterkers op standje tien zetten en de vetste rockklassiekers nieuw leven inblazen.
+                Het begon zoals de beste ideeën beginnen: met een biertje in de tuin. Zes mannen, midden twintig, en die ene vraag die maar bleef hangen, waarom zijn we eigenlijk gestopt met muziek maken?
               </p>
 
               <p className="text-brand-text-muted text-sm sm:text-base leading-relaxed">
-                We spelen alles live, puur en met onuitputtelijke adrenaline. Of het nu gaat om dampende rockcafés, gezellige dorpsfeesten of intieme backyard optredens; QLC is gegarandeerd feest en gitaargeweld.
+                Op onze 25e deden we wat we op onze 15e het allerliefst deden: herrie maken. En het voelde meteen weer als thuiskomen.
               </p>
 
               <div className="flex flex-wrap gap-4 mt-4">
@@ -257,48 +261,26 @@ export default function Home() {
             {/* Live Atmosphere Pitch Card */}
             <div className="bg-brand-bg-3 border-3 border-brand-cream p-6 sm:p-8 rounded-2xl hard-shadow-red card-rotate-right flex flex-col gap-6">
               <h3 className="font-display text-2xl text-brand-red tracking-wider uppercase flex items-center gap-2">
-                DAMPENDE ROCKCOVER LIVE SHOWS
+                LIVE OP HET PODIUM
               </h3>
               <p className="text-brand-text-muted text-sm leading-relaxed">
-                QLC is géén bruiloftbandje dat braaf in de hoek staat te schuifelen. Als wij langskomen, breekt de hel los. Verwacht zweet, scheurende Marshall versterkers, dampende basgrooves en een zanger die over het podium stuitert. 
+                Elektrisch, akoestisch, bas, drums, piano, zang. Zes muzikanten die van jongs af aan altijd al muziek maakten en op hun 25e besloten dat ze er nooit meer mee zouden stoppen. Verwacht rockcovers met eigen kop, meezingers en een uur lang volle bak energie.
               </p>
               <div className="border border-brand-cream/10 rounded-lg p-4 bg-brand-bg-2/30 flex items-center gap-4">
                 <div className="bg-brand-amber p-3 border-2 border-brand-cream text-brand-bg-3 shadow-[2px_2px_0_0_#f1f1f1]">
                   <Play className="w-5 h-5 fill-brand-bg-3" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-sm">Spotify & YouTube Highlights</h4>
-                  <p className="text-xs text-brand-text-muted">Luister en bekijk clips op de muziekpagina!</p>
+                  <h4 className="font-semibold text-sm">Setlist & muziek</h4>
+                  <p className="text-xs text-brand-text-muted">Bekijk het volledige repertoire op de muziekpagina.</p>
                 </div>
               </div>
-              <a 
-                href="#/muziek" 
+              <a
+                href="#/muziek"
                 className="font-display uppercase tracking-widest text-center text-sm py-3 bg-brand-cream text-brand-bg border-2 border-brand-cream font-bold hover:bg-transparent hover:text-brand-cream transition-colors"
               >
-                OPEN DE MEDIA SPELER
+                BEKIJK DE SETLIST
               </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Quick Testimonials/Review teaser */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-brand-bg-3 border-t-4 border-brand-cream">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="border-2 border-brand-cream p-6 bg-brand-bg-2 hard-shadow-neon rounded-xl relative">
-              <p className="text-brand-amber text-lg font-semibold italic mb-4">"De sfeer was vanaf de eerste minuut fantastisch. QLC heeft onze dorpsfeestavond echt onvergetelijk gemaakt!"</p>
-              <div className="flex justify-between items-center text-xs font-mono text-brand-text-muted">
-                <span>— Organisatie Dorpsfeest Spakenburg</span>
-                <span className="text-brand-red">★★★★★</span>
-              </div>
-            </div>
-            <div className="border-2 border-brand-cream p-6 bg-brand-bg-2 hard-shadow-cream rounded-xl relative">
-              <p className="text-brand-amber text-lg font-semibold italic mb-4">"Wat een bak energie! Geen synthesizer-tracks van een computer, maar echte gitaarrock in de achtertuin."</p>
-              <div className="flex justify-between items-center text-xs font-mono text-brand-text-muted">
-                <span>— Backyard Sessions bezoeker</span>
-                <span className="text-brand-red">★★★★★</span>
-              </div>
             </div>
           </div>
         </div>
@@ -311,7 +293,7 @@ export default function Home() {
             MAAK VAN JOUW EVENEMENT EEN <span className="text-brand-amber">ROCKFEEST</span>
           </h2>
           <p className="text-brand-text-muted max-w-xl mx-auto mb-8 text-sm sm:text-base leading-relaxed">
-            Bruiloft, dorpsfeest, café of festival? QLC boeken zorgt gegarandeerd voor meezingen, springen en meedansen. Vrijblijvende prijsopgave binnen 24 uur.
+            Feest, festival, bruiloft of bedrijfsevent? QLC komt langs met een uur live rock, meezingers en de energie die elke show nodig heeft. Bel of mail voor beschikbaarheid.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
             <a 

@@ -13,55 +13,55 @@ export default function OverOns() {
           </h1>
           <SquiggleUnderline className="mx-auto md:mx-0" />
           <p className="text-brand-text-muted max-w-2xl mt-4 text-sm sm:text-base">
-            Quarter Life Crisis (QLC) is niet zomaar een coverband; het is onze gezamenlijke rock-rebellie tegen volwassen worden.
+            Zes mannen midden twintig, één biertje in de tuin, en de vraag die maar bleef hangen: waarom zijn we eigenlijk gestopt met muziek maken?
           </p>
         </div>
 
         {/* Content Story Grid */}
         <div className="flex flex-col gap-10 font-sans text-sm sm:text-base leading-relaxed text-brand-text-muted">
-          
+
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center bg-brand-bg-2 border-3 border-brand-cream p-6 sm:p-8 rounded-2xl hard-shadow-red card-rotate-left">
             <div className="md:col-span-4">
               <h3 className="font-display text-3xl text-brand-amber uppercase tracking-widest">
-                DE CRISIS
+                HET BEGIN
               </h3>
-              <p className="text-xs font-mono text-brand-red mt-1">Sinds 2024</p>
+              <p className="text-xs font-mono text-brand-red mt-1">Op onze 25e</p>
             </div>
             <div className="md:col-span-8 border-l-2 border-brand-cream/10 pl-0 md:pl-6">
               <p>
-                Rond de grens van 25 jaar oud kregen we allemaal te maken met de beruchte 'Quarter Life Crisis'. Vaste contracten, kantoorgesprekken over pensioenen en meubilair... De sleur loerde om de hoek. Onze reactie? Een snoeiharde rockband oprichten. Om lawaai te maken, te springen en onszelf te herinneren aan wat écht belangrijk is: plezier, passie en gitaarsolo's.
+                Het begon zoals de beste ideeën beginnen: met een biertje in de tuin. Zes mannen, midden twintig, en die ene vraag die maar bleef hangen, waarom zijn we eigenlijk gestopt met muziek maken?
               </p>
             </div>
           </div>
 
           <div className="space-y-6 mt-4">
             <h2 className="font-display text-3xl text-brand-cream uppercase tracking-wider">
-              ONZE FILOSOFIE: PLAY LOUD, GROW UP LATER
+              PLAY LOUD, GROW UP LATER
             </h2>
             <p>
-              We nemen de muziek uiterst serieus, maar onszelf absoluut niet. Dat is de kern van QLC. Elk optreden is voor ons een kans om de energie van legendarische liveshows te herbeleven. We weigeren om met backing tracks of computerspelers te werken. Elke drumslag, basnoot, synthesizer-akkoord en gitaarriff die je hoort is 100% live en ter plekke gecreëerd door zes gepassioneerde muzikanten.
+              Want dat was het ding. We deden het allemaal vroeger. Gitaren, drums, keyboards. Het zat er altijd al in. Maar ergens tussen studeren, werken en "volwassen worden" waren we het kwijtgeraakt. Tot die ene koude winteravond. Eén biertje werd er vijf, en voor we het wisten hadden we een bandnaam, een groepsapp en een afspraak om te repeteren.
             </p>
 
             <blockquote className="border-l-4 border-brand-amber pl-4 my-6 italic text-brand-text font-semibold bg-brand-bg-2/30 py-4 pr-4">
-              "We wilden de gitaarsolo's weer terugbrengen in de schijnwerpers. Geen zacht achtergrondgeruis, maar rock zoals het bedoeld is: rauw, puur en recht in je gezicht."
+              Op onze 25e deden we wat we op onze 15e het allerliefst deden: herrie maken. En het voelde meteen weer als thuiskomen.
             </blockquote>
 
             <p>
-              Onze setlist is een eerbetoon aan de geschiedenis van de rock. Van de pure gitaarrock van AC/DC en Golden Earring tot de bombastische synths van Muse en de zangharmonieën van The Cranberries. We bouwen de show zo op dat niemand stil kan blijven staan. 
+              De naam? Quarter Life Crisis. Want als je op je 25e besluit om alles opzij te zetten voor muziek, dan is dat óf een crisis, óf het beste besluit dat je ooit hebt genomen. Wij denken het tweede.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
             <div className="border-2 border-brand-cream p-6 bg-brand-bg-3 rounded-xl hard-shadow-cream">
-              <h3 className="font-display text-xl text-brand-neon uppercase tracking-wider mb-2">HET RECEPT</h3>
+              <h3 className="font-display text-xl text-brand-neon uppercase tracking-wider mb-2">DE BEZETTING</h3>
               <p className="text-xs leading-relaxed text-brand-text-muted">
-                Zes vrienden uit Spakenburg en Amersfoort, één wekelijkse repetitieavond vol zweet en rock, en een onuitputtelijke drang om elk podium waar we op staan om te toveren tot een kolkende rock-arena.
+                Niels op zang, Tristan, Ruben en Joel op gitaar, Peter op drums en Julian op piano. Zes muzikanten uit Bunschoten-Spakenburg en Amersfoort. Wekelijkse repetitie, groeiend repertoire, dezelfde groepsapp die die ene winteravond ontstond.
               </p>
             </div>
             <div className="border-2 border-brand-cream p-6 bg-brand-bg-3 rounded-xl hard-shadow-red">
               <h3 className="font-display text-xl text-brand-red uppercase tracking-wider mb-2">DE BELOFTE</h3>
               <p className="text-xs leading-relaxed text-brand-text-muted">
-                Als je QLC boekt, krijg je geen standaard bruiloftsorkest. Je krijgt een rockshow. We betrekken het publiek, gooien de gitaarversterkers wijd open en zingen mee tot we geen stem meer over hebben.
+                Boek QLC en je krijgt een uur volle bak live rock. Covers met eigen kop, meezingers, en zes mannen die het meest gelukkig zijn als de versterkers aanstaan. Van Backyard Sessions in de tuin tot podium op een festival.
               </p>
             </div>
           </div>

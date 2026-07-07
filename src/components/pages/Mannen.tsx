@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { members } from "../../data";
-import { ShieldAlert, Star, Sliders, Music, Zap, X } from "lucide-react";
+import { Star, Sliders, Zap, X, Instagram } from "lucide-react";
 import SquiggleUnderline from "../SquiggleUnderline";
 
 export default function Mannen() {
@@ -12,13 +12,13 @@ export default function Mannen() {
         
         {/* Page Header */}
         <div className="text-center md:text-left mb-16">
-          <p className="text-brand-neon font-mono uppercase text-xs tracking-[0.25em]">ONTMOET HET ENSEMBLE</p>
+          <p className="text-brand-neon font-mono uppercase text-xs tracking-[0.25em]">DE MANNEN</p>
           <h1 className="font-display text-5xl sm:text-6xl text-brand-cream uppercase tracking-wider">
             DE MUZIKANTEN
           </h1>
           <SquiggleUnderline className="mx-auto md:mx-0" />
           <p className="text-brand-text-muted max-w-2xl mt-4 text-sm sm:text-base">
-            Zes gepassioneerde muzikanten uit Spakenburg en Amersfoort die samen de herrie en energie van Quarter Life Crisis vormen. Klik op een muzikant voor gear, bios en leuke feiten!
+            Zes muzikanten uit Bunschoten-Spakenburg en Amersfoort. Van jongs af aan altijd al bezig met muziek en op hun 25e besloten dat ze er nooit meer mee zouden stoppen. Klik op een muzikant voor de volledige bio.
           </p>
         </div>
 
@@ -64,7 +64,7 @@ export default function Mannen() {
                     {member.bio}
                   </p>
                   <p className="text-[10px] font-mono text-brand-amber mt-3 uppercase tracking-wider font-semibold">
-                    Klik voor gear & funfacts →
+                    Klik voor volledige bio →
                   </p>
                 </div>
               </div>
@@ -120,19 +120,34 @@ export default function Mannen() {
                     <p className="text-brand-text mt-1">{selectedMember.funFact}</p>
                   </div>
 
-                  {/* Gear List */}
-                  <div>
-                    <p className="font-mono text-xs text-brand-red font-semibold flex items-center gap-1 uppercase tracking-wider mb-1.5">
-                      <Sliders className="w-3.5 h-3.5" /> Gear & Uitrusting:
-                    </p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {selectedMember.gear.map((g) => (
-                        <span key={g} className="text-[10px] font-semibold bg-brand-bg-3 border border-brand-cream/10 px-2.5 py-1 text-brand-cream rounded">
-                          {g}
-                        </span>
-                      ))}
+                  {/* Gear List (optional) */}
+                  {selectedMember.gear.length > 0 && (
+                    <div>
+                      <p className="font-mono text-xs text-brand-red font-semibold flex items-center gap-1 uppercase tracking-wider mb-1.5">
+                        <Sliders className="w-3.5 h-3.5" /> Gear & Uitrusting:
+                      </p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {selectedMember.gear.map((g) => (
+                          <span key={g} className="text-[10px] font-semibold bg-brand-bg-3 border border-brand-cream/10 px-2.5 py-1 text-brand-cream rounded">
+                            {g}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
+
+                  {/* Instagram */}
+                  {selectedMember.instagram && (
+                    <a
+                      href={selectedMember.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-xs font-mono text-brand-neon hover:text-brand-amber transition-colors uppercase tracking-wider mt-1"
+                    >
+                      <Instagram className="w-3.5 h-3.5" />
+                      {selectedMember.instagram.replace('https://instagram.com/', '@')}
+                    </a>
+                  )}
 
                 </div>
               </div>

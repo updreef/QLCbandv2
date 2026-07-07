@@ -267,15 +267,15 @@ export default function BoekOns() {
             
             {/* Rock-and-roll guitar cover image */}
             <div className="bg-brand-bg-3 border-3 border-brand-cream rounded-2xl overflow-hidden hard-shadow-red card-rotate-right">
-              <img 
-                src="/src/assets/images/booking_lead_1783405090426.jpg" 
-                alt="QLC Electric Guitar Fender" 
+              <img
+                src="/images/band-live.jpg"
+                alt="Quarter Life Crisis live"
                 className="w-full h-56 object-cover border-b-2 border-brand-cream"
                 referrerPolicy="no-referrer"
               />
               <div className="p-6 flex flex-col gap-4">
                 <h3 className="font-display text-2xl text-brand-cream uppercase tracking-wide">
-                  WAT REGELLEN WIJ?
+                  WAT REGELEN WIJ?
                 </h3>
                 <ul className="space-y-2 text-xs text-brand-text-muted font-sans pl-2">
                   <li className="flex items-start gap-2">
