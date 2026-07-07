@@ -9,7 +9,7 @@ export default function Blog() {
         
         {/* Page Header */}
         <div className="text-center md:text-left mb-16">
-          <p className="text-brand-neon font-mono uppercase text-xs tracking-[0.25em]">QCL BACKSTAGE BLOG</p>
+          <p className="text-brand-neon font-mono uppercase text-xs tracking-[0.25em]">QLC BACKSTAGE BLOG</p>
           <h1 className="font-display text-5xl sm:text-6xl text-brand-cream uppercase tracking-wider">
             ONZE BLOG
           </h1>
