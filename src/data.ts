@@ -1,7 +1,8 @@
 export interface Member {
   name: string;
   role: string;
-  avatar: string;
+  avatar: string; // poster image, used as fallback and video poster
+  video: string;  // autoplay muted loop portrait video
   bio: string;
   funFact: string;
   instagram: string;
@@ -50,6 +51,7 @@ export const members: Member[] = [
     name: "Tristan Muijs",
     role: "Gitaar",
     avatar: "/images/members/tristan.png",
+    video: "/videos/members/tristan.mp4",
     bio: "Tristan laat al jaren zijn funky grooves door elke zaal knallen. Zijn grote held? Billie Joe Armstrong van Green Day. Maar vergis je niet, als hij geen riffs staat te spelen, is hij bezig om Nederlands kampioen armworstelen te worden. Ja, echt.",
     funFact: "Traint in het geheim voor Nederlands kampioen armworstelen.",
     instagram: "https://instagram.com/tristanmuys",
@@ -59,6 +61,7 @@ export const members: Member[] = [
     name: "Ruben Beukers",
     role: "Gitaar",
     avatar: "/images/members/ruben.png",
+    video: "/videos/members/ruben.mp4",
     bio: "Elektrisch, akoestisch, bas. Geef Ruben een instrument en hij speelt het. Een echte avonturier waar niks te gek voor is. Hij brengt de energie die elke show nodig heeft en stopt pas als de versterker het begeeft.",
     funFact: "Stopt pas als de versterker het begeeft.",
     instagram: "https://instagram.com/rubenbeukers",
@@ -68,6 +71,7 @@ export const members: Member[] = [
     name: "Peter Baas",
     role: "Drums",
     avatar: "/images/members/peter.png",
+    video: "/videos/members/peter.mp4",
     bio: "Nog nooit een drumles gehad. Slaat ze toch allemaal raak. Peter is een alleskunner: voormalig Nederlands kampioen skiën, tegenwoordig timmerman, en achter het drumstel een beest met Metallica in zijn bloed.",
     funFact: "Voormalig Nederlands kampioen skiën. Nooit een drumles gehad.",
     instagram: "https://instagram.com/peterrrbaas",
@@ -77,6 +81,7 @@ export const members: Member[] = [
     name: "Niels Verburg",
     role: "Zang",
     avatar: "/images/members/niels.png",
+    video: "/videos/members/niels.mp4",
     bio: "Ooit zong hij alleen Psalmen en Gezangen. Nu staat hij vooraan het podium als de frontman van QLC. Van kerkbank naar rockpodium. Niels is onze echte ster en een stiekeme country-fanaat.",
     funFact: "Van kerkbank naar rockpodium. Stiekeme country-fanaat.",
     instagram: "https://instagram.com/nielsverburg",
@@ -86,6 +91,7 @@ export const members: Member[] = [
     name: "Joel van de Groep",
     role: "Gitaar",
     avatar: "/images/members/joel.png",
+    video: "/videos/members/joel.mp4",
     bio: "Joel ademt rock. Van jongs af aan stonden de gillende metal gitaren door zijn stereo te knallen. Van basist tot sologitarist, hij kan het allemaal (als hij wil). Net terug uit de Down Under en klaar om iedereen te laten zien hoe goed hij is.",
     funFact: "Net terug uit de Down Under.",
     instagram: "https://instagram.com/joelvandegroep",
@@ -95,6 +101,7 @@ export const members: Member[] = [
     name: "Julian Hugenholtz",
     role: "Piano",
     avatar: "/images/members/julian.png",
+    video: "/videos/members/julian.mp4",
     bio: "Julian Hugenholtz, beter bekend als Buugenholtz, laat de piano al van jongs af aan klinken en op elk feestje hoor je hem als eerste. Hij schrijft zijn eigen liedjes, maar Piano Man van Billy Joel blijft zijn favoriet.",
     funFact: "Ook bekend als Buugenholtz. Favoriet: Piano Man van Billy Joel.",
     instagram: "https://instagram.com/julianhh_",

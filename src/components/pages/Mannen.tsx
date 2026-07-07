@@ -34,16 +34,21 @@ export default function Mannen() {
                   isEven ? "card-rotate-left hard-shadow-cream" : "card-rotate-right hard-shadow-red"
                 }`}
               >
-                {/* Member Avatar */}
-                <div className="relative h-64 overflow-hidden border-b-2 border-brand-cream">
-                  <img
-                    src={member.avatar}
-                    alt={member.name}
+                {/* Member Video */}
+                <div className="relative h-64 overflow-hidden border-b-2 border-brand-cream bg-brand-bg-3">
+                  <video
+                    src={member.video}
+                    poster={member.avatar}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-label={member.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-bg-3/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-bg-3/80 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end pointer-events-none">
                     <div>
                       <h3 className="font-display text-2xl text-brand-cream uppercase tracking-wide">
                         {member.name}
@@ -87,13 +92,18 @@ export default function Mannen() {
               </button>
 
               <div className="grid grid-cols-1 md:grid-cols-12">
-                {/* Left side image */}
-                <div className="md:col-span-5 h-48 md:h-full relative border-b-2 md:border-b-0 md:border-r-2 border-brand-cream">
-                  <img
-                    src={selectedMember.avatar}
-                    alt={selectedMember.name}
+                {/* Left side video */}
+                <div className="md:col-span-5 h-48 md:h-full relative border-b-2 md:border-b-0 md:border-r-2 border-brand-cream bg-brand-bg-3">
+                  <video
+                    src={selectedMember.video}
+                    poster={selectedMember.avatar}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-label={selectedMember.name}
                     className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
                   />
                 </div>
 
