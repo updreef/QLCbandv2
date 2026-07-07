@@ -231,10 +231,10 @@ export default function Home() {
             {/* Repertoire Tracklist */}
             <div className="bg-brand-bg-2 border-3 border-brand-cream p-6 sm:p-8 rounded-2xl hard-shadow-cream">
               <h3 className="font-display text-2xl text-brand-amber tracking-wider uppercase mb-6 flex items-center gap-2">
-                <Music className="w-5 h-5" /> RECENT IN DE SETLIST
+                <Music className="w-5 h-5" /> KNALLERS UIT DE SETLIST
               </h3>
               <div className="divide-y divide-brand-cream/10">
-                {repertoire.slice(0, 5).map((song, i) => (
+                {repertoire.filter((s) => s.set === 2).sort((a, b) => a.position - b.position).slice(0, 5).map((song) => (
                   <div key={song.id} className="py-3 flex items-center justify-between">
                     <div>
                       <h4 className="font-semibold text-brand-cream text-sm sm:text-base">{song.title}</h4>
@@ -242,7 +242,7 @@ export default function Home() {
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-mono text-brand-red bg-brand-bg-3 border border-brand-cream/10 px-2.5 py-1 uppercase rounded">
-                        SETLIST #{i+1}
+                        SET 2 · #{song.position}
                       </span>
                     </div>
                   </div>
