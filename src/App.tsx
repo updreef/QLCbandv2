@@ -16,30 +16,30 @@ import Muziek from "./components/pages/Muziek";
 import Blog from "./components/pages/Blog";
 import BlogDetail from "./components/pages/BlogDetail";
 
+function parseHash(): { route: string; slug: string } {
+  if (typeof window === "undefined") return { route: "home", slug: "" };
+  const raw = window.location.hash || "#/";
+  // Strip any query string that sneaks in behind the hash so route matching is clean.
+  const hash = raw.split("?")[0];
+  if (hash.startsWith("#/optredens/")) return { route: "optredens-detail", slug: hash.replace("#/optredens/", "") };
+  if (hash.startsWith("#/blog/"))       return { route: "blog-detail", slug: hash.replace("#/blog/", "") };
+  return { route: hash.replace("#/", "") || "home", slug: "" };
+}
+
 export default function App() {
-  const [route, setRoute] = useState<string>("home");
-  const [slug, setSlug] = useState<string>("");
+  const initial = parseHash();
+  const [route, setRoute] = useState<string>(initial.route);
+  const [slug, setSlug] = useState<string>(initial.slug);
 
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash || "#/";
-      
-      if (hash.startsWith("#/optredens/")) {
-        setRoute("optredens-detail");
-        setSlug(hash.replace("#/optredens/", ""));
-      } else if (hash.startsWith("#/blog/")) {
-        setRoute("blog-detail");
-        setSlug(hash.replace("#/blog/", ""));
-      } else {
-        const parsed = hash.replace("#/", "") || "home";
-        setRoute(parsed);
-        setSlug("");
-      }
-      
-      // Scroll to top smoothly on route change
+      const { route: r, slug: s } = parseHash();
+      setRoute(r);
+      setSlug(s);
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
+    // Sync in case hash changed between initial parse and effect mount.
     handleHashChange();
     window.addEventListener("hashchange", handleHashChange);
     return () => window.removeEventListener("hashchange", handleHashChange);

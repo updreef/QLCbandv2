@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Music, Disc, Film, Radio, Volume2, VolumeX } from "lucide-react";
+import { Search, Music, Disc, Film, Radio, Volume2, VolumeX, ExternalLink } from "lucide-react";
 import { repertoire, liveMoments } from "../../data";
 import SquiggleUnderline from "../SquiggleUnderline";
 
@@ -143,50 +143,81 @@ export default function Muziek() {
             </div>
           </div>
 
-          {/* Songs table */}
+          {/* Setlist */}
           {filteredRepertoire.length === 0 ? (
             <div className="py-12 text-center text-brand-text-muted text-sm font-mono">
               Geen nummers gevonden die overeenkomen met je zoekopdracht.
             </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          ) : searchQuery.trim() ? (
+            // Flat list when searching
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {filteredRepertoire.map((song) => (
-                <div 
-                  key={song.id} 
-                  className="bg-brand-bg-3 border border-brand-cream/10 p-4 rounded-xl flex items-center justify-between hover:border-brand-neon/30 transition-colors group"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="p-2.5 bg-brand-bg-2 border border-brand-cream/10 group-hover:border-brand-red rounded-lg transition-colors">
-                      <Music className="w-4 h-4 text-brand-red group-hover:animate-bounce" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-brand-cream text-sm sm:text-base">{song.title}</h4>
-                      <p className="text-xs text-brand-text-muted">{song.originalArtist}</p>
-                    </div>
+                <SongRow key={song.id} song={song} />
+              ))}
+            </div>
+          ) : (
+            // Grouped: SET 1 → PAUZE → SET 2
+            <div className="flex flex-col gap-8">
+              {[1, 2].map((setNum) => (
+                <div key={setNum}>
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="font-display uppercase text-brand-neon tracking-[0.3em] text-sm">SET {setNum}</span>
+                    <span className="flex-1 h-px bg-brand-cream/15" />
                   </div>
-                  
-                  {song.spotifyUrl && (
-                    <a
-                      href={song.spotifyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 text-brand-text-muted hover:text-brand-neon transition-colors"
-                      aria-label={`Open ${song.title} op Spotify`}
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {filteredRepertoire.filter((s) => s.set === setNum).sort((a, b) => a.position - b.position).map((song) => (
+                      <SongRow key={song.id} song={song} />
+                    ))}
+                  </div>
+                  {setNum === 1 && (
+                    <div className="mt-8 flex items-center gap-4 opacity-70">
+                      <span className="flex-1 h-px bg-brand-cream/15" />
+                      <span className="font-display uppercase tracking-[0.4em] text-xs text-brand-amber">— pauze —</span>
+                      <span className="flex-1 h-px bg-brand-cream/15" />
+                    </div>
                   )}
                 </div>
               ))}
             </div>
           )}
-          
+
           <div className="mt-10 p-5 bg-brand-bg-3 border border-brand-cream/10 rounded-xl text-xs text-brand-text-muted text-center leading-relaxed">
-            <span className="font-bold text-brand-cream">Staat je favoriete rocknummer er niet tussen?</span> We breiden onze setlist continu uit en studeren met plezier een specifiek verzoeknummer in voor jouw bruiloft of speciale evenement! Geef het aan bij je boeking.
+            <span className="font-bold text-brand-cream">Verzoeknummer voor je feest?</span> We spelen deze setlist live, en studeren met plezier een specifiek verzoek in voor je bruiloft of evenement. Geef het door bij je boeking.
           </div>
         </section>
 
       </div>
+    </div>
+  );
+}
+
+function SongRow({ song }: { song: typeof repertoire[0] }) {
+  return (
+    <div className="bg-brand-bg-3 border border-brand-cream/10 p-4 rounded-xl flex items-start justify-between gap-3 hover:border-brand-neon/30 transition-colors group">
+      <div className="flex items-start gap-3 min-w-0 flex-1">
+        <span className="font-mono text-xs text-brand-amber bg-brand-bg-2 border border-brand-cream/10 rounded px-2 py-1 shrink-0 mt-0.5 min-w-[2.25rem] text-center">
+          {String(song.position).padStart(2, '0')}
+        </span>
+        <div className="min-w-0 flex-1">
+          <h4 className="font-semibold text-brand-cream text-sm sm:text-base truncate">{song.title}</h4>
+          <p className="text-xs text-brand-text-muted truncate">{song.originalArtist}</p>
+          {song.roles && (
+            <p className="text-[10px] font-mono text-brand-neon/80 mt-1.5 truncate">{song.roles}</p>
+          )}
+        </div>
+      </div>
+
+      {song.spotifyUrl && (
+        <a
+          href={song.spotifyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 text-brand-text-muted hover:text-brand-neon transition-colors shrink-0"
+          aria-label={`Open ${song.title} op Spotify`}
+        >
+          <ExternalLink className="w-4 h-4" />
+        </a>
+      )}
     </div>
   );
 }

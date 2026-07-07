@@ -29,6 +29,9 @@ export interface Song {
   id: string;
   title: string;
   originalArtist: string;
+  set: 1 | 2;
+  position: number; // volgorde binnen de set
+  roles?: string;   // bv. "Ruben rhythm · Joel bass"
   spotifyUrl?: string;
   youtubeUrl?: string;
 }
@@ -173,13 +176,27 @@ export const liveMoments: LiveMoment[] = [
   }
 ];
 
-// Onze setlist (album "El Camino Libre" mockup). Zie CONTENT.md §7.
+// Setlist zoals we 'm live spelen. Twee sets, met wie welke rol pakt per nummer.
 export const repertoire: Song[] = [
-  { id: "1", title: "All Summer Long", originalArtist: "Kid Rock" },
-  { id: "2", title: "Narcotic", originalArtist: "Liquido" },
-  { id: "3", title: "Iris", originalArtist: "Goo Goo Dolls" },
-  { id: "4", title: "Chelsea Dagger", originalArtist: "The Fratellis" },
-  { id: "5", title: "Seven Nation Army", originalArtist: "The White Stripes" }
+  // ─── SET 1 ───────────────────────────────────────────
+  { id: "s1-1", set: 1, position: 1, title: "Piano Man", originalArtist: "Billy Joel", roles: "Ruben rhythm · Joel bass" },
+  { id: "s1-2", set: 1, position: 2, title: "Knocking on Heaven's Door", originalArtist: "Bob Dylan / Guns N' Roses", roles: "Ruben rhythm · Joel bass" },
+  { id: "s1-3", set: 1, position: 3, title: "Riptide", originalArtist: "Vance Joy", roles: "Tristan ukelele · Ruben bass" },
+  { id: "s1-4", set: 1, position: 4, title: "Pink Skies", originalArtist: "Zach Bryan", roles: "Niels gitaar · Ruben bass · Tristan rhythm" },
+  { id: "s1-5", set: 1, position: 5, title: "Iris", originalArtist: "Goo Goo Dolls", roles: "Ruben bass · Tristan rhythm · Joel lead" },
+  { id: "s1-6", set: 1, position: 6, title: "End of Beginning", originalArtist: "Djo", roles: "Ruben bass · Joel lead · Tristan rhythm" },
+  { id: "s1-7", set: 1, position: 7, title: "Three Little Birds", originalArtist: "Bob Marley", roles: "Ruben bass · Joel lead · Tristan rhythm" },
+  { id: "s1-8", set: 1, position: 8, title: "Stil in Mij", originalArtist: "Van Dik Hout", roles: "Ruben bass · Joel lead · Tristan rhythm" },
+
+  // ─── SET 2 ───────────────────────────────────────────
+  { id: "s2-1", set: 2, position: 1, title: "Take Me Out", originalArtist: "Franz Ferdinand", roles: "Ruben rhythm · Tristan bass · Joel lead" },
+  { id: "s2-2", set: 2, position: 2, title: "Valerie", originalArtist: "The Zutons / Amy Winehouse", roles: "Ruben rhythm · Tristan bass · Joel lead" },
+  { id: "s2-3", set: 2, position: 3, title: "Chelsea Dagger", originalArtist: "The Fratellis", roles: "Ruben rhythm · Tristan bass · Joel lead" },
+  { id: "s2-4", set: 2, position: 4, title: "Seven Nation Army", originalArtist: "The White Stripes", roles: "Ruben rhythm · Tristan bass · Joel lead" },
+  { id: "s2-5", set: 2, position: 5, title: "Angels", originalArtist: "Robbie Williams", roles: "Ruben rhythm · Tristan bass · Joel lead" },
+  { id: "s2-6", set: 2, position: 6, title: "Dani California", originalArtist: "Red Hot Chili Peppers", roles: "Ruben bass · Joel lead · Tristan rhythm" },
+  { id: "s2-7", set: 2, position: 7, title: "Narcotic", originalArtist: "Liquido", roles: "Ruben bass · Joel lead · Tristan rhythm" },
+  { id: "s2-8", set: 2, position: 8, title: "Mr Brightside", originalArtist: "The Killers", roles: "Ruben bass · Joel lead · Tristan rhythm" }
 ];
 
 export const blogPosts: BlogPost[] = [
