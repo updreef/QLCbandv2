@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bebas Neue", sans-serif;
+  --font-sans: "Inter", sans-serif;
+
+  --color-brand-bg: #1a1a1c;
+  --color-brand-bg-2: #25252a;
+  --color-brand-bg-3: #101012;
+  --color-brand-text: #f1f1f1;
+  --color-brand-text-muted: rgba(241, 241, 241, 0.65);
+  --color-brand-amber: #d4a017;
+  --color-brand-red: #c0392b;
+  --color-brand-neon: #00d4ff;
+  --color-brand-cream: #f1f1f1;
+
+  --animate-bounce-ease: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Base custom resets & global styles */
+body {
+  background-color: #1a1a1c;
+  color: #f1f1f1;
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Custom visual utilities for QLC styling */
+.hard-shadow-cream {
+  box-shadow: 6px 6px 0 0 #f1f1f1;
+}
+
+.hard-shadow-red {
+  box-shadow: 6px 6px 0 0 #c0392b;
+}
+
+.hard-shadow-amber {
+  box-shadow: 6px 6px 0 0 #d4a017;
+}
+
+.hard-shadow-neon {
+  box-shadow: 6px 6px 0 0 #00d4ff;
+}
+
+.hard-shadow-black {
+  box-shadow: 6px 6px 0 0 #101012;
+}
+
+.card-rotate-left {
+  transform: rotate(-1.5deg);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card-rotate-left:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.card-rotate-right {
+  transform: rotate(1.5deg);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card-rotate-right:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.blob-about-photo {
+  border-radius: 80px 8px 80px 8px;
+}
+
+.hover-bounce {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hover-bounce:hover {
+  transform: translateY(-4px);
+}
+
+.hover-bounce-press:active {
+  transform: translateY(1px);
+}
+
+/* Custom scrollbar to match the rock theme */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #101012;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4a017;
+  border-radius: 8px;
+  border: 2px solid #101012;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00d4ff;
+}
