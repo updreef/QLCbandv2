@@ -1,10 +1,11 @@
+"use client";
+
 import { motion } from "motion/react";
 import { Calendar, Music, ArrowRight, Play, Star, MapPin } from "lucide-react";
-import { shows, repertoire } from "../../data";
+import { repertoire, type Show } from "../../data";
 import SquiggleUnderline from "../SquiggleUnderline";
 
-export default function Home() {
-  const upcomingShow = shows.find((s) => s.status === "upcoming");
+export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
 
   return (
     <div className="pt-20">
@@ -61,13 +62,13 @@ export default function Home() {
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-10">
               <a 
-                href="#/boek-ons" 
+                href="/boek-ons" 
                 className="font-display uppercase text-lg sm:text-xl tracking-[0.15em] px-8 py-3 bg-brand-amber text-brand-bg-3 font-bold border-3 border-brand-cream hard-shadow-cream hover-bounce"
               >
                 BOEK ONS DIRECT!
               </a>
               <a 
-                href="#/optredens" 
+                href="/optredens" 
                 className="font-display uppercase text-lg sm:text-xl tracking-[0.15em] px-8 py-3 bg-transparent text-brand-cream font-bold border-3 border-brand-cream hover:border-brand-neon hover:text-brand-neon hover-bounce"
               >
                 BEKIJK SHOWS
@@ -153,7 +154,7 @@ export default function Home() {
                     MEER DETAILS & RSVP
                   </a>
                   <a 
-                    href="#/optredens" 
+                    href="/optredens" 
                     className="flex items-center gap-1 text-sm text-brand-neon font-mono uppercase hover:underline py-2"
                   >
                     Al onze optredens <ArrowRight className="w-4 h-4" />
@@ -199,13 +200,13 @@ export default function Home() {
 
               <div className="flex flex-wrap gap-4 mt-4">
                 <a 
-                  href="#/over-ons" 
+                  href="/over-ons" 
                   className="font-display uppercase tracking-widest text-sm px-6 py-2.5 bg-brand-red text-white border-2 border-brand-cream hard-shadow-cream hover-bounce"
                 >
                   ONS HELE VERHAAL
                 </a>
                 <a 
-                  href="#/mannen" 
+                  href="/mannen" 
                   className="font-display uppercase tracking-widest text-sm px-6 py-2.5 bg-brand-bg-2 text-brand-cream border-2 border-brand-cream hover-bounce"
                 >
                   DE MUZIKANTEN
@@ -251,7 +252,7 @@ export default function Home() {
               </div>
               <div className="mt-6 pt-4 border-t border-brand-cream/10 text-center">
                 <a 
-                  href="#/muziek" 
+                  href="/muziek" 
                   className="font-display uppercase text-sm tracking-wider text-brand-neon hover:underline inline-flex items-center gap-1"
                 >
                   Bekijk volledige repertoirelijst & media <ArrowRight className="w-4 h-4" />
@@ -277,7 +278,7 @@ export default function Home() {
                 </div>
               </div>
               <a
-                href="#/muziek"
+                href="/muziek"
                 className="font-display uppercase tracking-widest text-center text-sm py-3 bg-brand-cream text-brand-bg border-2 border-brand-cream font-bold hover:bg-transparent hover:text-brand-cream transition-colors"
               >
                 BEKIJK DE SETLIST
@@ -298,7 +299,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
             <a 
-              href="#/boek-ons" 
+              href="/boek-ons" 
               className="font-display uppercase text-lg sm:text-xl tracking-widest px-8 py-4 bg-brand-red text-white border-3 border-brand-cream hard-shadow-cream hover-bounce"
             >
               VRIJBLIJVEND BOEKEN!

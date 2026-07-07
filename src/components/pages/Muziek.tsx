@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Search, Music, Disc, Radio, ExternalLink } from "lucide-react";
 import { repertoire } from "../../data";
@@ -26,7 +28,7 @@ export default function Muziek() {
           </h1>
           <SquiggleUnderline className="mx-auto md:mx-0" />
           <p className="text-brand-text-muted max-w-2xl mt-4 text-sm sm:text-base">
-            Ontdek onze setlist vol rockhits. Wil je ons live zien? Bekijk de video's op de <a href="#/optredens" className="text-brand-neon underline">optredens-pagina</a>.
+            Ontdek onze setlist vol rockhits. Wil je ons live zien? Bekijk de video's op de <a href="/optredens" className="text-brand-neon underline">optredens-pagina</a>.
           </p>
         </div>
 
@@ -65,7 +67,7 @@ export default function Muziek() {
             </h3>
             <div className="bg-brand-bg-2 border-3 border-brand-cream rounded-2xl p-6 hard-shadow-cream flex flex-col gap-4 text-sm text-brand-text-muted leading-relaxed">
               <p>Geen backing tracks, geen computer. Zes muzikanten, versterkers open, en een uur lang volle bak rock. Van meezingers tot deep cuts, we passen de setlist aan op de gelegenheid.</p>
-              <p>Wil je ons horen op jouw feest, festival of bruiloft? <a href="#/boek-ons" className="text-brand-neon underline">Vraag een offerte aan</a> of bel Ruben op <a href="tel:+31640420054" className="text-brand-neon underline">06 40 42 00 54</a>.</p>
+              <p>Wil je ons horen op jouw feest, festival of bruiloft? <a href="/boek-ons" className="text-brand-neon underline">Vraag een offerte aan</a> of bel Ruben op <a href="tel:+31640420054" className="text-brand-neon underline">06 40 42 00 54</a>.</p>
             </div>
           </div>
         </div>

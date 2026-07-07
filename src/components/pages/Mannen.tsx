@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { members } from "../../data";
 import { Star, Sliders, Zap, X, Instagram } from "lucide-react";

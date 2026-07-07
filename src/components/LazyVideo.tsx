@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, VideoHTMLAttributes } from "react";
 
 interface LazyVideoProps extends VideoHTMLAttributes<HTMLVideoElement> {

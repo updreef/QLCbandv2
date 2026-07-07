@@ -1,14 +1,13 @@
 import { ArrowLeft, Calendar, MapPin, Clock, Star, Film } from "lucide-react";
-import { shows, liveMoments } from "../../data";
+import { liveMoments, type Show } from "../../data";
 import SquiggleUnderline from "../SquiggleUnderline";
 
 interface OptredensDetailProps {
-  slug: string;
+  show: Show;
 }
 
-export default function OptredensDetail({ slug }: OptredensDetailProps) {
-  const show = shows.find((s) => s.slug === slug);
-  const showMoments = show ? liveMoments.filter((m) => m.showSlug === show.slug) : [];
+export default function OptredensDetail({ show }: OptredensDetailProps) {
+  const showMoments = liveMoments.filter((m) => m.showSlug === show.slug);
 
   if (!show) {
     return (
@@ -16,7 +15,7 @@ export default function OptredensDetail({ slug }: OptredensDetailProps) {
         <h2 className="font-display text-4xl text-brand-cream uppercase mb-4">Optreden niet gevonden</h2>
         <p className="text-brand-text-muted mb-8">We konden het gevraagde optreden niet vinden.</p>
         <a 
-          href="#/optredens" 
+          href="/optredens" 
           className="font-display uppercase tracking-widest text-sm px-6 py-2.5 bg-brand-cream text-brand-bg border-2 border-brand-cream hard-shadow-cream"
         >
           TERUG NAAR OPTREDENS
@@ -31,7 +30,7 @@ export default function OptredensDetail({ slug }: OptredensDetailProps) {
         
         {/* Back Link */}
         <a 
-          href="#/optredens" 
+          href="/optredens" 
           className="inline-flex items-center gap-2 text-sm text-brand-neon font-mono uppercase mb-8 hover:underline group"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Terug naar alle optredens
@@ -155,7 +154,7 @@ export default function OptredensDetail({ slug }: OptredensDetailProps) {
                   {show.status === 'upcoming' ? (
                     <div className="flex flex-col gap-3">
                       <a 
-                        href="#/boek-ons"
+                        href="/boek-ons"
                         className="font-display text-center uppercase tracking-widest text-sm py-3 bg-brand-amber text-brand-bg-3 font-bold border-2 border-brand-cream hard-shadow-cream hover-bounce"
                       >
                         BOEK ONS VOOR JOUW FEEST
@@ -182,7 +181,7 @@ export default function OptredensDetail({ slug }: OptredensDetailProps) {
                 Wil je zelf een intiem concert in je tuin, net als de legendarische Backyard Sessions? Neem contact op!
               </p>
               <a 
-                href="#/boek-ons"
+                href="/boek-ons"
                 className="font-display inline-block uppercase text-xs tracking-widest px-4 py-2 bg-brand-red text-white border-2 border-brand-cream font-bold hover-bounce"
               >
                 VRAAG OFFERTE AAN

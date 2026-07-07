@@ -1,8 +1,8 @@
 import { Calendar, User, ArrowRight, BookOpen } from "lucide-react";
-import { blogPosts } from "../../data";
+import type { BlogPost } from "../../data";
 import SquiggleUnderline from "../SquiggleUnderline";
 
-export default function Blog() {
+export default function Blog({ posts }: { posts: BlogPost[] }) {
   return (
     <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 min-h-screen">
       <div className="max-w-7xl mx-auto">
@@ -21,7 +21,7 @@ export default function Blog() {
 
         {/* Blog Posts Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post, idx) => {
+          {posts.map((post, idx) => {
             const isEven = idx % 2 === 0;
             return (
               <article 
@@ -82,7 +82,7 @@ export default function Blog() {
             Wil je zelf een fantastisch live feest plannen of heb je advies nodig over techniek of geluid? We helpen graag mee denken!
           </p>
           <a 
-            href="#/boek-ons" 
+            href="/boek-ons" 
             className="font-display uppercase tracking-widest text-sm px-8 py-3 bg-brand-red text-white font-bold border-2 border-brand-cream hard-shadow-cream hover-bounce relative z-10 inline-block"
           >
             VRAAG BOEKINGSADVIES

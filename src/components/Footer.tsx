@@ -33,25 +33,25 @@ export default function Footer() {
               Navigatie
             </h4>
             <div className="grid grid-cols-2 gap-3">
-              <a href="#/" className="text-sm text-brand-text-muted hover:text-brand-neon hover:translate-x-1 transition-all flex items-center gap-1">
+              <a href="/" className="text-sm text-brand-text-muted hover:text-brand-neon hover:translate-x-1 transition-all flex items-center gap-1">
                 <ArrowRight className="w-3 h-3 text-brand-neon" /> Home
               </a>
-              <a href="#/optredens" className="text-sm text-brand-text-muted hover:text-brand-neon hover:translate-x-1 transition-all flex items-center gap-1">
+              <a href="/optredens" className="text-sm text-brand-text-muted hover:text-brand-neon hover:translate-x-1 transition-all flex items-center gap-1">
                 <ArrowRight className="w-3 h-3 text-brand-neon" /> Optredens
               </a>
-              <a href="#/boek-ons" className="text-sm text-brand-text-muted hover:text-brand-neon hover:translate-x-1 transition-all flex items-center gap-1">
+              <a href="/boek-ons" className="text-sm text-brand-text-muted hover:text-brand-neon hover:translate-x-1 transition-all flex items-center gap-1">
                 <ArrowRight className="w-3 h-3 text-brand-neon" /> Boek ons
               </a>
-              <a href="#/over-ons" className="text-sm text-brand-text-muted hover:text-brand-neon hover:translate-x-1 transition-all flex items-center gap-1">
+              <a href="/over-ons" className="text-sm text-brand-text-muted hover:text-brand-neon hover:translate-x-1 transition-all flex items-center gap-1">
                 <ArrowRight className="w-3 h-3 text-brand-neon" /> Over ons
               </a>
-              <a href="#/mannen" className="text-sm text-brand-text-muted hover:text-brand-neon hover:translate-x-1 transition-all flex items-center gap-1">
+              <a href="/mannen" className="text-sm text-brand-text-muted hover:text-brand-neon hover:translate-x-1 transition-all flex items-center gap-1">
                 <ArrowRight className="w-3 h-3 text-brand-neon" /> De Mannen
               </a>
-              <a href="#/muziek" className="text-sm text-brand-text-muted hover:text-brand-neon hover:translate-x-1 transition-all flex items-center gap-1">
+              <a href="/muziek" className="text-sm text-brand-text-muted hover:text-brand-neon hover:translate-x-1 transition-all flex items-center gap-1">
                 <ArrowRight className="w-3 h-3 text-brand-neon" /> Repertoire
               </a>
-              <a href="#/blog" className="text-sm text-brand-text-muted hover:text-brand-neon hover:translate-x-1 transition-all flex items-center gap-1">
+              <a href="/blog" className="text-sm text-brand-text-muted hover:text-brand-neon hover:translate-x-1 transition-all flex items-center gap-1">
                 <ArrowRight className="w-3 h-3 text-brand-neon" /> Onze Blog
               </a>
             </div>

@@ -1,10 +1,12 @@
+"use client";
+
 import { useState } from "react";
 import { Calendar, MapPin, Clock, ArrowRight, AlertCircle, Film, Volume2, VolumeX } from "lucide-react";
-import { shows, liveMoments } from "../../data";
+import { liveMoments, type Show } from "../../data";
 import SquiggleUnderline from "../SquiggleUnderline";
 import LazyVideo from "../LazyVideo";
 
-export default function Optredens() {
+export default function Optredens({ shows }: { shows: Show[] }) {
   const [activeTab, setActiveTab] = useState<'all' | 'upcoming' | 'past'>('all');
   const [unmutedId, setUnmutedId] = useState<string | null>(null);
 
@@ -59,7 +61,7 @@ export default function Optredens() {
               Op dit moment zijn er geen geplande optredens in deze categorie. Heb je zelf een locatie of feest? Boek ons nu!
             </p>
             <a 
-              href="#/boek-ons" 
+              href="/boek-ons" 
               className="mt-6 inline-block font-display uppercase tracking-widest text-sm px-6 py-2.5 bg-brand-amber text-brand-bg-3 border-2 border-brand-cream font-bold hard-shadow-cream hover-bounce"
             >
               BOEK QLC DIRECT
@@ -127,7 +129,7 @@ export default function Optredens() {
                       
                       {show.status === 'upcoming' && (
                         <a 
-                          href="#/boek-ons"
+                          href="/boek-ons"
                           className="font-mono text-[10px] text-brand-red font-bold uppercase border border-brand-red/30 px-2 py-0.5 rounded hover:bg-brand-red hover:text-white transition-colors"
                         >
                           BOEK ONS
@@ -193,7 +195,7 @@ export default function Optredens() {
             Heb je een zaal, festival, bruiloft, verjaardag of kantoorevenement in regio Utrecht, Amersfoort of daarbuiten? QLC regelt de geluidsinstallatie, vette show en gitaargeweld.
           </p>
           <a 
-            href="#/boek-ons" 
+            href="/boek-ons" 
             className="font-display uppercase tracking-widest text-sm px-8 py-3 bg-brand-amber text-brand-bg-3 font-bold border-2 border-brand-cream hard-shadow-cream hover-bounce relative z-10 inline-block"
           >
             VRIJBLIJVEND CONTACT OPZNEMEN

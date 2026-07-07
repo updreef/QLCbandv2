@@ -1,13 +1,12 @@
 import { ArrowLeft, Calendar, User, BookOpen, MessageCircle, HelpCircle } from "lucide-react";
-import { blogPosts } from "../../data";
+import type { BlogPost } from "../../data";
 import SquiggleUnderline from "../SquiggleUnderline";
 
 interface BlogDetailProps {
-  slug: string;
+  post: BlogPost;
 }
 
-export default function BlogDetail({ slug }: BlogDetailProps) {
-  const post = blogPosts.find((p) => p.slug === slug);
+export default function BlogDetail({ post }: BlogDetailProps) {
 
   if (!post) {
     return (
@@ -15,7 +14,7 @@ export default function BlogDetail({ slug }: BlogDetailProps) {
         <h2 className="font-display text-4xl text-brand-cream uppercase mb-4">Artikel niet gevonden</h2>
         <p className="text-brand-text-muted mb-8">We konden het gevraagde blogartikel niet vinden.</p>
         <a 
-          href="#/blog" 
+          href="/blog" 
           className="font-display uppercase tracking-widest text-sm px-6 py-2.5 bg-brand-cream text-brand-bg border-2 border-brand-cream hard-shadow-cream"
         >
           TERUG NAAR BLOGS
@@ -30,7 +29,7 @@ export default function BlogDetail({ slug }: BlogDetailProps) {
         
         {/* Back Link */}
         <a 
-          href="#/blog" 
+          href="/blog" 
           className="inline-flex items-center gap-2 text-sm text-brand-neon font-mono uppercase mb-8 hover:underline group"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Terug naar de blog
@@ -98,7 +97,7 @@ export default function BlogDetail({ slug }: BlogDetailProps) {
             </p>
           </div>
           <a 
-            href="#/boek-ons"
+            href="/boek-ons"
             className="font-display uppercase tracking-widest text-xs px-5 py-2.5 bg-brand-amber text-brand-bg-3 font-bold border-2 border-brand-cream hover-bounce shrink-0"
           >
             VRAAG OFFERTE AAN

@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, ChangeEvent, FormEvent } from "react";
 import { Mail, Phone, MapPin, Send, HelpCircle, Loader2, CheckCircle2, AlertCircle, Info } from "lucide-react";
 import SquiggleUnderline from "../SquiggleUnderline";
