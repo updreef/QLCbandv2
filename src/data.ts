@@ -132,9 +132,9 @@ export const shows: Show[] = [
     city: "Bunschoten-Spakenburg",
     description: "Na ons spetterende debuut van maar liefst twee optredens vinden we het tijd voor de volgende stap: een tuinconcert. We spelen ongeveer een uur onze favoriete nummers en zorgen daarna samen voor een gezellige zomeravond. Statistisch gezien is de kans groot dat het prachtig weer wordt.",
     status: 'upcoming',
-    // Stock foto van outdoor party met string lights (Unsplash, free-to-use).
-    // Vervang met eigen foto zodra Backyard Sessions #1 is geweest.
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80&auto=format&fit=crop",
+    // Rock outdoor stock foto (Unsplash, free-to-use). Vervang met eigen foto
+    // zodra Backyard Sessions #1 geweest is.
+    image: "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=1600&q=85&auto=format&fit=crop",
     highlights: ["Live QLC", "DJ Chesto", "Beer Pong", "Borrels", "BYOB"]
   },
   {
