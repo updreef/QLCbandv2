@@ -35,7 +35,7 @@ export default function Mannen() {
                 }`}
               >
                 {/* Member Video */}
-                <div className="relative h-64 overflow-hidden border-b-2 border-brand-cream bg-brand-bg-3">
+                <div className="relative aspect-[4/5] overflow-hidden border-b-2 border-brand-cream bg-brand-bg-3">
                   <video
                     src={member.video}
                     poster={member.avatar}
@@ -45,7 +45,7 @@ export default function Mannen() {
                     playsInline
                     preload="metadata"
                     aria-label={member.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-bg-3/80 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end pointer-events-none">

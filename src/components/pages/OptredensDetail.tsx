@@ -1,5 +1,5 @@
-import { ArrowLeft, Calendar, MapPin, Clock, Star, Users, Map, Heart } from "lucide-react";
-import { shows } from "../../data";
+import { ArrowLeft, Calendar, MapPin, Clock, Star, Film } from "lucide-react";
+import { shows, liveMoments } from "../../data";
 import SquiggleUnderline from "../SquiggleUnderline";
 
 interface OptredensDetailProps {
@@ -8,6 +8,7 @@ interface OptredensDetailProps {
 
 export default function OptredensDetail({ slug }: OptredensDetailProps) {
   const show = shows.find((s) => s.slug === slug);
+  const showMoments = show ? liveMoments.filter((m) => m.showSlug === show.slug) : [];
 
   if (!show) {
     return (
@@ -71,7 +72,7 @@ export default function OptredensDetail({ slug }: OptredensDetailProps) {
             {show.highlights && (
               <div className="bg-brand-bg-2 border-2 border-brand-cream p-6 rounded-xl hard-shadow-cream mt-4">
                 <h3 className="font-display text-xl text-brand-amber uppercase tracking-wider mb-4 flex items-center gap-2">
-                  <Star className="w-5 h-5 fill-brand-amber text-brand-amber" /> WAT JE KUNT VERWACHTEN
+                  <Star className="w-5 h-5 fill-brand-amber text-brand-amber" /> {show.status === 'upcoming' ? 'WAT JE KUNT VERWACHTEN' : 'HOOGTEPUNTEN'}
                 </h3>
                 <ul className="space-y-3">
                   {show.highlights.map((highlight, idx) => (
@@ -81,6 +82,35 @@ export default function OptredensDetail({ slug }: OptredensDetailProps) {
                     </li>
                   ))}
                 </ul>
+              </div>
+            )}
+
+            {/* Live Moments from this show */}
+            {showMoments.length > 0 && (
+              <div className="mt-4">
+                <h3 className="font-display text-xl text-brand-amber uppercase tracking-wider mb-4 flex items-center gap-2">
+                  <Film className="w-5 h-5 text-brand-red" /> LIVE MOMENTS
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {showMoments.map((m) => (
+                    <figure key={m.id} className="bg-brand-bg-3 border-2 border-brand-cream rounded-xl overflow-hidden hard-shadow-cyan">
+                      <video
+                        src={m.video}
+                        poster={m.poster}
+                        controls
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+                        aria-label={`Quarter Life Crisis spelen ${m.title} live`}
+                        className="w-full aspect-video object-cover bg-brand-bg-3"
+                      />
+                      <figcaption className="px-3 py-2 text-xs font-display uppercase tracking-widest text-brand-cream border-t border-brand-cream/10">
+                        {m.title}
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
               </div>
             )}
           </div>

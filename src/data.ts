@@ -33,6 +33,14 @@ export interface Song {
   youtubeUrl?: string;
 }
 
+export interface LiveMoment {
+  id: string;
+  title: string;
+  video: string;
+  poster: string;
+  showSlug?: string; // links to a Show entry when applicable
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -123,6 +131,45 @@ export const shows: Show[] = [
     status: 'upcoming',
     image: "/images/band-live.jpg",
     highlights: ["Live QLC", "DJ Chesto", "Beer Pong", "Borrels", "BYOB"]
+  },
+  {
+    id: "bruiloft-te",
+    slug: "bruiloft-te",
+    title: "Bruiloft T&E",
+    date: "2025-05-22",
+    time: "Avond",
+    location: "Bruiloft T&E",
+    address: "",
+    city: "",
+    description: "Ons optreden op de bruiloft van T&E. Een avond vol live rock, dansende gasten en een setlist waar het bruidspaar zelf om had gevraagd. Van deze show komen ook onze live-videos van Narcotic, Angels en Seven Nation Army.",
+    status: 'past',
+    image: "/videos/live-moments/narcotic.jpg",
+    highlights: ["Live QLC", "Dansende gasten", "Volle set"]
+  }
+];
+
+// Live-video snippets, filmed on stage. Linked to a show via showSlug.
+export const liveMoments: LiveMoment[] = [
+  {
+    id: "narcotic",
+    title: "Narcotic",
+    video: "/videos/live-moments/narcotic.mp4",
+    poster: "/videos/live-moments/narcotic.jpg",
+    showSlug: "bruiloft-te"
+  },
+  {
+    id: "angels",
+    title: "Angels",
+    video: "/videos/live-moments/angels.mp4",
+    poster: "/videos/live-moments/angels.jpg",
+    showSlug: "bruiloft-te"
+  },
+  {
+    id: "seven-nation-army",
+    title: "Seven Nation Army",
+    video: "/videos/live-moments/seven_nation_army.mp4",
+    poster: "/videos/live-moments/seven_nation_army.jpg",
+    showSlug: "bruiloft-te"
   }
 ];
 

@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Search, Music, Play, Disc, ExternalLink, HelpCircle, Film, Radio } from "lucide-react";
-import { repertoire } from "../../data";
+import { Search, Music, Disc, Film, Radio, Volume2, VolumeX } from "lucide-react";
+import { repertoire, liveMoments } from "../../data";
 import SquiggleUnderline from "../SquiggleUnderline";
 
 export default function Muziek() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeVideo, setActiveVideo] = useState("live-1");
+  const [unmutedId, setUnmutedId] = useState<string | null>(null);
 
   const filteredRepertoire = repertoire.filter((song) => {
     const query = searchQuery.toLowerCase();
@@ -14,11 +14,6 @@ export default function Muziek() {
       song.originalArtist.toLowerCase().includes(query)
     );
   });
-
-  const videos = [
-    { id: "live-1", title: "Quarter Life Crisis - Live Rehearsal (Radar Love Cover)", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" },
-    { id: "live-2", title: "Backyard Sessions #1 - Promo Teaser (Sweet Child O' Mine)", url: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" }
-  ];
 
   return (
     <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 min-h-screen">
@@ -36,66 +31,91 @@ export default function Muziek() {
           </p>
         </div>
 
-        {/* Media Block (Spotify Embed + YouTube Video) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-20">
-          
-          {/* Video Player (Left Column) */}
-          <div className="lg:col-span-7 flex flex-col gap-4">
-            <h3 className="font-display text-2xl text-brand-cream uppercase tracking-wider flex items-center gap-2">
-              <Film className="w-5 h-5 text-brand-red" /> LIVESHOW IMPRESSIE VIDEO
-            </h3>
-            
-            <div className="relative aspect-video bg-brand-bg-3 border-3 border-brand-cream rounded-2xl overflow-hidden hard-shadow-red card-rotate-left">
-              {/* Responsive Iframe Embed */}
-              <iframe
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                title="Quarter Life Crisis Live Video Player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-              ></iframe>
-            </div>
-            
-            <div className="flex flex-col gap-1.5 mt-2 bg-brand-bg-2 p-4 border border-brand-cream/10 rounded-xl">
-              <h4 className="font-semibold text-brand-cream text-sm">Promo Video — Live Rehearsal Suite</h4>
-              <p className="text-xs text-brand-text-muted">Opgenomen in Bunschoten, live repetitie opnames van onze rock setlist. Ervaar de echte QLC-energie!</p>
+        {/* Live Moments — video clips van het podium */}
+        <div className="mb-16">
+          <div className="flex items-end justify-between mb-6 gap-4 flex-wrap">
+            <div>
+              <h2 className="font-display text-3xl sm:text-4xl text-brand-cream uppercase tracking-wider flex items-center gap-2">
+                <Film className="w-6 h-6 text-brand-red" /> LIVE MOMENTS
+              </h2>
+              <p className="text-xs text-brand-text-muted mt-1">Recht van het podium. Klik op de speaker voor geluid.</p>
             </div>
           </div>
 
-          {/* Spotify & Audio player (Right Column) */}
-          <div className="lg:col-span-5 flex flex-col gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {liveMoments.map((m, i) => {
+              const rotate = i % 3 === 0 ? "card-rotate-left" : i % 3 === 1 ? "" : "card-rotate-right";
+              const shadow = i % 3 === 0 ? "hard-shadow-cream" : i % 3 === 1 ? "hard-shadow-red" : "hard-shadow-cyan";
+              const isUnmuted = unmutedId === m.id;
+              return (
+                <figure key={m.id} className={`relative bg-brand-bg-3 border-3 border-brand-cream rounded-2xl overflow-hidden ${rotate} ${shadow}`}>
+                  <video
+                    src={m.video}
+                    poster={m.poster}
+                    autoPlay
+                    loop
+                    playsInline
+                    preload="metadata"
+                    muted={!isUnmuted}
+                    aria-label={`Quarter Life Crisis spelen ${m.title} live`}
+                    className="w-full aspect-video object-cover"
+                  />
+                  <figcaption className="flex items-center justify-between px-4 py-3 border-t-2 border-brand-cream/10 bg-brand-bg-2">
+                    <span className="font-display uppercase tracking-widest text-sm text-brand-cream">{m.title}</span>
+                    <button
+                      type="button"
+                      onClick={() => setUnmutedId(isUnmuted ? null : m.id)}
+                      className={`p-2 rounded-full border-2 transition-all ${isUnmuted ? "bg-brand-amber border-brand-cream text-brand-bg-3" : "bg-brand-bg-3 border-brand-cream/40 text-brand-cream hover:border-brand-amber hover:text-brand-amber"}`}
+                      aria-label={isUnmuted ? "Geluid uit" : "Geluid aan"}
+                      aria-pressed={isUnmuted}
+                    >
+                      {isUnmuted ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+                    </button>
+                  </figcaption>
+                </figure>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Spotify Playlist (placeholder) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
+          <div className="flex flex-col gap-4">
             <h3 className="font-display text-2xl text-brand-cream uppercase tracking-wider flex items-center gap-2">
               <Radio className="w-5 h-5 text-brand-amber" /> SPOTIFY PLAYLIST
             </h3>
-
-            {/* Spotify Player Embed */}
-            <div className="bg-brand-bg-3 border-3 border-brand-cream rounded-2xl overflow-hidden hard-shadow-cream p-4 flex-1 flex flex-col justify-between gap-5 card-rotate-right">
+            <div className="bg-brand-bg-3 border-3 border-brand-cream rounded-2xl overflow-hidden hard-shadow-amber p-4 flex flex-col gap-5">
               <div className="relative h-44 bg-gradient-to-br from-brand-amber to-brand-red border-2 border-brand-cream rounded-xl flex flex-col justify-end p-5 overflow-hidden">
                 <div className="absolute inset-0 bg-black/45 z-0" />
                 <div className="absolute top-4 right-4 z-10 text-brand-cream">
                   <Disc className="w-10 h-10 animate-spin" />
                 </div>
-                
                 <div className="relative z-10 flex flex-col gap-1">
-                  <span className="text-[10px] font-mono text-white/80 bg-black/40 px-2 py-0.5 rounded w-fit uppercase">SPOTIFY EMBED</span>
+                  <span className="text-[10px] font-mono text-white/80 bg-black/40 px-2 py-0.5 rounded w-fit uppercase">Binnenkort</span>
                   <h4 className="font-display text-3xl text-brand-cream uppercase tracking-wider leading-none">QLC SETLIST</h4>
-                  <p className="text-xs text-brand-text/90">De originele nummers van onze liveshow!</p>
+                  <p className="text-xs text-brand-text/90">Onze setlist komt binnenkort op Spotify.</p>
                 </div>
               </div>
-
-              {/* Real Spotify Embed widget */}
-              <iframe 
-                src="https://open.spotify.com/embed/playlist/37i9dQZF1DX4XgSg4bygE8?utm_source=generator&theme=0" 
-                width="100%" 
-                height="220" 
-                allowFullScreen={true} 
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                loading="lazy"
-                className="rounded-lg border border-brand-cream/10 bg-brand-bg-2"
-              ></iframe>
+              <a
+                href="https://open.spotify.com/user/RubenBeukers"
+                target="_blank"
+                rel="noopener"
+                className="text-center font-display uppercase tracking-widest text-sm py-3 bg-brand-cream text-brand-bg border-2 border-brand-cream font-bold hover:bg-transparent hover:text-brand-cream transition-colors"
+              >
+                Volg ons op Spotify
+              </a>
             </div>
           </div>
 
+          <div className="flex flex-col gap-4">
+            <h3 className="font-display text-2xl text-brand-cream uppercase tracking-wider flex items-center gap-2">
+              <Music className="w-5 h-5 text-brand-neon" /> WAAROM QLC LIVE?
+            </h3>
+            <div className="bg-brand-bg-2 border-3 border-brand-cream rounded-2xl p-6 hard-shadow-cream flex flex-col gap-4 text-sm text-brand-text-muted leading-relaxed">
+              <p>Geen backing tracks, geen computer. Zes muzikanten, versterkers open, en een uur lang volle bak rock. Van meezingers tot deep cuts, we passen de setlist aan op de gelegenheid.</p>
+              <p>Wil je ons horen op jouw feest, festival of bruiloft? <a href="#/boek-ons" className="text-brand-neon underline">Vraag een offerte aan</a> of bel Ruben op <a href="tel:+31640420054" className="text-brand-neon underline">06 40 42 00 54</a>.</p>
+            </div>
+          </div>
         </div>
 
         {/* Repertoire Search List section */}
