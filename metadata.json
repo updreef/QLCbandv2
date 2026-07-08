@@ -1,6 +1,0 @@
-{
-  "name": "Quarter Life Crisis Band",
-  "description": "The official website for Quarter Life Crisis (QLC), a 6-piece rock cover band from Bunschoten-Spakenburg / Amersfoort.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
