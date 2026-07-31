@@ -4,7 +4,7 @@ import { getShows, getBlogPosts } from "@/lib/content";
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = "https://qlcband.nl";
+  const base = "https://quarterlifecrisis.nl";
   const [shows, posts] = await Promise.all([getShows(), getBlogPosts()]);
 
   const staticRoutes: MetadataRoute.Sitemap = [

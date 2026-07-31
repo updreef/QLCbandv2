@@ -47,7 +47,7 @@ export default async function BlogDetailPage({ params }: Props) {
     publisher: { "@type": "MusicGroup", name: "Quarter Life Crisis" },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://qlcband.nl/blog/${post.slug}`,
+      "@id": `https://quarterlifecrisis.nl/blog/${post.slug}`,
     },
   };
 

@@ -53,7 +53,7 @@ export default async function OptredensDetailPage({ params }: Props) {
       },
     },
     performer: { "@type": "MusicGroup", name: "Quarter Life Crisis" },
-    organizer: { "@type": "MusicGroup", name: "Quarter Life Crisis", url: "https://qlcband.nl/" },
+    organizer: { "@type": "MusicGroup", name: "Quarter Life Crisis", url: "https://quarterlifecrisis.nl/" },
   };
 
   return (

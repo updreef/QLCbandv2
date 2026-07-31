@@ -19,7 +19,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://qlcband.nl"),
+  metadataBase: new URL("https://quarterlifecrisis.nl"),
   title: {
     default: "Quarter Life Crisis | Rockband uit Spakenburg & Amersfoort",
     template: "%s | Quarter Life Crisis",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title: "Quarter Life Crisis | Rockband uit Spakenburg & Amersfoort",
     description:
       "Zeskoppige rockband uit Spakenburg & Amersfoort. Play loud, grow up later. Boek QLC voor je feest of festival.",
-    url: "https://qlcband.nl/",
+    url: "https://quarterlifecrisis.nl/",
     images: [
       {
         url: "/images/band-live.jpg",

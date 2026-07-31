@@ -14,9 +14,9 @@ export default async function HomePage() {
     name: "Quarter Life Crisis",
     alternateName: "QLC",
     genre: ["Rock", "Pop Rock", "Coverband"],
-    url: "https://qlcband.nl/",
-    logo: "https://qlcband.nl/images/logo.png",
-    image: "https://qlcband.nl/images/band-live.jpg",
+    url: "https://quarterlifecrisis.nl/",
+    logo: "https://quarterlifecrisis.nl/images/logo.png",
+    image: "https://quarterlifecrisis.nl/images/band-live.jpg",
     foundingLocation: {
       "@type": "Place",
       name: "Bunschoten-Spakenburg",
