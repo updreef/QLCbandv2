@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Inter, Anton, Special_Elite } from "next/font/google";
+import { Bebas_Neue, Inter, Special_Elite } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
@@ -15,13 +15,6 @@ const inter = Inter({
   weight: ["400", "600", "700"],
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
-});
-
-const anton = Anton({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-anton",
   display: "swap",
 });
 
@@ -80,9 +73,9 @@ export default function RootLayout({
   return (
     <html
       lang="nl"
-      className={`${bebas.variable} ${inter.variable} ${anton.variable} ${typewriter.variable}`}
+      className={`${bebas.variable} ${inter.variable} ${typewriter.variable}`}
     >
-      <body className="bg-brand-paper text-brand-ink min-h-screen flex flex-col justify-between selection:bg-brand-pd selection:text-brand-crm font-sans overflow-x-hidden antialiased">
+      <body className="bg-brand-base text-brand-crm min-h-screen flex flex-col justify-between selection:bg-brand-pm selection:text-brand-crm font-sans overflow-x-hidden antialiased">
         <div className="qlc-grain" aria-hidden="true" />
         <Header />
         <main className="flex-grow">{children}</main>
