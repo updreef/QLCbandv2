@@ -56,7 +56,7 @@ export interface BlogPost {
   metaDescription: string;
 }
 
-// Copy locked to https://qlcband.nl — do not paraphrase. See CONTENT.md at repo root for tone rules.
+// Copy locked to https://quarterlifecrisis.nl — do not paraphrase. See CONTENT.md at repo root for tone rules.
 export const members: Member[] = [
   {
     name: "Tristan Muijs",
@@ -131,11 +131,26 @@ export const shows: Show[] = [
     address: "Scholekster 57",
     city: "Bunschoten-Spakenburg",
     description: "Na ons spetterende debuut van maar liefst twee optredens vinden we het tijd voor de volgende stap: een tuinconcert. We spelen ongeveer een uur onze favoriete nummers en zorgen daarna samen voor een gezellige zomeravond. Statistisch gezien is de kans groot dat het prachtig weer wordt.",
-    status: 'upcoming',
+    status: 'past',
     // Rock outdoor stock foto (Unsplash, free-to-use). Vervang met eigen foto
     // zodra Backyard Sessions #1 geweest is.
     image: "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=1600&q=85&auto=format&fit=crop",
     highlights: ["Live QLC", "DJ Chesto", "Beer Pong", "Borrels", "BYOB"]
+  },
+  {
+    id: "havenpop-2026",
+    slug: "havenpop-2026",
+    title: "Havenpop 2026",
+    date: "2026-08-29",
+    time: "Middag & avond",
+    location: "Havenpop",
+    address: "De Oude Haven",
+    city: "Spakenburg",
+    description: "QLC staat op Havenpop 2026! Het muziekfestival in de haven van Spakenburg. Wij brengen een set vol rockcovers en meezingers op een van de mooiste openluchtpodia van de regio. Kom langs, neem je vrienden mee en zing keihard mee.",
+    status: 'upcoming',
+    // Openlucht festival stock foto (Unsplash, free-to-use). Vervang met eigen foto na afloop.
+    image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1600&q=85&auto=format&fit=crop",
+    highlights: ["Live QLC", "Openluchtfestival", "Haven Spakenburg"]
   },
   {
     id: "bruiloft-te",

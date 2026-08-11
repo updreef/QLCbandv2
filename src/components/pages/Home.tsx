@@ -1,20 +1,33 @@
 "use client";
 
-import { motion } from "motion/react";
-import { Calendar, Music, ArrowRight, Play, Star, MapPin } from "lucide-react";
-import { repertoire, type Show } from "../../data";
-import SquiggleUnderline from "../SquiggleUnderline";
+import { useRef } from "react";
+import Link from "next/link";
+import { Calendar, MapPin, Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { liveMoments, type Show } from "../../data";
+import LazyVideo from "../LazyVideo";
+
+const WEEKDAYS = ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
+const MONTHS = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"];
+const SHOW_LABELS: Record<string, string> = { "bruiloft-te": "Bruiloft T&E" };
 
 export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
+  const sliderRef = useRef<HTMLDivElement>(null);
+
+  const scrollSlider = (dir: number) => {
+    const el = sliderRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * Math.min(el.clientWidth * 0.85, 380), behavior: "smooth" });
+  };
+
+  const showDate = upcomingShow ? new Date(upcomingShow.date + "T00:00:00") : null;
 
   return (
-    <div className="pt-20">
-      {/* 1. Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center bg-brand-bg-3 overflow-hidden border-b-4 border-brand-cream">
-        {/* Background video with dark overlay */}
+    <div>
+      {/* 1. HERO — full-bleed video */}
+      <section className="relative min-h-[88vh] flex items-center overflow-hidden border-b-4 border-brand-ink">
         <div className="absolute inset-0 z-0">
           <video
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover"
             poster="/images/hero-poster.jpg"
             autoPlay
             muted
@@ -25,294 +38,234 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
           >
             <source src="/videos/hero/hero-movie.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-bg to-brand-bg-3/60" />
+          <div className="qlc-halftone absolute inset-0 opacity-40 mix-blend-overlay" />
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-pd/60 via-brand-ink/45 to-brand-pd/75" />
         </div>
 
-        {/* Content container */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col items-center justify-center"
-          >
-            {/* Stamp badge */}
-            <div className="bg-brand-red text-white text-xs font-mono px-3 py-1 uppercase tracking-[0.2em] border-2 border-brand-cream hard-shadow-neon rotate-[-3deg] mb-6">
-              ROCKBAND · SPAKENBURG / AMERSFOORT
-            </div>
+        <div className="absolute top-4 right-4 z-20 font-stamp text-[10px] tracking-[0.16em] text-brand-crm bg-brand-ink/60 border border-brand-crm/30 px-2 py-1">
+          &#9654; LIVE
+        </div>
 
-            {/* Title display */}
-            <h1 className="font-display text-6xl sm:text-8xl md:text-9xl tracking-[0.05em] uppercase text-brand-cream leading-none">
-              QUARTER <span className="text-brand-amber text-stroke">LIFE</span> <br/>
-              CRISIS
+        <div className="relative z-10 w-full text-center px-4 py-24">
+          <div className="max-w-4xl mx-auto">
+            <span className="qlc-stamp text-brand-gold bg-brand-ink/25 -rotate-2 inline-block">
+              Band &middot; Spakenburg / Amersfoort
+            </span>
+            <h1 className="font-poster uppercase text-brand-crm leading-[0.8] mt-5 mb-3 text-[clamp(3.5rem,12vw,9rem)] drop-shadow-[0_2px_16px_rgba(0,0,0,0.6)]">
+              <span className="block">Quarter</span>
+              <span className="block">Life</span>
+              <span className="block">Crisis</span>
             </h1>
-
-            {/* Slogan */}
-            <p className="font-display uppercase text-2xl sm:text-3xl tracking-[0.25em] text-brand-neon mt-4">
-              Play loud, grow up later
+            <p className="font-serif italic text-brand-gold text-2xl sm:text-3xl mt-3">
+              &ldquo;Play loud, grow up later&rdquo;
             </p>
-
-            <div className="w-48 h-1.5 bg-brand-red mt-4 border border-brand-cream rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
-
-            {/* Paragraph Description */}
-            <p className="text-brand-text-muted max-w-2xl mt-6 text-sm sm:text-base leading-relaxed font-sans">
+            <div className="w-44 h-2 bg-brand-gold border-2 border-brand-ink mx-auto my-5" />
+            <p className="text-brand-crm/90 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
               Zes mannen midden twintig uit Spakenburg en Amersfoort. Ooit gestopt met muziek, nu weer helemaal terug. Covers, eigen werk en de energie die elke show nodig heeft.
             </p>
-
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-10">
-              <a 
-                href="/boek-ons" 
-                className="font-display uppercase text-lg sm:text-xl tracking-[0.15em] px-8 py-3 bg-brand-amber text-brand-bg-3 font-bold border-3 border-brand-cream hard-shadow-cream hover-bounce"
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+              <Link
+                href="/boek-ons"
+                className="font-poster uppercase text-lg tracking-wider px-8 py-3 bg-brand-gold text-brand-ink border-2 border-brand-ink shadow-[5px_5px_0_0_#191319] hover:-translate-y-0.5 hover:shadow-[7px_7px_0_0_#191319] active:translate-y-0 transition-all"
               >
-                BOEK ONS DIRECT!
-              </a>
-              <a 
-                href="/optredens" 
-                className="font-display uppercase text-lg sm:text-xl tracking-[0.15em] px-8 py-3 bg-transparent text-brand-cream font-bold border-3 border-brand-cream hover:border-brand-neon hover:text-brand-neon hover-bounce"
+                Boek ons direct
+              </Link>
+              <Link
+                href="/optredens"
+                className="font-poster uppercase text-lg tracking-wider px-8 py-3 bg-transparent text-brand-crm border-2 border-brand-crm shadow-[5px_5px_0_0_#1c857a] hover:-translate-y-0.5 transition-all"
               >
-                BEKIJK SHOWS
-              </a>
+                Bekijk shows
+              </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        {/* Diagonal Ribbon styling */}
-        <div className="absolute bottom-0 right-0 left-0 bg-brand-red border-y-3 border-brand-cream py-3 overflow-hidden select-none transform rotate-[1deg] translate-y-2 origin-bottom-right hidden md:block">
-          <div className="whitespace-nowrap flex gap-8 font-display uppercase tracking-widest text-lg text-white">
-            {Array(10).fill("+++ PLAY LOUD, GROW UP LATER +++ ROCKBAND UIT SPAKENBURG & AMERSFOORT +++").map((text, i) => (
-              <span key={i} className="animate-marquee">{text}</span>
-            ))}
+        {/* Marquee-lint */}
+        <div className="absolute bottom-0 inset-x-0 z-10 bg-brand-tl border-t-2 border-brand-ink overflow-hidden">
+          <div className="whitespace-nowrap flex gap-8 py-2.5 font-poster uppercase tracking-wider text-brand-crm">
+            {Array(10)
+              .fill("+++ Play loud, grow up later +++ Band uit Spakenburg & Amersfoort")
+              .map((text, i) => (
+                <span key={i} className="animate-marquee">
+                  {text}
+                </span>
+              ))}
           </div>
         </div>
       </section>
 
-      {/* 2. Upcoming Show Spotlight Section */}
-      {upcomingShow && (
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-brand-bg relative overflow-hidden">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center md:text-left mb-12">
-              <p className="text-brand-neon font-mono uppercase text-xs tracking-[0.25em]">KOMSTIGE OPTREDENS</p>
-              <h2 className="font-display text-4xl sm:text-5xl text-brand-cream uppercase tracking-wide">
-                VOLGENDE SHOW IN DE SCHIJNWERPERS
+      {/* 2. SPOTLIGHT — aankomende show (ticket) */}
+      {upcomingShow && showDate && (
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-brand-paper">
+          <div className="max-w-6xl mx-auto">
+            <div className="mb-8">
+              <span className="qlc-stamp text-brand-tl -rotate-2 inline-block">Aankomend optreden</span>
+              <h2 className="font-poster uppercase text-brand-ink text-4xl sm:text-5xl mt-3">
+                Volgende show in de <span className="text-brand-pm">schijnwerpers</span>
               </h2>
-              <SquiggleUnderline className="mx-auto md:mx-0" />
             </div>
 
-            {/* Spotlight Card */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center bg-brand-bg-2 border-3 border-brand-cream p-6 sm:p-10 rounded-2xl hard-shadow-red card-rotate-left">
-              {/* Card Image */}
-              <div className="lg:col-span-5 relative group overflow-hidden border-2 border-brand-cream rounded-xl">
-                <img 
-                  src={upcomingShow.image} 
-                  alt={upcomingShow.title} 
-                  className="w-full h-80 object-cover hover:scale-105 transition-transform duration-500"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute top-4 left-4 bg-brand-red text-white text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 border-2 border-brand-cream">
-                  AANSTAANDE
-                </div>
+            <div className="grid lg:grid-cols-[230px_1fr] bg-brand-paper2 border-2 border-brand-ink shadow-[12px_12px_0_0_#3c1138]">
+              {/* Stub */}
+              <div className="bg-brand-pd text-brand-crm p-7 flex flex-col justify-center gap-1">
+                <span className="font-stamp text-sm tracking-[0.2em]">{WEEKDAYS[showDate.getDay()]}</span>
+                <span className="font-poster text-6xl leading-none text-brand-gold">{showDate.getDate()}</span>
+                <span className="font-stamp text-sm tracking-[0.2em]">{MONTHS[showDate.getMonth()]}</span>
+                <span className="font-stamp text-xs tracking-[0.2em] opacity-80">{showDate.getFullYear()}</span>
+                <span className="font-stamp text-xs tracking-[0.14em] opacity-85 mt-3">{upcomingShow.time}</span>
               </div>
 
-              {/* Card Content */}
-              <div className="lg:col-span-7 flex flex-col gap-5">
-                <div className="flex flex-wrap gap-3">
-                  <span className="flex items-center gap-1.5 text-xs text-brand-amber font-mono uppercase bg-brand-bg-3 border border-brand-cream/10 px-3 py-1 rounded-full">
-                    <Calendar className="w-3.5 h-3.5" /> {upcomingShow.date}
-                  </span>
-                  <span className="flex items-center gap-1.5 text-xs text-brand-neon font-mono uppercase bg-brand-bg-3 border border-brand-cream/10 px-3 py-1 rounded-full">
-                    <MapPin className="w-3.5 h-3.5" /> {upcomingShow.city}
-                  </span>
+              {/* Main */}
+              <div className="relative p-7 border-t-2 border-dashed border-brand-ink lg:border-t-0 lg:border-l-2">
+                <span className="qlc-notch hidden lg:block" style={{ background: "#f0eee9", left: "-10px", top: "-10px" }} />
+                <span className="qlc-notch hidden lg:block" style={{ background: "#f0eee9", left: "-10px", bottom: "-10px" }} />
+                <span className="absolute right-5 top-5 w-[70px] h-[70px] rounded-full border-2 border-brand-goldd text-brand-goldd -rotate-12 hidden sm:flex items-center justify-center text-center font-stamp text-[11px] leading-tight">
+                  RSVP<br />NU
+                </span>
+                <h3 className="font-poster uppercase text-brand-ink text-3xl sm:text-4xl pr-16">{upcomingShow.title}</h3>
+                <div className="flex flex-wrap gap-x-5 gap-y-1 my-2 font-stamp text-xs tracking-wide text-brand-tl">
+                  <span className="inline-flex items-center gap-1"><MapPin className="w-3.5 h-3.5" />{upcomingShow.location}</span>
+                  <span className="inline-flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />{upcomingShow.city}</span>
                 </div>
-
-                <h3 className="font-display text-4xl text-brand-cream tracking-wide uppercase leading-tight">
-                  {upcomingShow.title}
-                </h3>
-                
-                <p className="text-brand-text-muted text-sm sm:text-base leading-relaxed">
-                  {upcomingShow.description}
-                </p>
-
-                {/* Highlights List */}
+                <p className="text-brand-inksoft text-sm sm:text-base leading-relaxed max-w-2xl">{upcomingShow.description}</p>
                 {upcomingShow.highlights && (
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 my-2">
+                  <div className="flex flex-wrap gap-2 my-4">
                     {upcomingShow.highlights.map((h, i) => (
-                      <div key={i} className="flex items-center gap-2 bg-brand-bg-3 border border-brand-cream/10 px-3 py-2 rounded-lg">
-                        <Star className="w-4 h-4 text-brand-amber fill-brand-amber" />
-                        <span className="text-xs font-semibold">{h}</span>
-                      </div>
+                      <span key={i} className="font-stamp text-[11px] tracking-wide uppercase border border-dashed border-brand-ink px-2.5 py-1.5 bg-brand-paper inline-flex items-center gap-1.5">
+                        <Star className="w-3 h-3 text-brand-gold" />{h}
+                      </span>
                     ))}
                   </div>
                 )}
-
-                {/* Action button inside card */}
-                <div className="flex flex-wrap gap-4 mt-2">
-                  <a 
-                    href={`#/optredens/${upcomingShow.slug}`}
-                    className="font-display uppercase tracking-widest text-sm px-6 py-2.5 bg-brand-cream text-brand-bg border-2 border-brand-cream hover:bg-transparent hover:text-brand-cream transition-colors duration-300"
-                  >
-                    MEER DETAILS & RSVP
-                  </a>
-                  <a 
-                    href="/optredens" 
-                    className="flex items-center gap-1 text-sm text-brand-neon font-mono uppercase hover:underline py-2"
-                  >
-                    Al onze optredens <ArrowRight className="w-4 h-4" />
-                  </a>
-                </div>
+                <Link
+                  href={`/optredens/${upcomingShow.slug}`}
+                  className="inline-block mt-1 font-poster uppercase tracking-wider text-sm px-6 py-2.5 bg-brand-ink text-brand-crm border-2 border-brand-ink hover:bg-transparent hover:text-brand-ink transition-colors"
+                >
+                  Meer details &amp; RSVP
+                </Link>
               </div>
+            </div>
+
+            <div className="mt-5 font-stamp text-xs tracking-wide text-brand-inksoft flex flex-wrap items-center gap-3">
+              <span>Net gespeeld:</span>
+              <span className="border border-brand-pm text-brand-pm px-2.5 py-1">Backyard Sessions #1 &mdash; video&rsquo;s volgen</span>
+              <Link href="/optredens" className="border border-brand-tl text-brand-tl px-2.5 py-1 hover:bg-brand-tl hover:text-brand-crm transition-colors">
+                Alle optredens &rarr;
+              </Link>
             </div>
           </div>
         </section>
       )}
 
-      {/* 3. About Brief Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-brand-bg-3 relative overflow-hidden border-t-4 border-brand-cream">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
-            {/* Left side: Photo with organic custom blob style */}
-            <div className="relative justify-self-center lg:justify-self-start">
-              <div className="absolute -inset-2 bg-brand-neon blob-about-photo border-3 border-brand-cream rotate-[2deg] -z-10" />
-              <img
-                src="/images/band-live.jpg"
-                alt="Quarter Life Crisis live op het podium"
-                className="w-full max-w-md object-cover blob-about-photo border-3 border-brand-cream hard-shadow-red"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-
-            {/* Right side: Story brief */}
-            <div className="flex flex-col gap-6">
-              <p className="text-brand-red font-mono uppercase text-xs tracking-[0.25em]">WIE WE ZIJN</p>
-              <h2 className="font-display text-4xl sm:text-5xl text-brand-cream uppercase tracking-wider leading-tight">
-                ZES MANNEN, EEN <span className="text-brand-amber">QUARTER LIFE CRISIS</span>
-              </h2>
-              <SquiggleUnderline />
-
-              <p className="text-brand-text-muted text-sm sm:text-base leading-relaxed mt-4">
-                Het begon zoals de beste ideeën beginnen: met een biertje in de tuin. Zes mannen, midden twintig, en die ene vraag die maar bleef hangen, waarom zijn we eigenlijk gestopt met muziek maken?
-              </p>
-
-              <p className="text-brand-text-muted text-sm sm:text-base leading-relaxed">
-                Op onze 25e deden we wat we op onze 15e het allerliefst deden: herrie maken. En het voelde meteen weer als thuiskomen.
-              </p>
-
-              <div className="flex flex-wrap gap-4 mt-4">
-                <a 
-                  href="/over-ons" 
-                  className="font-display uppercase tracking-widest text-sm px-6 py-2.5 bg-brand-red text-white border-2 border-brand-cream hard-shadow-cream hover-bounce"
-                >
-                  ONS HELE VERHAAL
-                </a>
-                <a 
-                  href="/mannen" 
-                  className="font-display uppercase tracking-widest text-sm px-6 py-2.5 bg-brand-bg-2 text-brand-cream border-2 border-brand-cream hover-bounce"
-                >
-                  DE MUZIKANTEN
-                </a>
-              </div>
-            </div>
-
+      {/* 3. OVER DE BAND (kort) */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-brand-lila border-y-4 border-brand-ink">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+          <div className="relative justify-self-center lg:justify-self-start w-full max-w-md">
+            <span className="absolute -top-3 right-10 z-10 w-24 h-6 bg-brand-tlbr/50 border border-white/40 rotate-6" />
+            <img
+              src="/images/band-live.jpg"
+              alt="Quarter Life Crisis live op het podium"
+              className="w-full object-cover border-2 border-brand-ink shadow-[12px_12px_0_0_#1c857a] -rotate-2"
+            />
           </div>
-        </div>
-      </section>
-
-      {/* 4. Live Audio/Video Teaser with Music tracks */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-brand-bg relative overflow-hidden border-t-4 border-brand-cream">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-brand-neon font-mono uppercase text-xs tracking-[0.25em]">WAT SPELEN WIJ?</p>
-            <h2 className="font-display text-4xl sm:text-5xl text-brand-cream uppercase tracking-wider">
-              REPERTOIRE HOOGTEPUNTEN
+          <div>
+            <span className="qlc-stamp text-brand-goldd -rotate-2 inline-block">Wie we zijn</span>
+            <h2 className="font-poster uppercase text-brand-ink text-4xl sm:text-5xl mt-3 leading-tight">
+              Zes mannen, een <span className="text-brand-pm">quarter life crisis</span>
             </h2>
-            <SquiggleUnderline className="mx-auto" />
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Repertoire Tracklist */}
-            <div className="bg-brand-bg-2 border-3 border-brand-cream p-6 sm:p-8 rounded-2xl hard-shadow-cream">
-              <h3 className="font-display text-2xl text-brand-amber tracking-wider uppercase mb-6 flex items-center gap-2">
-                <Music className="w-5 h-5" /> KNALLERS UIT DE SETLIST
-              </h3>
-              <div className="divide-y divide-brand-cream/10">
-                {repertoire.filter((s) => s.set === 2).sort((a, b) => a.position - b.position).slice(0, 5).map((song) => (
-                  <div key={song.id} className="py-3 flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-brand-cream text-sm sm:text-base">{song.title}</h4>
-                      <p className="text-xs text-brand-text-muted">{song.originalArtist}</p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-mono text-brand-red bg-brand-bg-3 border border-brand-cream/10 px-2.5 py-1 uppercase rounded">
-                        SET 2 · #{song.position}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 pt-4 border-t border-brand-cream/10 text-center">
-                <a 
-                  href="/muziek" 
-                  className="font-display uppercase text-sm tracking-wider text-brand-neon hover:underline inline-flex items-center gap-1"
-                >
-                  Bekijk volledige repertoirelijst & media <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-
-            {/* Live Atmosphere Pitch Card */}
-            <div className="bg-brand-bg-3 border-3 border-brand-cream p-6 sm:p-8 rounded-2xl hard-shadow-red card-rotate-right flex flex-col gap-6">
-              <h3 className="font-display text-2xl text-brand-red tracking-wider uppercase flex items-center gap-2">
-                LIVE OP HET PODIUM
-              </h3>
-              <p className="text-brand-text-muted text-sm leading-relaxed">
-                Elektrisch, akoestisch, bas, drums, piano, zang. Zes muzikanten die van jongs af aan altijd al muziek maakten en op hun 25e besloten dat ze er nooit meer mee zouden stoppen. Verwacht rockcovers met eigen kop, meezingers en een uur lang volle bak energie.
-              </p>
-              <div className="border border-brand-cream/10 rounded-lg p-4 bg-brand-bg-2/30 flex items-center gap-4">
-                <div className="bg-brand-amber p-3 border-2 border-brand-cream text-brand-bg-3 shadow-[2px_2px_0_0_#f1f1f1]">
-                  <Play className="w-5 h-5 fill-brand-bg-3" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-sm">Setlist & muziek</h4>
-                  <p className="text-xs text-brand-text-muted">Bekijk het volledige repertoire op de muziekpagina.</p>
-                </div>
-              </div>
-              <a
-                href="/muziek"
-                className="font-display uppercase tracking-widest text-center text-sm py-3 bg-brand-cream text-brand-bg border-2 border-brand-cream font-bold hover:bg-transparent hover:text-brand-cream transition-colors"
-              >
-                BEKIJK DE SETLIST
-              </a>
+            <p className="text-brand-inksoft mt-4 leading-relaxed max-w-lg">
+              Het begon zoals de beste ideeën beginnen: met een biertje in de tuin. Zes mannen, midden twintig, en die ene vraag die maar bleef hangen, waarom zijn we eigenlijk gestopt met muziek maken?
+            </p>
+            <blockquote className="font-serif italic text-brand-pm border-l-4 border-brand-gold pl-4 my-4 text-lg">
+              Op onze 25e deden we wat we op onze 15e het allerliefst deden: herrie maken.
+            </blockquote>
+            <p className="text-brand-inksoft leading-relaxed">En het voelde meteen weer als thuiskomen.</p>
+            <div className="flex flex-wrap gap-3 mt-6">
+              <Link href="/over-ons" className="font-poster uppercase tracking-wider text-sm px-6 py-2.5 bg-brand-pd text-brand-crm border-2 border-brand-ink shadow-[4px_4px_0_0_#191319] hover:-translate-y-0.5 transition-all">
+                Ons hele verhaal
+              </Link>
+              <Link href="/mannen" className="font-poster uppercase tracking-wider text-sm px-6 py-2.5 bg-transparent text-brand-ink border-2 border-brand-ink hover:-translate-y-0.5 transition-all">
+                De muzikanten
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 6. Call To Action section for Booking */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-brand-bg-3 via-brand-bg-2 to-brand-bg border-t-4 border-brand-cream relative overflow-hidden">
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="font-display text-5xl sm:text-6xl text-brand-cream uppercase tracking-wider mb-4">
-            MAAK VAN JOUW EVENEMENT EEN <span className="text-brand-amber">ROCKFEEST</span>
+      {/* 4. LIVE IN BEELD — video-slider */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-brand-paper">
+        <div className="max-w-6xl mx-auto text-center mb-8">
+          <span className="qlc-stamp text-brand-tl -rotate-2 inline-block">Van het podium</span>
+          <h2 className="font-poster uppercase text-brand-ink text-4xl sm:text-5xl mt-3">
+            QLC <span className="text-brand-pm">live in beeld</span>
           </h2>
-          <p className="text-brand-text-muted max-w-xl mx-auto mb-8 text-sm sm:text-base leading-relaxed">
-            Feest, festival, bruiloft of bedrijfsevent? QLC komt langs met een uur live rock, meezingers en de energie die elke show nodig heeft. Bel of mail voor beschikbaarheid.
+          <p className="text-brand-inksoft mt-2 max-w-xl mx-auto">Beelden van onze optredens &mdash; swipe erdoorheen.</p>
+        </div>
+
+        <div className="max-w-6xl mx-auto relative">
+          <button
+            onClick={() => scrollSlider(-1)}
+            aria-label="Vorige"
+            className="hidden md:flex absolute -left-3 top-[45%] -translate-y-1/2 z-10 w-11 h-11 rounded-full border-2 border-brand-ink bg-brand-paper text-brand-ink items-center justify-center shadow-[3px_3px_0_0_#5d2a58] hover:bg-brand-gold transition-colors"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <button
+            onClick={() => scrollSlider(1)}
+            aria-label="Volgende"
+            className="hidden md:flex absolute -right-3 top-[45%] -translate-y-1/2 z-10 w-11 h-11 rounded-full border-2 border-brand-ink bg-brand-paper text-brand-ink items-center justify-center shadow-[3px_3px_0_0_#5d2a58] hover:bg-brand-gold transition-colors"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+
+          <div ref={sliderRef} className="flex gap-5 overflow-x-auto snap-x snap-proximity pb-5 px-1">
+            {liveMoments.map((m) => (
+              <div key={m.id} className="snap-center shrink-0 w-[80%] sm:w-[360px]">
+                <div className="relative border-2 border-brand-ink shadow-[8px_8px_0_0_#5d2a58] overflow-hidden bg-brand-ink">
+                  <LazyVideo src={m.video} poster={m.poster} className="w-full h-56 object-cover" />
+                  <span className="absolute left-3 bottom-3 font-stamp text-[11px] tracking-wide uppercase text-brand-crm bg-brand-ink/75 border border-brand-crm/30 px-2 py-1">
+                    {m.title}
+                    {m.showSlug && SHOW_LABELS[m.showSlug] ? ` · ${SHOW_LABELS[m.showSlug]}` : ""}
+                  </span>
+                </div>
+              </div>
+            ))}
+            {/* Backyard — komt eraan */}
+            <div className="snap-center shrink-0 w-[80%] sm:w-[360px]">
+              <div className="relative border-2 border-dashed border-brand-ink h-56 flex items-center justify-center text-center bg-brand-paper2">
+                <div className="font-stamp text-xs tracking-wide text-brand-pm px-4">
+                  Backyard Sessions #1<br />video&rsquo;s binnenkort
+                </div>
+              </div>
+            </div>
+          </div>
+          <p className="text-center mt-3 font-stamp text-xs tracking-wide text-brand-tl">
+            &rarr; Meer beelden op{" "}
+            <Link href="/optredens" className="underline">optredens</Link>
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
-            <a 
-              href="/boek-ons" 
-              className="font-display uppercase text-lg sm:text-xl tracking-widest px-8 py-4 bg-brand-red text-white border-3 border-brand-cream hard-shadow-cream hover-bounce"
-            >
-              VRIJBLIJVEND BOEKEN!
-            </a>
-            <a 
-              href="mailto:Ruben_beukers@outlook.com" 
-              className="font-display uppercase text-lg sm:text-xl tracking-widest px-8 py-4 bg-brand-bg-3 text-brand-cream border-3 border-brand-cream hover-bounce"
-            >
-              STUUR DIRECT MAIL
+        </div>
+      </section>
+
+      {/* 5. CTA — boeken */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-brand-pm text-brand-crm border-t-4 border-brand-ink relative overflow-hidden">
+        <div className="qlc-halftone absolute inset-0 opacity-20 pointer-events-none" />
+        <div className="max-w-3xl mx-auto text-center relative z-10">
+          <h2 className="font-poster uppercase text-brand-crm text-5xl sm:text-6xl leading-[0.95]">
+            Maak van jouw evenement een <span className="text-brand-gold">knalfeest</span>
+          </h2>
+          <p className="text-brand-crm/90 max-w-xl mx-auto my-5 leading-relaxed">
+            Feest, festival, bruiloft of bedrijfsevent? QLC komt langs met een uur live muziek, meezingers en de energie die elke show nodig heeft. Bel of mail voor beschikbaarheid.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/boek-ons" className="font-poster uppercase text-lg tracking-wider px-8 py-3.5 bg-brand-gold text-brand-ink border-2 border-brand-ink shadow-[5px_5px_0_0_#191319] hover:-translate-y-0.5 transition-all">
+              Vrijblijvend boeken
+            </Link>
+            <a href="mailto:Ruben_beukers@outlook.com" className="font-poster uppercase text-lg tracking-wider px-8 py-3.5 bg-transparent text-brand-crm border-2 border-brand-crm shadow-[5px_5px_0_0_#3c1138] hover:-translate-y-0.5 transition-all">
+              Stuur direct mail
             </a>
           </div>
-          <div className="mt-8 text-xs font-mono text-brand-text-muted">
-            Of bel direct met Ruben Beukers op: <span className="text-brand-neon font-bold">+31 6 40 42 00 54</span>
+          <div className="mt-6 font-stamp text-xs tracking-wide text-brand-crm/80">
+            Of bel direct met Ruben Beukers op: <span className="text-brand-gold font-semibold">+31 6 40 42 00 54</span>
           </div>
         </div>
       </section>
