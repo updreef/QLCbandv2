@@ -45,17 +45,17 @@
   --color-brand-tlbr: #2fb1a2;
   --color-brand-crm: #fbf7ef;
 
-  /* Donkere basis (redesign v2 — moody rock, paars/teal accent) */
-  --color-brand-base: #18141e;
-  --color-brand-base2: #221b2b;
-  --color-brand-base3: #0f0d14;
+  /* Donkere basis (redesign v2 — grafiet, moody maar niet zwart) */
+  --color-brand-base: #2b2731;
+  --color-brand-base2: #363240;
+  --color-brand-base3: #201c26;
 
   --animate-bounce-ease: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* Base custom resets & global styles */
 body {
-  background-color: #18141e;
+  background-color: #2b2731;
   color: #fbf7ef;
   font-family: var(--font-inter), sans-serif;
   overflow-x: hidden;
@@ -190,12 +190,12 @@ body {
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f0d14;
+  background: #201c26;
 }
 ::-webkit-scrollbar-thumb {
   background: #5d2a58;
   border-radius: 8px;
-  border: 2px solid #0f0d14;
+  border: 2px solid #201c26;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #8e5c93;
