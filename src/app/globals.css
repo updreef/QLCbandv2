@@ -141,19 +141,15 @@ body {
   box-shadow: 6px 6px 0 0 #201c26;
 }
 
-.card-rotate-left {
-  transform: rotate(-1.5deg);
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.card-rotate-left:hover {
-  transform: rotate(0deg) scale(1.02);
-}
+/* Rotaties uitgezet — kaarten staan recht/uitgelijnd (verzoek). Alleen nog een subtiele hover-scale. */
+.card-rotate-left,
 .card-rotate-right {
-  transform: rotate(1.5deg);
+  transform: rotate(0deg);
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+.card-rotate-left:hover,
 .card-rotate-right:hover {
-  transform: rotate(0deg) scale(1.02);
+  transform: scale(1.02);
 }
 
 .blob-about-photo {

@@ -6,10 +6,9 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "Home", href: "/" },
+  { label: "Mannen", href: "/mannen" },
   { label: "Optredens", href: "/optredens" },
   { label: "Muziek", href: "/muziek" },
-  { label: "Mannen", href: "/mannen" },
   { label: "Over ons", href: "/over-ons" },
   { label: "Blog", href: "/blog" },
 ];

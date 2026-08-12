@@ -132,9 +132,8 @@ export const shows: Show[] = [
     city: "Bunschoten-Spakenburg",
     description: "Na ons spetterende debuut van maar liefst twee optredens vinden we het tijd voor de volgende stap: een tuinconcert. We spelen ongeveer een uur onze favoriete nummers en zorgen daarna samen voor een gezellige zomeravond. Statistisch gezien is de kans groot dat het prachtig weer wordt.",
     status: 'past',
-    // Rock outdoor stock foto (Unsplash, free-to-use). Vervang met eigen foto
-    // zodra Backyard Sessions #1 geweest is.
-    image: "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=1600&q=85&auto=format&fit=crop",
+    // Frame uit een eigen Backyard-video.
+    image: "/videos/live-moments/backyard-2.jpg",
     highlights: ["Live QLC", "DJ Chesto", "Beer Pong", "Borrels", "BYOB"]
   },
   {

@@ -312,14 +312,17 @@ export default function BoekOns() {
             <div className="bg-brand-bg-2 border-2 border-brand-cream p-6 rounded-xl hard-shadow-cyan flex flex-col gap-4">
               <h3 className="font-display text-xl text-brand-amber uppercase tracking-wider">RECHTSTREEKS CONTACT</h3>
               <p className="text-xs text-brand-text-muted leading-relaxed">
-                Liever bellen of mailen? Ruben regelt de boekingen.
+                Liever bellen of mailen? Ruben en manager Julian Hugenholtz regelen de boekingen.
               </p>
               <div className="flex flex-col gap-3 font-mono text-xs mt-1">
                 <a href="mailto:Ruben_beukers@outlook.com" className="flex items-center gap-2 text-brand-cream hover:text-brand-neon transition-colors">
                   <Mail className="w-4 h-4 text-brand-red" /> Ruben_beukers@outlook.com
                 </a>
                 <a href="tel:+31640420054" className="flex items-center gap-2 text-brand-cream hover:text-brand-neon transition-colors">
-                  <Phone className="w-4 h-4 text-brand-amber" /> +31 6 40 42 00 54
+                  <Phone className="w-4 h-4 text-brand-amber" /> Ruben — +31 6 40 42 00 54
+                </a>
+                <a href="tel:+31640081979" className="flex items-center gap-2 text-brand-cream hover:text-brand-neon transition-colors">
+                  <Phone className="w-4 h-4 text-brand-amber" /> Manager Julian — +31 6 40 08 19 79
                 </a>
                 <div className="flex items-center gap-2 text-brand-text-muted">
                   <MapPin className="w-4 h-4 text-brand-neon" /> Spakenburg / Amersfoort, NL

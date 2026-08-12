@@ -84,8 +84,20 @@ export default function Footer() {
                   <Phone className="w-4 h-4 text-brand-tlbr" />
                 </div>
                 <div>
-                  <p className="text-xs text-brand-crm/50 font-stamp">Telefoonnummer</p>
+                  <p className="text-xs text-brand-crm/50 font-stamp">Ruben &mdash; boekingen</p>
                   <p className="font-semibold">+31 6 40 42 00 54</p>
+                </div>
+              </a>
+              <a
+                href="tel:+31640081979"
+                className="flex items-center gap-3 text-sm hover:text-brand-tlbr transition-colors"
+              >
+                <div className="p-2 bg-brand-pm border border-brand-crm/20 rounded">
+                  <Phone className="w-4 h-4 text-brand-tlbr" />
+                </div>
+                <div>
+                  <p className="text-xs text-brand-crm/50 font-stamp">Manager &mdash; Julian Hugenholtz</p>
+                  <p className="font-semibold">+31 6 40 08 19 79</p>
                 </div>
               </a>
               <div className="flex items-center gap-3 text-sm">
