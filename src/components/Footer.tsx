@@ -23,11 +23,11 @@ export default function Footer() {
           {/* Kolom 1: pitch */}
           <div className="flex flex-col gap-4">
             <img
-              src="/images/brand/qlc-wordmark-white.png"
+              src="/images/brand/qlc-lockup-purple.png"
               alt="Quarter Life Crisis"
-              width={639}
-              height={472}
-              className="w-48 max-w-full h-auto"
+              width={1100}
+              height={598}
+              className="w-72 max-w-full h-auto border border-brand-crm/15 rounded-md"
             />
             <p className="text-sm text-brand-crm/60 max-w-sm leading-relaxed">
               Zes jonge muzikanten uit Bunschoten-Spakenburg en Amersfoort die herrie maken om volwassenheid nog even uit te stellen. Wij spelen de vetste covers van toen en nu!
