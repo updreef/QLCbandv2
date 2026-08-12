@@ -171,21 +171,21 @@ export const shows: Show[] = [
 export const liveMoments: LiveMoment[] = [
   {
     id: "backyard-1",
-    title: "Backyard #1",
+    title: "Chelsea Dagger",
     video: "/videos/live-moments/backyard-1.mp4",
     poster: "/videos/live-moments/backyard-1.jpg",
     showSlug: "backyard-sessions-1"
   },
   {
     id: "backyard-2",
-    title: "Backyard #2",
+    title: "Seven Nation Army",
     video: "/videos/live-moments/backyard-2.mp4",
     poster: "/videos/live-moments/backyard-2.jpg",
     showSlug: "backyard-sessions-1"
   },
   {
     id: "backyard-3",
-    title: "Backyard #3",
+    title: "Angels",
     video: "/videos/live-moments/backyard-3.mp4",
     poster: "/videos/live-moments/backyard-3.jpg",
     showSlug: "backyard-sessions-1"

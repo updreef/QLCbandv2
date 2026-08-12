@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
 
   // 2 — E-mail via Resend (REST, geen SDK nodig)
   const resendKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_EMAIL || "";
+  const to = process.env.CONTACT_EMAIL || "hugenholtzjulian@gmail.com";
   if (resendKey && to) {
     try {
       const res = await fetch("https://api.resend.com/emails", {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, ChangeEvent, FormEvent } from "react";
-import { Phone, MapPin, Send, HelpCircle, Loader2, CheckCircle2, AlertCircle, Info, Instagram } from "lucide-react";
+import { Phone, MapPin, Send, HelpCircle, Loader2, CheckCircle2, AlertCircle, Info, Instagram, Mail } from "lucide-react";
 import SquiggleUnderline from "../SquiggleUnderline";
 
 const EVENT_TYPES = [
@@ -315,6 +315,9 @@ export default function BoekOns() {
                 Liever bellen? Julian Hugenholtz regelt de boekingen.
               </p>
               <div className="flex flex-col gap-3 font-mono text-xs mt-1">
+                <a href="mailto:hugenholtzjulian@gmail.com" className="flex items-center gap-2 text-brand-cream hover:text-brand-neon transition-colors break-all">
+                  <Mail className="w-4 h-4 text-brand-red shrink-0" /> hugenholtzjulian@gmail.com
+                </a>
                 <a href="tel:+31640081979" className="flex items-center gap-2 text-brand-cream hover:text-brand-neon transition-colors">
                   <Phone className="w-4 h-4 text-brand-amber" /> Julian Hugenholtz — +31 6 40 08 19 79
                 </a>

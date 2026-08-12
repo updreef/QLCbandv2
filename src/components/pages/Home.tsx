@@ -8,7 +8,7 @@ import LazyVideo from "../LazyVideo";
 
 const WEEKDAYS = ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
 const MONTHS = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"];
-const SHOW_LABELS: Record<string, string> = { "bruiloft-te": "Bruiloft T&E" };
+const SHOW_LABELS: Record<string, string> = { "bruiloft-te": "Bruiloft T&E", "backyard-sessions-1": "Backyard Sessions #1" };
 
 export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -148,7 +148,7 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
 
             <div className="mt-5 font-stamp text-xs tracking-wide text-brand-crm/60 flex flex-wrap items-center gap-3">
               <span>Net gespeeld:</span>
-              <span className="border border-brand-pb text-brand-pb px-2.5 py-1">Backyard Sessions #1 &mdash; video&rsquo;s volgen</span>
+              <span className="border border-brand-pb text-brand-pb px-2.5 py-1">Backyard Sessions #1 &mdash; bekijk de video&rsquo;s</span>
               <Link href="/optredens" className="border border-brand-tlbr text-brand-tlbr px-2.5 py-1 hover:bg-brand-tlbr hover:text-brand-base3 transition-colors">
                 Alle optredens &rarr;
               </Link>

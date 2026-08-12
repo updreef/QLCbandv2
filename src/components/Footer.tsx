@@ -1,4 +1,4 @@
-import { Phone, MapPin, ArrowRight, Instagram } from "lucide-react";
+import { Phone, MapPin, ArrowRight, Instagram, Mail } from "lucide-react";
 
 const navItems: [string, string][] = [
   ["Home", "/"],
@@ -74,6 +74,18 @@ export default function Footer() {
                 <div>
                   <p className="text-xs text-brand-crm/50 font-stamp">Boekingen &mdash; Julian Hugenholtz</p>
                   <p className="font-semibold">+31 6 40 08 19 79</p>
+                </div>
+              </a>
+              <a
+                href="mailto:hugenholtzjulian@gmail.com"
+                className="flex items-center gap-3 text-sm hover:text-brand-tlbr transition-colors"
+              >
+                <div className="p-2 bg-brand-pm border border-brand-crm/20 rounded">
+                  <Mail className="w-4 h-4 text-brand-tlbr" />
+                </div>
+                <div>
+                  <p className="text-xs text-brand-crm/50 font-stamp">E-mail</p>
+                  <p className="font-semibold break-all">hugenholtzjulian@gmail.com</p>
                 </div>
               </a>
               <a
