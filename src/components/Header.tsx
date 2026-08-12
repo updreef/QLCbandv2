@@ -26,7 +26,7 @@ export default function Header() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="sticky top-0 z-50 bg-brand-base3/95 backdrop-blur-sm border-b border-brand-crm/10">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-brand-base3/95 backdrop-blur-sm border-b border-brand-crm/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
         {/* Beeldmerk — wit QLC-logo op donker. Zie BRANDBOOK.md */}
         <Link

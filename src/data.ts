@@ -148,8 +148,8 @@ export const shows: Show[] = [
     city: "Spakenburg",
     description: "QLC staat op Havenpop 2026! Het muziekfestival in de haven van Spakenburg. Wij brengen een set vol rockcovers en meezingers op een van de mooiste openluchtpodia van de regio. Kom langs, neem je vrienden mee en zing keihard mee.",
     status: 'upcoming',
-    // Openlucht festival stock foto (Unsplash, free-to-use). Vervang met eigen foto na afloop.
-    image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1600&q=85&auto=format&fit=crop",
+    // Eigen Havenpop-foto (haven Spakenburg).
+    image: "/images/havenpop.jpg",
     highlights: ["Live QLC", "Openluchtfestival", "Haven Spakenburg"]
   },
   {
@@ -170,6 +170,27 @@ export const shows: Show[] = [
 
 // Live-video snippets, filmed on stage. Linked to a show via showSlug.
 export const liveMoments: LiveMoment[] = [
+  {
+    id: "backyard-1",
+    title: "Backyard #1",
+    video: "/videos/live-moments/backyard-1.mp4",
+    poster: "/videos/live-moments/backyard-1.jpg",
+    showSlug: "backyard-sessions-1"
+  },
+  {
+    id: "backyard-2",
+    title: "Backyard #2",
+    video: "/videos/live-moments/backyard-2.mp4",
+    poster: "/videos/live-moments/backyard-2.jpg",
+    showSlug: "backyard-sessions-1"
+  },
+  {
+    id: "backyard-3",
+    title: "Backyard #3",
+    video: "/videos/live-moments/backyard-3.mp4",
+    poster: "/videos/live-moments/backyard-3.jpg",
+    showSlug: "backyard-sessions-1"
+  },
   {
     id: "narcotic",
     title: "Narcotic",
@@ -288,7 +309,7 @@ export const blogPosts: BlogPost[] = [
       <p class="mb-4 text-brand-text/90 leading-relaxed">Prikkabel, oude picknickkleden, strobalen als bankjes, partytent voor als het toch regent. Het hoeft niet duur, het moet gezellig zijn. En zorg voor een koelbox vol bier op elke hoek van de tuin.</p>
 
       <h3 class="text-2xl font-display text-brand-amber tracking-wider mt-8 mb-4">Zelf te veel gedoe?</h3>
-      <p class="mb-4 text-brand-text/90 leading-relaxed">Wij nemen onze eigen geluidsinstallatie mee. Als je ons boekt voor een tuinconcert regelen we alles behalve de buren. Bel Ruben op 06 40 42 00 54 of stuur een mail via de <a href="#/boek-ons" class="text-brand-neon underline">boekingspagina</a>.</p>
+      <p class="mb-4 text-brand-text/90 leading-relaxed">Wij nemen onze eigen geluidsinstallatie mee. Als je ons boekt voor een tuinconcert regelen we alles behalve de buren. Bel Ruben op 06 40 42 00 54 of stuur een mail via de <a href="/boek-ons" class="text-brand-neon underline">boekingspagina</a>.</p>
     `
   },
   {
@@ -322,7 +343,7 @@ export const blogPosts: BlogPost[] = [
       <p class="mb-4 text-brand-text/90 leading-relaxed">In het centrum van Amersfoort zitten meerdere cafés die regelmatig lokale bands boeken. Kleine podia, dichtbij, gezellig. Volg de socials van je favoriete kroeg voor de agenda.</p>
 
       <h3 class="text-2xl font-display text-brand-amber tracking-wider mt-8 mb-4">De QLC Backyard Sessions (Spakenburg)</h3>
-      <p class="mb-4 text-brand-text/90 leading-relaxed">Vanaf 1 augustus 2026 organiseren we zelf tuinconcerten aan de Scholekster 57 in Spakenburg. Intiem, buiten, gezellig, met een uur live QLC en daarna borrels. <a href="#/optredens/backyard-sessions-1" class="text-brand-neon underline">Meer info & RSVP</a>.</p>
+      <p class="mb-4 text-brand-text/90 leading-relaxed">Vanaf 1 augustus 2026 organiseren we zelf tuinconcerten aan de Scholekster 57 in Spakenburg. Intiem, buiten, gezellig, met een uur live QLC en daarna borrels. <a href="/optredens/backyard-sessions-1" class="text-brand-neon underline">Meer info & RSVP</a>.</p>
 
       <h3 class="text-2xl font-display text-brand-amber tracking-wider mt-8 mb-4">Support je local scene</h3>
       <p class="mb-4 text-brand-text/90 leading-relaxed">Livemuziek in de regio bestaat alleen als er publiek is. Koop een kaartje, drink een biertje aan de bar, praat met de band na de show. Zonder jou geen livemuziek.</p>

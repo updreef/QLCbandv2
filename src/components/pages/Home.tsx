@@ -230,14 +230,6 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
                 </div>
               </div>
             ))}
-            {/* Backyard — komt eraan */}
-            <div className="snap-center shrink-0 w-[80%] sm:w-[360px]">
-              <div className="relative border border-dashed border-brand-crm/25 h-56 flex items-center justify-center text-center bg-brand-base2">
-                <div className="font-stamp text-xs tracking-wide text-brand-pb px-4">
-                  Backyard Sessions #1<br />video&rsquo;s binnenkort
-                </div>
-              </div>
-            </div>
           </div>
           <p className="text-center mt-3 font-stamp text-xs tracking-wide text-brand-tlbr">
             &rarr; Meer beelden op{" "}

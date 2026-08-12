@@ -43,7 +43,7 @@ export default function Blog({ posts }: { posts: BlogPost[] }) {
 
                   {/* Title */}
                   <h3 className="font-display text-2xl text-brand-cream uppercase tracking-wide leading-tight hover:text-brand-amber transition-colors">
-                    <a href={`#/blog/${post.slug}`}>{post.title}</a>
+                    <a href={`/blog/${post.slug}`}>{post.title}</a>
                   </h3>
 
                   {/* Summary */}
@@ -60,7 +60,7 @@ export default function Blog({ posts }: { posts: BlogPost[] }) {
                   </div>
                   
                   <a 
-                    href={`#/blog/${post.slug}`}
+                    href={`/blog/${post.slug}`}
                     className="font-display uppercase tracking-widest text-xs text-brand-cream hover:text-brand-neon inline-flex items-center gap-1 group/link"
                   >
                     LEES MEER <ArrowRight className="w-4 h-4 text-brand-red group-hover/link:translate-x-1 transition-transform" />

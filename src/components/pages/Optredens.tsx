@@ -121,7 +121,7 @@ export default function Optredens({ shows }: { shows: Show[] }) {
 
                     <div className="pt-4 border-t border-brand-cream/10 flex items-center justify-between">
                       <a 
-                        href={`#/optredens/${show.slug}`}
+                        href={`/optredens/${show.slug}`}
                         className="font-display uppercase tracking-widest text-xs text-brand-cream hover:text-brand-neon inline-flex items-center gap-1.5 group/link"
                       >
                         MEER INFO <ArrowRight className="w-4 h-4 text-brand-red group-hover/link:translate-x-1 transition-transform" />

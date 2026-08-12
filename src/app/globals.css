@@ -7,16 +7,17 @@
   --font-poster: var(--font-bebas), Impact, "Arial Narrow", sans-serif;
   --font-stamp: var(--font-typewriter), "Courier New", monospace;
 
-  /* ── Oud donker palet — blijft staan tijdens de restyle-migratie ── */
-  --color-brand-bg: #1a1a1c;
-  --color-brand-bg-2: #25252a;
-  --color-brand-bg-3: #101012;
-  --color-brand-text: #f1f1f1;
-  --color-brand-text-muted: rgba(241, 241, 241, 0.65);
-  --color-brand-amber: #d4a017;
-  --color-brand-red: #c0392b;
-  --color-brand-neon: #00d4ff;
-  --color-brand-cream: #f1f1f1;
+  /* ── Oude token-namen, HERGEMAPT naar het nieuwe grafiet/paars/teal palet
+        zodat de nog-niet-herschreven pagina's automatisch meeschuiven ── */
+  --color-brand-bg: #2b2731;
+  --color-brand-bg-2: #363240;
+  --color-brand-bg-3: #201c26;
+  --color-brand-text: #fbf7ef;
+  --color-brand-text-muted: rgba(251, 247, 239, 0.68);
+  --color-brand-amber: #8e5c93; /* was goud → dusty paars */
+  --color-brand-red: #5d2a58; /* was rood → midden paars */
+  --color-brand-neon: #2fb1a2; /* was cyaan → teal */
+  --color-brand-cream: #fbf7ef;
 
   /* Officieel merkpalet (QLC branding.pdf) */
   --color-brand-red-brand: #df151f;
@@ -122,22 +123,22 @@ body {
    Bestaande utilities (blijven t.b.v. nog-niet-herstijlde pagina's)
    ================================================================ */
 .hard-shadow-cream {
-  box-shadow: 6px 6px 0 0 #f1f1f1;
+  box-shadow: 6px 6px 0 0 #fbf7ef;
 }
 .hard-shadow-red {
-  box-shadow: 6px 6px 0 0 #c0392b;
+  box-shadow: 6px 6px 0 0 #5d2a58;
 }
 .hard-shadow-amber {
-  box-shadow: 6px 6px 0 0 #d4a017;
+  box-shadow: 6px 6px 0 0 #8e5c93;
 }
 .hard-shadow-neon {
-  box-shadow: 6px 6px 0 0 #00d4ff;
+  box-shadow: 6px 6px 0 0 #2fb1a2;
 }
 .hard-shadow-cyan {
-  box-shadow: 6px 6px 0 0 #00d4ff;
+  box-shadow: 6px 6px 0 0 #2fb1a2;
 }
 .hard-shadow-black {
-  box-shadow: 6px 6px 0 0 #101012;
+  box-shadow: 6px 6px 0 0 #201c26;
 }
 
 .card-rotate-left {
