@@ -220,9 +220,9 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
 
           <div ref={sliderRef} className="flex gap-5 overflow-x-auto snap-x snap-proximity pb-5 px-1">
             {liveMoments.map((m) => (
-              <div key={m.id} className="snap-center shrink-0 w-[80%] sm:w-[360px]">
+              <div key={m.id} className="snap-center shrink-0 w-[86%] sm:w-[460px]">
                 <div className="relative border border-brand-crm/20 shadow-[8px_8px_0_0_#5d2a58] overflow-hidden bg-brand-base3">
-                  <LazyVideo src={m.video} poster={m.poster} className="w-full h-56 object-cover" />
+                  <LazyVideo src={m.video} poster={m.poster} className="w-full h-72 sm:h-80 object-cover" />
                   <span className="absolute left-3 bottom-3 font-stamp text-[11px] tracking-wide uppercase text-brand-crm bg-brand-base3/80 border border-brand-crm/25 px-2 py-1">
                     {m.title}
                     {m.showSlug && SHOW_LABELS[m.showSlug] ? ` · ${SHOW_LABELS[m.showSlug]}` : ""}
