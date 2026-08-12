@@ -31,10 +31,10 @@ export default async function HomePage() {
     description:
       "Quarter Life Crisis (QLC) is een zeskoppige rockband uit Spakenburg & Amersfoort. Live optredens, covers en eigen werk.",
     slogan: "Play loud, grow up later",
-    telephone: "+31640420054",
-    email: "Ruben_beukers@outlook.com",
+    telephone: "+31640081979",
     sameAs: [
       "https://instagram.com/quarterlifecrisis.band",
+      "https://www.tiktok.com/@quarterlifecrisis.band",
       "https://open.spotify.com/user/RubenBeukers",
     ],
     member: members.map((m) => ({

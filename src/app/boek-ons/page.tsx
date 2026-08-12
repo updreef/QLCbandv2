@@ -4,7 +4,7 @@ import BoekOns from "@/components/pages/BoekOns";
 export const metadata: Metadata = {
   title: "Boek QLC | Rockband boeken Amersfoort / Spakenburg",
   description:
-    "Boek Quarter Life Crisis voor je feest, festival, bruiloft of bedrijfsevenement in Amersfoort, Spakenburg of regio Utrecht. Direct contact met Ruben: 06 40 42 00 54.",
+    "Boek Quarter Life Crisis voor je feest, festival, bruiloft of bedrijfsevenement in Amersfoort, Spakenburg of regio Utrecht. Direct contact met Julian: 06 40 08 19 79.",
   alternates: { canonical: "/boek-ons" },
 };
 
@@ -18,8 +18,7 @@ export default function BoekOnsPage() {
     provider: {
       "@type": "MusicGroup",
       name: "Quarter Life Crisis",
-      email: "Ruben_beukers@outlook.com",
-      telephone: "+31640420054",
+      telephone: "+31640081979",
     },
   };
 

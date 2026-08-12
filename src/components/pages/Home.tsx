@@ -220,9 +220,9 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
 
           <div ref={sliderRef} className="flex gap-5 overflow-x-auto snap-x snap-proximity pb-5 px-1">
             {liveMoments.map((m) => (
-              <div key={m.id} className="snap-center shrink-0 w-[86%] sm:w-[460px]">
+              <div key={m.id} className="snap-center shrink-0 w-[88%] sm:w-[560px]">
                 <div className="relative border border-brand-crm/20 shadow-[8px_8px_0_0_#5d2a58] overflow-hidden bg-brand-base3">
-                  <LazyVideo src={m.video} poster={m.poster} className="w-full h-72 sm:h-80 object-cover" />
+                  <LazyVideo src={m.video} poster={m.poster} className="w-full h-80 sm:h-96 object-cover" />
                   <span className="absolute left-3 bottom-3 font-stamp text-[11px] tracking-wide uppercase text-brand-crm bg-brand-base3/80 border border-brand-crm/25 px-2 py-1">
                     {m.title}
                     {m.showSlug && SHOW_LABELS[m.showSlug] ? ` · ${SHOW_LABELS[m.showSlug]}` : ""}
@@ -252,12 +252,12 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
             <Link href="/boek-ons" className="font-poster uppercase text-lg tracking-wider px-8 py-3.5 bg-brand-tlbr text-brand-base3 border-2 border-brand-tlbr hover:bg-transparent hover:text-brand-tlbr transition-colors">
               Vrijblijvend boeken
             </Link>
-            <a href="mailto:Ruben_beukers@outlook.com" className="font-poster uppercase text-lg tracking-wider px-8 py-3.5 bg-transparent text-brand-crm border-2 border-brand-crm/60 hover:border-brand-crm transition-colors">
-              Stuur direct mail
+            <a href="tel:+31640081979" className="font-poster uppercase text-lg tracking-wider px-8 py-3.5 bg-transparent text-brand-crm border-2 border-brand-crm/60 hover:border-brand-crm transition-colors">
+              Bel Julian
             </a>
           </div>
           <div className="mt-6 font-stamp text-xs tracking-wide text-brand-crm/70">
-            Of bel direct met Ruben Beukers op: <span className="text-brand-tlbr font-semibold">+31 6 40 42 00 54</span>
+            Boekingen via Julian Hugenholtz: <span className="text-brand-tlbr font-semibold">+31 6 40 08 19 79</span>
           </div>
         </div>
       </section>

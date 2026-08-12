@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Shield, ArrowRight } from "lucide-react";
+import { Phone, MapPin, ArrowRight, Instagram } from "lucide-react";
 
 const navItems: [string, string][] = [
   ["Home", "/"],
@@ -23,11 +23,11 @@ export default function Footer() {
           {/* Kolom 1: pitch */}
           <div className="flex flex-col gap-4">
             <img
-              src="/images/brand/qlc-lockup-purple.png"
+              src="/images/brand/qlc-logo.png"
               alt="Quarter Life Crisis"
-              width={1100}
-              height={598}
-              className="w-72 max-w-full h-auto border border-brand-crm/15 rounded-md"
+              width={655}
+              height={655}
+              className="w-44 max-w-full h-auto border border-brand-crm/15 rounded-lg"
             />
             <p className="text-sm text-brand-crm/60 max-w-sm leading-relaxed">
               Zes jonge muzikanten uit Bunschoten-Spakenburg en Amersfoort die herrie maken om volwassenheid nog even uit te stellen. Wij spelen de vetste covers van toen en nu!
@@ -61,33 +61,9 @@ export default function Footer() {
               Boekingen &amp; contact
             </h4>
             <p className="text-sm text-brand-crm/70">
-              Heb je een vraag of wil je ons boeken voor een feest, kroeg of festival? Neem direct contact op met Ruben Beukers.
+              Heb je een vraag of wil je ons boeken voor een feest, kroeg of festival? Neem direct contact op met Julian Hugenholtz.
             </p>
             <div className="flex flex-col gap-3 mt-1">
-              <a
-                href="mailto:Ruben_beukers@outlook.com"
-                className="flex items-center gap-3 text-sm hover:text-brand-tlbr transition-colors"
-              >
-                <div className="p-2 bg-brand-pm border border-brand-crm/20 rounded">
-                  <Mail className="w-4 h-4 text-brand-tlbr" />
-                </div>
-                <div>
-                  <p className="text-xs text-brand-crm/50 font-stamp">E-mailadres</p>
-                  <p className="font-semibold">Ruben_beukers@outlook.com</p>
-                </div>
-              </a>
-              <a
-                href="tel:+31640420054"
-                className="flex items-center gap-3 text-sm hover:text-brand-tlbr transition-colors"
-              >
-                <div className="p-2 bg-brand-pm border border-brand-crm/20 rounded">
-                  <Phone className="w-4 h-4 text-brand-tlbr" />
-                </div>
-                <div>
-                  <p className="text-xs text-brand-crm/50 font-stamp">Ruben &mdash; boekingen</p>
-                  <p className="font-semibold">+31 6 40 42 00 54</p>
-                </div>
-              </a>
               <a
                 href="tel:+31640081979"
                 className="flex items-center gap-3 text-sm hover:text-brand-tlbr transition-colors"
@@ -96,8 +72,38 @@ export default function Footer() {
                   <Phone className="w-4 h-4 text-brand-tlbr" />
                 </div>
                 <div>
-                  <p className="text-xs text-brand-crm/50 font-stamp">Manager &mdash; Julian Hugenholtz</p>
+                  <p className="text-xs text-brand-crm/50 font-stamp">Boekingen &mdash; Julian Hugenholtz</p>
                   <p className="font-semibold">+31 6 40 08 19 79</p>
+                </div>
+              </a>
+              <a
+                href="https://instagram.com/quarterlifecrisis.band"
+                target="_blank"
+                rel="noopener"
+                className="flex items-center gap-3 text-sm hover:text-brand-tlbr transition-colors"
+              >
+                <div className="p-2 bg-brand-pm border border-brand-crm/20 rounded">
+                  <Instagram className="w-4 h-4 text-brand-tlbr" />
+                </div>
+                <div>
+                  <p className="text-xs text-brand-crm/50 font-stamp">Instagram</p>
+                  <p className="font-semibold">@quarterlifecrisis.band</p>
+                </div>
+              </a>
+              <a
+                href="https://www.tiktok.com/@quarterlifecrisis.band"
+                target="_blank"
+                rel="noopener"
+                className="flex items-center gap-3 text-sm hover:text-brand-tlbr transition-colors"
+              >
+                <div className="p-2 bg-brand-pm border border-brand-crm/20 rounded">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-4 h-4 text-brand-tlbr">
+                    <path d="M16.6 5.8a4.3 4.3 0 0 1-1.1-2.8h-3v11.6a2.1 2.1 0 1 1-2-2.7c.2 0 .4 0 .6.1V8.9a5.2 5.2 0 0 0-.6 0 5.1 5.1 0 1 0 5.1 5.1V8.7a7.3 7.3 0 0 0 4 1.2V6.9a4.3 4.3 0 0 1-3-1.1z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-xs text-brand-crm/50 font-stamp">TikTok</p>
+                  <p className="font-semibold">@quarterlifecrisis.band</p>
                 </div>
               </a>
               <div className="flex items-center gap-3 text-sm">
@@ -116,23 +122,17 @@ export default function Footer() {
         {/* Onderbalk */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-brand-crm/50 font-stamp">
           <p>© {currentYear} Quarter Life Crisis (QLC). Alle rechten voorbehouden.</p>
-          <div className="flex gap-5 items-center">
-            <span className="flex items-center gap-1">
-              <Shield className="w-3.5 h-3.5 text-brand-tlbr" /> KVK geregistreerd
-            </span>
-            <span className="text-brand-crm/25">|</span>
-            <span>
-              Made with passion by{" "}
-              <a
-                href="https://updreef.nl"
-                target="_blank"
-                rel="noopener"
-                className="text-brand-tlbr hover:text-brand-pb transition-colors underline underline-offset-4"
-              >
-                Updreef
-              </a>
-            </span>
-          </div>
+          <span>
+            Made with passion by{" "}
+            <a
+              href="https://updreef.nl"
+              target="_blank"
+              rel="noopener"
+              className="text-brand-tlbr hover:text-brand-pb transition-colors underline underline-offset-4"
+            >
+              Updreef
+            </a>
+          </span>
         </div>
       </div>
     </footer>

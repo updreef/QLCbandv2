@@ -271,7 +271,7 @@ export const blogPosts: BlogPost[] = [
       <p class="mb-4 text-brand-text/90 leading-relaxed">Quarter Life Crisis. Want als je op je 25e besluit om alles opzij te zetten voor muziek, dan is dat óf een crisis, óf het beste besluit dat je ooit hebt genomen. Wij denken het tweede.</p>
 
       <h3 class="text-2xl font-display text-brand-amber tracking-wider mt-8 mb-4">En nu?</h3>
-      <p class="mb-4 text-brand-text/90 leading-relaxed">We hebben inmiddels twee shows staan, ons eigen tuinconcert (Backyard Sessions #1 op 1 augustus 2026) en steeds meer verzoeken voor optredens in de regio. Wil je ons boeken voor een feest, festival of bedrijfsevent? Bel Ruben op 06 40 42 00 54.</p>
+      <p class="mb-4 text-brand-text/90 leading-relaxed">We hebben inmiddels twee shows staan, ons eigen tuinconcert (Backyard Sessions #1 op 1 augustus 2026) en steeds meer verzoeken voor optredens in de regio. Wil je ons boeken voor een feest, festival of bedrijfsevent? Bel Julian op 06 40 08 19 79.</p>
     `
   },
   {
@@ -308,7 +308,7 @@ export const blogPosts: BlogPost[] = [
       <p class="mb-4 text-brand-text/90 leading-relaxed">Prikkabel, oude picknickkleden, strobalen als bankjes, partytent voor als het toch regent. Het hoeft niet duur, het moet gezellig zijn. En zorg voor een koelbox vol bier op elke hoek van de tuin.</p>
 
       <h3 class="text-2xl font-display text-brand-amber tracking-wider mt-8 mb-4">Zelf te veel gedoe?</h3>
-      <p class="mb-4 text-brand-text/90 leading-relaxed">Wij nemen onze eigen geluidsinstallatie mee. Als je ons boekt voor een tuinconcert regelen we alles behalve de buren. Bel Ruben op 06 40 42 00 54 of stuur een mail via de <a href="/boek-ons" class="text-brand-neon underline">boekingspagina</a>.</p>
+      <p class="mb-4 text-brand-text/90 leading-relaxed">Wij nemen onze eigen geluidsinstallatie mee. Als je ons boekt voor een tuinconcert regelen we alles behalve de buren. Bel Julian op 06 40 08 19 79 of stuur een mail via de <a href="/boek-ons" class="text-brand-neon underline">boekingspagina</a>.</p>
     `
   },
   {

@@ -48,8 +48,8 @@ export async function POST(req: NextRequest) {
 
   // 2 — E-mail via Resend (REST, geen SDK nodig)
   const resendKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_EMAIL || "Ruben_beukers@outlook.com";
-  if (resendKey) {
+  const to = process.env.CONTACT_EMAIL || "";
+  if (resendKey && to) {
     try {
       const res = await fetch("https://api.resend.com/emails", {
         method: "POST",
@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
     // geval een spoor is, en wees eerlijk richting de bezoeker.
     console.log("[contact] UNDELIVERED LEAD:", JSON.stringify({ name, email, ...body }));
     return NextResponse.json(
-      { error: "Versturen is niet gelukt. Bel of mail ons direct: 06 40 42 00 54 / Ruben_beukers@outlook.com." },
+      { error: "Versturen is niet gelukt. Bel ons direct: 06 40 08 19 79." },
       { status: 502 }
     );
   }

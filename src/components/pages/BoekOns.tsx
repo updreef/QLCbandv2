@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, ChangeEvent, FormEvent } from "react";
-import { Mail, Phone, MapPin, Send, HelpCircle, Loader2, CheckCircle2, AlertCircle, Info } from "lucide-react";
+import { Phone, MapPin, Send, HelpCircle, Loader2, CheckCircle2, AlertCircle, Info, Instagram } from "lucide-react";
 import SquiggleUnderline from "../SquiggleUnderline";
 
 const EVENT_TYPES = [
@@ -131,7 +131,7 @@ export default function BoekOns() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
           {/* Booking Form */}
-          <div className="lg:col-span-7 bg-brand-bg-2 border-3 border-brand-cream p-6 sm:p-10 rounded-2xl hard-shadow-cream card-rotate-left">
+          <div className="lg:col-span-7 bg-brand-base2 border border-brand-crm/15 p-6 sm:p-10 rounded-2xl shadow-[8px_8px_0_0_#5d2a58]">
             <h2 className="font-display text-3xl text-brand-cream uppercase tracking-wider mb-6">
               INTAKE
             </h2>
@@ -258,7 +258,7 @@ export default function BoekOns() {
               <button
                 type="submit"
                 disabled={loading}
-                className="mt-2 font-display uppercase text-lg sm:text-xl tracking-widest py-3 bg-brand-amber text-brand-bg-3 font-bold border-2 border-brand-cream hard-shadow-cream hover-bounce cursor-pointer flex items-center justify-center gap-2 active:translate-x-1 active:translate-y-1 active:shadow-none transition-all disabled:opacity-50"
+                className="mt-2 font-poster uppercase text-lg sm:text-xl tracking-widest py-3.5 bg-brand-tlbr text-brand-base3 font-bold border border-brand-ink rounded-lg cursor-pointer flex items-center justify-center gap-2 hover:bg-brand-crm active:translate-y-0.5 transition-all disabled:opacity-50"
               >
                 {loading ? (
                   <>
@@ -277,11 +277,11 @@ export default function BoekOns() {
           <div className="lg:col-span-5 flex flex-col gap-6">
 
             {/* Wat regelen wij vs jij */}
-            <div className="bg-brand-bg-3 border-3 border-brand-cream rounded-2xl overflow-hidden hard-shadow-red card-rotate-right">
+            <div className="bg-brand-base2 border border-brand-crm/15 rounded-2xl overflow-hidden shadow-[8px_8px_0_0_#1c857a]">
               <img
                 src="/images/band-live.jpg"
                 alt="Quarter Life Crisis live"
-                className="w-full h-56 object-cover border-b-2 border-brand-cream"
+                className="w-full h-56 object-cover border-b border-brand-crm/15"
                 referrerPolicy="no-referrer"
               />
               <div className="p-6 flex flex-col gap-5">
@@ -309,20 +309,20 @@ export default function BoekOns() {
             </div>
 
             {/* Direct contact */}
-            <div className="bg-brand-bg-2 border-2 border-brand-cream p-6 rounded-xl hard-shadow-cyan flex flex-col gap-4">
+            <div className="bg-brand-base2 border border-brand-crm/15 p-6 rounded-xl shadow-[6px_6px_0_0_#5d2a58] flex flex-col gap-4">
               <h3 className="font-display text-xl text-brand-amber uppercase tracking-wider">RECHTSTREEKS CONTACT</h3>
               <p className="text-xs text-brand-text-muted leading-relaxed">
-                Liever bellen of mailen? Ruben en manager Julian Hugenholtz regelen de boekingen.
+                Liever bellen? Julian Hugenholtz regelt de boekingen.
               </p>
               <div className="flex flex-col gap-3 font-mono text-xs mt-1">
-                <a href="mailto:Ruben_beukers@outlook.com" className="flex items-center gap-2 text-brand-cream hover:text-brand-neon transition-colors">
-                  <Mail className="w-4 h-4 text-brand-red" /> Ruben_beukers@outlook.com
-                </a>
-                <a href="tel:+31640420054" className="flex items-center gap-2 text-brand-cream hover:text-brand-neon transition-colors">
-                  <Phone className="w-4 h-4 text-brand-amber" /> Ruben — +31 6 40 42 00 54
-                </a>
                 <a href="tel:+31640081979" className="flex items-center gap-2 text-brand-cream hover:text-brand-neon transition-colors">
-                  <Phone className="w-4 h-4 text-brand-amber" /> Manager Julian — +31 6 40 08 19 79
+                  <Phone className="w-4 h-4 text-brand-amber" /> Julian Hugenholtz — +31 6 40 08 19 79
+                </a>
+                <a href="https://instagram.com/quarterlifecrisis.band" target="_blank" rel="noopener" className="flex items-center gap-2 text-brand-cream hover:text-brand-neon transition-colors">
+                  <Instagram className="w-4 h-4 text-brand-amber" /> @quarterlifecrisis.band
+                </a>
+                <a href="https://www.tiktok.com/@quarterlifecrisis.band" target="_blank" rel="noopener" className="flex items-center gap-2 text-brand-cream hover:text-brand-neon transition-colors">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-4 h-4 text-brand-amber"><path d="M16.6 5.8a4.3 4.3 0 0 1-1.1-2.8h-3v11.6a2.1 2.1 0 1 1-2-2.7c.2 0 .4 0 .6.1V8.9a5.2 5.2 0 0 0-.6 0 5.1 5.1 0 1 0 5.1 5.1V8.7a7.3 7.3 0 0 0 4 1.2V6.9a4.3 4.3 0 0 1-3-1.1z" /></svg> TikTok @quarterlifecrisis.band
                 </a>
                 <div className="flex items-center gap-2 text-brand-text-muted">
                   <MapPin className="w-4 h-4 text-brand-neon" /> Spakenburg / Amersfoort, NL
@@ -353,7 +353,7 @@ export default function BoekOns() {
   );
 }
 
-const inputClass = "bg-brand-bg-3 border-2 border-brand-cream/20 focus:border-brand-neon outline-none px-4 py-2.5 rounded-lg text-sm text-brand-cream font-sans transition-colors w-full";
+const inputClass = "bg-brand-base3 border border-brand-crm/15 focus:border-brand-tlbr outline-none px-4 py-2.5 rounded-lg text-sm text-brand-crm font-sans transition-colors w-full";
 
 function Fieldset({ title, children }: { title: string; children: React.ReactNode }) {
   return (
