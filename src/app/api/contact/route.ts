@@ -4,11 +4,13 @@ import { supabase } from "@/lib/supabase";
 /**
  * Boekingsaanvraag:
  * 1. Lead opslaan in Supabase (als geconfigureerd) → zichtbaar in /admin
- * 2. E-mailnotificatie via Resend (als RESEND_API_KEY gezet) → CONTACT_EMAIL
+ * 2. E-mail naar Julian via FormSubmit (geen API-key nodig; Julian bevestigt
+ *    het adres eenmalig via een mail van FormSubmit).
  *
- * Slaagt zolang minstens één van de twee kanalen werkt, zodat een
- * ontbrekende API-key nooit een aanvraag laat verdwijnen zonder feedback.
+ * Slaagt zolang minstens één kanaal werkt.
  */
+const CONTACT_EMAIL = "hugenholtzjulian@gmail.com";
+
 export async function POST(req: NextRequest) {
   let body: Record<string, string>;
   try {
@@ -29,7 +31,7 @@ export async function POST(req: NextRequest) {
   let emailSent = false;
   const problems: string[] = [];
 
-  // 1 — Supabase lead
+  // 1 — Supabase lead (bonus: zichtbaar in /admin, als geconfigureerd)
   if (supabase) {
     const { error } = await supabase.from("leads").insert({
       name,
@@ -46,33 +48,27 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // 2 — E-mail via Resend (REST, geen SDK nodig)
-  const resendKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_EMAIL || "hugenholtzjulian@gmail.com";
-  if (resendKey && to) {
-    try {
-      const res = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${resendKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          from: "QLC Website <onboarding@resend.dev>",
-          to: [to],
-          reply_to: email,
-          subject: body.subject || `Nieuw bericht van ${name}`,
-          text: `Van: ${name} <${email}>${body.phone ? `\nTelefoon: ${body.phone}` : ""}\n\n${message}`,
-        }),
-      });
-      if (res.ok) {
-        emailSent = true;
-      } else {
-        problems.push(`resend: ${res.status} ${await res.text()}`);
-      }
-    } catch (e) {
-      problems.push(`resend: ${e instanceof Error ? e.message : "network error"}`);
+  // 2 — E-mail naar Julian via FormSubmit (geen key nodig)
+  try {
+    const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(CONTACT_EMAIL)}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        _subject: body.subject || `Nieuwe boekingsaanvraag — ${name}`,
+        _template: "table",
+        Naam: name,
+        "E-mail": email,
+        Telefoon: body.phone || "-",
+        Bericht: message,
+      }),
+    });
+    if (res.ok) {
+      emailSent = true;
+    } else {
+      problems.push(`formsubmit: ${res.status} ${await res.text()}`);
     }
+  } catch (e) {
+    problems.push(`formsubmit: ${e instanceof Error ? e.message : "network error"}`);
   }
 
   if (problems.length > 0) {
@@ -80,8 +76,6 @@ export async function POST(req: NextRequest) {
   }
 
   if (!storedInDb && !emailSent) {
-    // Niets geconfigureerd of alles faalde: log de aanvraag zodat er in elk
-    // geval een spoor is, en wees eerlijk richting de bezoeker.
     console.log("[contact] UNDELIVERED LEAD:", JSON.stringify({ name, email, ...body }));
     return NextResponse.json(
       { error: "Versturen is niet gelukt. Bel ons direct: 06 40 08 19 79." },
