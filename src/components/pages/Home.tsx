@@ -107,18 +107,18 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
               </h2>
             </div>
 
-            <div className="grid lg:grid-cols-[230px_1fr] bg-brand-base2 border border-brand-crm/15 shadow-[12px_12px_0_0_#1c857a]">
+            <div className="grid lg:grid-cols-[1fr_290px] bg-brand-base2 border border-brand-crm/15 shadow-[12px_12px_0_0_#1c857a]">
               {/* Havenpop: poster op de plek van de datum-stub. Andere shows: gewone stub. */}
               {upcomingShow.slug === "havenpop-2026" ? (
-                <div className="overflow-hidden bg-brand-base3">
+                <div className="overflow-hidden bg-brand-base3 lg:order-2">
                   <img
                     src="/images/havenpop-poster.jpg"
                     alt={upcomingShow.title}
-                    className="w-full h-auto lg:h-full object-cover block"
+                    className="w-full h-auto object-cover block"
                   />
                 </div>
               ) : (
-                <div className="bg-brand-pd text-brand-crm p-7 flex flex-col justify-center gap-1">
+                <div className="bg-brand-pd text-brand-crm p-7 flex flex-col justify-center gap-1 lg:order-2">
                   <span className="font-stamp text-sm tracking-[0.2em]">{WEEKDAYS[showDate.getDay()]}</span>
                   <span className="font-poster text-7xl leading-none text-brand-tlbr">{showDate.getDate()}</span>
                   <span className="font-stamp text-sm tracking-[0.2em]">{MONTHS[showDate.getMonth()]}</span>
@@ -128,7 +128,7 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
               )}
 
               {/* Main */}
-              <div className="relative p-7 border-t lg:border-t-0 lg:border-l border-dashed border-brand-crm/25">
+              <div className="relative p-7 border-t lg:border-t-0 lg:border-r border-dashed border-brand-crm/25 lg:order-1 lg:flex lg:flex-col lg:justify-center">
                 <span className="absolute right-5 top-5 w-[70px] h-[70px] rounded-full border-2 border-brand-tlbr text-brand-tlbr -rotate-12 hidden sm:flex items-center justify-center text-center font-stamp text-[11px] leading-tight">
                   RSVP<br />NU
                 </span>
