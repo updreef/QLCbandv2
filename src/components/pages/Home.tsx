@@ -108,14 +108,24 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
             </div>
 
             <div className="grid lg:grid-cols-[230px_1fr] bg-brand-base2 border border-brand-crm/15 shadow-[12px_12px_0_0_#1c857a]">
-              {/* Stub */}
-              <div className="bg-brand-pd text-brand-crm p-7 flex flex-col justify-center gap-1">
-                <span className="font-stamp text-sm tracking-[0.2em]">{WEEKDAYS[showDate.getDay()]}</span>
-                <span className="font-poster text-7xl leading-none text-brand-tlbr">{showDate.getDate()}</span>
-                <span className="font-stamp text-sm tracking-[0.2em]">{MONTHS[showDate.getMonth()]}</span>
-                <span className="font-stamp text-xs tracking-[0.2em] opacity-75">{showDate.getFullYear()}</span>
-                <span className="font-stamp text-xs tracking-[0.14em] opacity-80 mt-3">{upcomingShow.time}</span>
-              </div>
+              {/* Havenpop: poster op de plek van de datum-stub. Andere shows: gewone stub. */}
+              {upcomingShow.slug === "havenpop-2026" ? (
+                <div className="overflow-hidden bg-brand-base3">
+                  <img
+                    src="/images/havenpop-poster.jpg"
+                    alt={upcomingShow.title}
+                    className="w-full h-auto lg:h-full object-cover block"
+                  />
+                </div>
+              ) : (
+                <div className="bg-brand-pd text-brand-crm p-7 flex flex-col justify-center gap-1">
+                  <span className="font-stamp text-sm tracking-[0.2em]">{WEEKDAYS[showDate.getDay()]}</span>
+                  <span className="font-poster text-7xl leading-none text-brand-tlbr">{showDate.getDate()}</span>
+                  <span className="font-stamp text-sm tracking-[0.2em]">{MONTHS[showDate.getMonth()]}</span>
+                  <span className="font-stamp text-xs tracking-[0.2em] opacity-75">{showDate.getFullYear()}</span>
+                  <span className="font-stamp text-xs tracking-[0.14em] opacity-80 mt-3">{upcomingShow.time}</span>
+                </div>
+              )}
 
               {/* Main */}
               <div className="relative p-7 border-t lg:border-t-0 lg:border-l border-dashed border-brand-crm/25">
