@@ -27,7 +27,7 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
       <section className="relative min-h-[86vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-[50%_25%]"
             poster="/images/hero-poster.jpg"
             autoPlay
             muted
