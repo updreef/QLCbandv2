@@ -212,7 +212,7 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
           <p className="text-brand-crm/70 mt-2 max-w-xl mx-auto">Beelden van onze optredens &mdash; swipe erdoorheen.</p>
         </div>
 
-        <div className="max-w-6xl mx-auto relative">
+        <div className="max-w-[1800px] mx-auto relative">
           <button
             onClick={() => scrollSlider(-1)}
             aria-label="Vorige"
