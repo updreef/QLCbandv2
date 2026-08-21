@@ -46,15 +46,15 @@ export default function OverOns() {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 mt-6">
               <div className="border-2 border-brand-cream rounded-lg p-4 bg-brand-bg-2 text-center hard-shadow-amber">
-                <div className="font-display text-4xl sm:text-5xl text-brand-red leading-none">3</div>
+                <div className="font-display text-4xl sm:text-5xl text-brand-green-light leading-none">3</div>
                 <div className="text-[10px] font-mono text-brand-text-muted uppercase tracking-widest mt-2">Shows</div>
               </div>
               <div className="border-2 border-brand-cream rounded-lg p-4 bg-brand-bg-2 text-center hard-shadow-amber">
-                <div className="font-display text-4xl sm:text-5xl text-brand-red leading-none">6</div>
+                <div className="font-display text-4xl sm:text-5xl text-brand-green-light leading-none">6</div>
                 <div className="text-[10px] font-mono text-brand-text-muted uppercase tracking-widest mt-2">Leden</div>
               </div>
               <div className="border-2 border-brand-cream rounded-lg p-4 bg-brand-bg-2 text-center hard-shadow-amber">
-                <div className="font-display text-4xl sm:text-5xl text-brand-red leading-none">1</div>
+                <div className="font-display text-4xl sm:text-5xl text-brand-green-light leading-none">1</div>
                 <div className="text-[10px] font-mono text-brand-text-muted uppercase tracking-widest mt-2">Missie</div>
               </div>
             </div>
