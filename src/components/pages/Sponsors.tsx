@@ -4,15 +4,17 @@ import SquiggleUnderline from "../SquiggleUnderline";
 const SPONSOR_EMAIL = "hugenholtzjulian@gmail.com";
 
 /**
- * Betaallinks per pakket (Mollie- of Stripe Payment Link).
+ * Betaallinks per pakket — een JAARLIJKS ABONNEMENT (recurring) via Mollie of
+ * Stripe: een Payment/Subscription Link die na de eerste iDEAL-betaling een
+ * machtiging aanmaakt en daarna elk jaar automatisch afschrijft (opzegbaar).
  * Leeg = nog niet actief: de knop valt dan terug op aanmelden via e-mail.
- * Vul deze zodra de vereniging (KvK + zakelijke bankrekening) rond is en er
- * een Mollie/Stripe-account is — dan wordt "Direct sponsor worden" een echte
- * iDEAL-checkout. Alleen de lage pakketten zijn bedoeld voor directe betaling.
+ * Vul deze zodra de vereniging (KvK + zakelijke bankrekening) én het
+ * Mollie/Stripe-account er zijn. Alleen Vriend & Brons zijn bedoeld voor
+ * directe (abonnements)betaling; Zilver en hoger gaan via een aanvraag.
  */
 const CHECKOUT: Record<string, string> = {
-  Vriend: "",
-  Brons: "",
+  Vriend: "", // Mollie/Stripe subscription link — €100/jaar, recurring
+  Brons: "",  // Mollie/Stripe subscription link — €250/jaar, recurring
 };
 
 /**
