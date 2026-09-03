@@ -4,7 +4,7 @@ import Sponsors from "@/components/pages/Sponsors";
 export const metadata: Metadata = {
   title: "Word sponsor",
   description:
-    "Sponsor Quarter Life Crisis: zichtbaarheid bij ~10 optredens per jaar in de regio, op het podiumdoek, op onze socials en op de site. Vijf pakketten, vanaf €100 per jaar — Vriend & Brons direct online, grotere pakketten op aanvraag.",
+    "Zes vrienden, één droom. Sponsor Quarter Life Crisis en help heel concreet mee — van €100 (Ruben aan nieuwe snaren) tot hoofdsponsor (onze eerste opname). Vriend & Brons regel je direct online.",
   alternates: { canonical: "/sponsors" },
 };
 
