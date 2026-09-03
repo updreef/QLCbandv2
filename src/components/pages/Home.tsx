@@ -243,11 +243,8 @@ export default function Home({ upcomingShow, isUpcoming = false }: { upcomingSho
           </button>
 
           <div ref={sliderRef} className="flex gap-5 overflow-x-auto snap-x snap-proximity pb-5 px-1">
-            {liveMoments.map((m) => (
-              <div
-                key={m.id}
-                className={`snap-center shrink-0 ${m.portrait ? "w-[180px] sm:w-[216px]" : "w-[88%] sm:w-[560px]"}`}
-              >
+            {liveMoments.filter((m) => m.showSlug !== "havenpop-2026").map((m) => (
+              <div key={m.id} className="snap-center shrink-0 w-[88%] sm:w-[560px]">
                 <div className="relative border border-brand-crm/20 shadow-[8px_8px_0_0_#5d2a58] overflow-hidden bg-brand-base3">
                   <LazyVideo src={m.video} poster={m.poster} className="w-full h-80 sm:h-96 object-cover" />
                   <span className="absolute left-3 bottom-3 font-stamp text-[11px] tracking-wide uppercase text-brand-crm bg-brand-base3/80 border border-brand-crm/25 px-2 py-1">
