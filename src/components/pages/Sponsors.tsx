@@ -52,7 +52,7 @@ const TIERS: Tier[] = [
     plekken: "onbeperkt",
     looptijd: "1 jaar",
     direct: true,
-    pitch: "Voor €100 hou je ons een jaar in snaren, plectrums en gaffa. Glamour is anders, maar zonder dit geen show.",
+    pitch: "Voor €100 hou je ons een jaar in snaren, plectrums en tape. Glamour is anders, maar zonder dit geen show.",
     benefits: [
       "Naam op de sponsorpagina",
       "Vermelding in onze jaarlijkse bedank-post & -video",
@@ -150,10 +150,10 @@ export default function Sponsors() {
           <p className="font-serif italic text-brand-tlbr text-xl sm:text-2xl mt-3">Help ons die droom groter te maken.</p>
           <SquiggleUnderline />
           <p className="text-brand-crm/75 mt-6 text-sm sm:text-base leading-relaxed">
-            Bij een goed doel help je voor een tientje een kind. Nobel. Bij ons help je voor een tientje&hellip;
-            Ruben aan nieuwe snaren. Ook nobel. &#127928; Wij zijn zes vrienden uit Spakenburg en Amersfoort met
-            één droom: QLC laten groeien tot een band die mensen samenbrengt. Sponsor je ons, dan help je heel
-            concreet mee &mdash; <span className="text-brand-crm">van snaren tot studio</span>.
+            Zes vrienden uit Spakenburg en Amersfoort, één droom: QLC laten groeien tot een band die mensen
+            samenbrengt op podia, feesten en festivals. We spelen met hart en ziel &mdash; maar snaren,
+            versterkers en studiotijd kosten nou eenmaal geld. Sponsor je ons, dan help je heel concreet mee:
+            <span className="text-brand-crm"> van nieuwe snaren tot onze eerste opname</span>.
           </p>
         </div>
 
