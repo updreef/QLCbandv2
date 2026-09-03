@@ -130,10 +130,12 @@ export default function Sponsors() {
           </h1>
           <SquiggleUnderline />
           <p className="text-brand-crm/70 mt-6 text-sm sm:text-base leading-relaxed">
-            We verkopen geen goede wil, maar zichtbaarheid. Als sponsor hang je het hele jaar tussen
-            een band die tien keer per jaar voor honderden mensen in de regio speelt &mdash; op het
-            podiumdoek, op onze socials en op deze site. <span className="text-brand-crm">Vriend en Brons
-            regel je direct online</span>; de grotere pakketten gaan via een korte aanvraag.
+            Zes man, versterkers open, zo&rsquo;n tien keer per jaar volle bak voor honderden mensen in
+            de regio. Als sponsor sta je daar het hele jaar bij &mdash; je logo op ons podiumdoek, op
+            onze socials en op deze site. Reclame op de leukste plek van de avond, en je houdt live
+            muziek in de buurt levend.{" "}
+            <span className="text-brand-crm">Vriend en Brons regel je direct online</span>; de grotere
+            pakketten gaan via een korte aanvraag.
           </p>
         </div>
 
