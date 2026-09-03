@@ -157,7 +157,7 @@ export default function Sponsors() {
           <h2 className="font-poster uppercase text-brand-crm text-3xl sm:text-4xl tracking-[0.12em]">De pakketten</h2>
           <span className="flex-1 h-0.5 bg-gradient-to-r from-brand-pb to-transparent" />
         </div>
-        <p className="text-xs text-brand-crm/50 mb-8">Vriend &amp; Brons regel je direct online &mdash; tarief per jaar zichtbaar. Zilver en hoger stemmen we op maat af (beperkte plekken &amp; branche-exclusiviteit); die tarieven bespreken we in een persoonlijk voorstel.</p>
+        <p className="text-xs text-brand-crm/50 mb-8">Vriend &amp; Brons regel je direct online &mdash; tarief per jaar zichtbaar, loopt automatisch door en is <span className="text-brand-crm/70">altijd opzegbaar</span>. Zilver en hoger stemmen we op maat af (beperkte plekken &amp; branche-exclusiviteit); die tarieven bespreken we in een persoonlijk voorstel.</p>
 
         {/* Hoofdsponsor — flagship */}
         <div className="relative overflow-hidden rounded-2xl border border-brand-tlbr/40 bg-gradient-to-br from-brand-pd to-brand-base2 shadow-[10px_10px_0_0_#1c857a] mb-6">
