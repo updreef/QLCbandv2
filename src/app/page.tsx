@@ -7,6 +7,11 @@ export const revalidate = 300;
 export default async function HomePage() {
   const shows = await getShows();
   const upcomingShow = shows.find((s) => s.status === "upcoming");
+  // Geen aankomende show? Licht dan de recentste gespeelde show uit als hoogtepunt.
+  const lastPlayed = shows
+    .filter((s) => s.status === "past")
+    .sort((a, b) => b.date.localeCompare(a.date))[0];
+  const featuredShow = upcomingShow ?? lastPlayed;
 
   const musicGroupLd = {
     "@context": "https://schema.org",
@@ -68,7 +73,7 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(musicGroupLd) }}
       />
-      <Home upcomingShow={upcomingShow} />
+      <Home upcomingShow={featuredShow} isUpcoming={Boolean(upcomingShow)} />
     </>
   );
 }

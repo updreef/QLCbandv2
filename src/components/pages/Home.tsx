@@ -10,7 +10,7 @@ const WEEKDAYS = ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrij
 const MONTHS = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"];
 const SHOW_LABELS: Record<string, string> = { "bruiloft-te": "Bruiloft T&E", "backyard-sessions-1": "Backyard Sessions #1" };
 
-export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
+export default function Home({ upcomingShow, isUpcoming = false }: { upcomingShow?: Show; isUpcoming?: boolean }) {
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const scrollSlider = (dir: number) => {
@@ -115,9 +115,9 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
         <section className="py-20 px-4 sm:px-6 lg:px-8 bg-brand-base">
           <div className="max-w-6xl mx-auto">
             <div className="mb-8">
-              <span className="qlc-stamp text-brand-tlbr -rotate-2 inline-block">Aankomend optreden</span>
+              <span className="qlc-stamp text-brand-tlbr -rotate-2 inline-block">{isUpcoming ? "Aankomend optreden" : "Hoogtepunt"}</span>
               <h2 className="font-poster uppercase text-brand-crm text-5xl sm:text-6xl mt-3">
-                Volgende show in de <span className="text-brand-tlbr">schijnwerpers</span>
+                {isUpcoming ? "Volgende show" : "Onze laatste show"} in de <span className="text-brand-tlbr">schijnwerpers</span>
               </h2>
             </div>
 
@@ -144,7 +144,7 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
               {/* Main */}
               <div className="relative p-7 border-t lg:border-t-0 lg:border-r border-dashed border-brand-crm/25 lg:order-1 lg:flex lg:flex-col lg:justify-center">
                 <span className="absolute right-5 top-5 w-[70px] h-[70px] rounded-full border-2 border-brand-tlbr text-brand-tlbr -rotate-12 hidden sm:flex items-center justify-center text-center font-stamp text-[11px] leading-tight">
-                  RSVP<br />NU
+                  {isUpcoming ? <>RSVP<br />NU</> : <>NET<br />LIVE</>}
                 </span>
                 <h3 className="font-poster uppercase text-brand-crm text-4xl sm:text-5xl pr-16">{upcomingShow.title}</h3>
                 <div className="flex flex-wrap gap-x-5 gap-y-1 my-2 font-stamp text-xs tracking-wide text-brand-tlbr">
@@ -165,13 +165,13 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
                   href={`/optredens/${upcomingShow.slug}`}
                   className="inline-block mt-1 font-poster uppercase tracking-wider text-base px-6 py-2.5 bg-brand-tlbr text-brand-base3 border-2 border-brand-tlbr hover:bg-transparent hover:text-brand-tlbr transition-colors"
                 >
-                  Meer details &amp; RSVP
+                  {isUpcoming ? "Meer details & RSVP" : "Bekijk de video's"}
                 </Link>
               </div>
             </div>
 
             <div className="mt-5 font-stamp text-xs tracking-wide text-brand-crm/60 flex flex-wrap items-center gap-3">
-              <span>Net gespeeld:</span>
+              <span>{isUpcoming ? "Net gespeeld:" : "Ook gespeeld:"}</span>
               <span className="border border-brand-pb text-brand-pb px-2.5 py-1">Backyard Sessions #1 &mdash; bekijk de video&rsquo;s</span>
               <Link href="/optredens" className="border border-brand-tlbr text-brand-tlbr px-2.5 py-1 hover:bg-brand-tlbr hover:text-brand-base3 transition-colors">
                 Alle optredens &rarr;
@@ -244,7 +244,10 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
 
           <div ref={sliderRef} className="flex gap-5 overflow-x-auto snap-x snap-proximity pb-5 px-1">
             {liveMoments.map((m) => (
-              <div key={m.id} className="snap-center shrink-0 w-[88%] sm:w-[560px]">
+              <div
+                key={m.id}
+                className={`snap-center shrink-0 ${m.portrait ? "w-[180px] sm:w-[216px]" : "w-[88%] sm:w-[560px]"}`}
+              >
                 <div className="relative border border-brand-crm/20 shadow-[8px_8px_0_0_#5d2a58] overflow-hidden bg-brand-base3">
                   <LazyVideo src={m.video} poster={m.poster} className="w-full h-80 sm:h-96 object-cover" />
                   <span className="absolute left-3 bottom-3 font-stamp text-[11px] tracking-wide uppercase text-brand-crm bg-brand-base3/80 border border-brand-crm/25 px-2 py-1">
