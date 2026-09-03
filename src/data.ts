@@ -42,6 +42,7 @@ export interface LiveMoment {
   video: string;
   poster: string;
   showSlug?: string; // links to a Show entry when applicable
+  portrait?: boolean; // staande (9:16) clip → smallere, hoge kaart in de slider
 }
 
 export interface BlogPost {
@@ -145,8 +146,8 @@ export const shows: Show[] = [
     location: "Havenpop",
     address: "De Oude Haven",
     city: "Spakenburg",
-    description: "QLC staat op Havenpop 2026! Het muziekfestival in de haven van Spakenburg. Wij brengen een set vol rockcovers en meezingers op een van de mooiste openluchtpodia van de regio. Kom langs, neem je vrienden mee en zing keihard mee.",
-    status: 'upcoming',
+    description: "QLC stond op Havenpop 2026! Het muziekfestival in de haven van Spakenburg. We speelden een set vol rockcovers en meezingers op een van de mooiste openluchtpodia van de regio. Bekijk hieronder de beelden van deze knaller.",
+    status: 'past',
     // Eigen Havenpop-foto (haven Spakenburg).
     image: "/images/havenpop.jpg",
     highlights: ["Live QLC", "Openluchtfestival", "Haven Spakenburg"]
@@ -170,11 +171,36 @@ export const shows: Show[] = [
 // Live-video snippets, filmed on stage. Linked to a show via showSlug.
 export const liveMoments: LiveMoment[] = [
   {
+    id: "havenpop-1",
+    title: "Havenpop 2026",
+    video: "/videos/live-moments/havenpop-1.mp4",
+    poster: "/videos/live-moments/havenpop-1.jpg",
+    showSlug: "havenpop-2026",
+    portrait: true
+  },
+  {
+    id: "havenpop-2",
+    title: "Havenpop 2026",
+    video: "/videos/live-moments/havenpop-2.mp4",
+    poster: "/videos/live-moments/havenpop-2.jpg",
+    showSlug: "havenpop-2026",
+    portrait: true
+  },
+  {
+    id: "havenpop-3",
+    title: "Havenpop 2026",
+    video: "/videos/live-moments/havenpop-3.mp4",
+    poster: "/videos/live-moments/havenpop-3.jpg",
+    showSlug: "havenpop-2026",
+    portrait: true
+  },
+  {
     id: "backyard-1",
     title: "Chelsea Dagger",
     video: "/videos/live-moments/backyard-1.mp4",
     poster: "/videos/live-moments/backyard-1.jpg",
-    showSlug: "backyard-sessions-1"
+    showSlug: "backyard-sessions-1",
+    portrait: true
   },
   {
     id: "backyard-2",
@@ -188,7 +214,8 @@ export const liveMoments: LiveMoment[] = [
     title: "Angels",
     video: "/videos/live-moments/backyard-3.mp4",
     poster: "/videos/live-moments/backyard-3.jpg",
-    showSlug: "backyard-sessions-1"
+    showSlug: "backyard-sessions-1",
+    portrait: true
   },
   {
     id: "narcotic",

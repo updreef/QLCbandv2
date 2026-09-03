@@ -10,7 +10,7 @@ const WEEKDAYS = ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrij
 const MONTHS = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"];
 const SHOW_LABELS: Record<string, string> = { "bruiloft-te": "Bruiloft T&E", "backyard-sessions-1": "Backyard Sessions #1" };
 
-export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
+export default function Home({ upcomingShow, isUpcoming = false }: { upcomingShow?: Show; isUpcoming?: boolean }) {
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const scrollSlider = (dir: number) => {
@@ -26,17 +26,31 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
       {/* 1. HERO — full-bleed video, rustige donkere overlay */}
       <section className="relative min-h-[86vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
+          {/* Desktop/tablet: brede (vierkante) hero-video */}
           <video
-            className="w-full h-full object-cover object-[50%_35%]"
+            className="hidden sm:block w-full h-full object-cover object-[50%_35%]"
             poster="/images/hero-poster.jpg"
             autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="none"
             aria-hidden="true"
           >
             <source src="/videos/hero/hero-movie.mp4" type="video/mp4" />
+          </video>
+          {/* Mobiel: staande live-video (vult het scherm op telefoon) */}
+          <video
+            className="block sm:hidden w-full h-full object-cover object-center"
+            poster="/images/hero2-poster.jpg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
+            aria-hidden="true"
+          >
+            <source src="/videos/hero/hero2.mp4" type="video/mp4" />
           </video>
           {/* Donkere, rustige overlay zodat de tekst leesbaar blijft */}
           <div className="absolute inset-0 bg-gradient-to-b from-brand-base3/80 via-brand-base/60 to-brand-base3/90" />
@@ -101,9 +115,9 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
         <section className="py-20 px-4 sm:px-6 lg:px-8 bg-brand-base">
           <div className="max-w-6xl mx-auto">
             <div className="mb-8">
-              <span className="qlc-stamp text-brand-tlbr -rotate-2 inline-block">Aankomend optreden</span>
+              <span className="qlc-stamp text-brand-tlbr -rotate-2 inline-block">{isUpcoming ? "Aankomend optreden" : "Hoogtepunt"}</span>
               <h2 className="font-poster uppercase text-brand-crm text-5xl sm:text-6xl mt-3">
-                Volgende show in de <span className="text-brand-tlbr">schijnwerpers</span>
+                {isUpcoming ? "Volgende show" : "Onze laatste show"} in de <span className="text-brand-tlbr">schijnwerpers</span>
               </h2>
             </div>
 
@@ -130,7 +144,7 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
               {/* Main */}
               <div className="relative p-7 border-t lg:border-t-0 lg:border-r border-dashed border-brand-crm/25 lg:order-1 lg:flex lg:flex-col lg:justify-center">
                 <span className="absolute right-5 top-5 w-[70px] h-[70px] rounded-full border-2 border-brand-tlbr text-brand-tlbr -rotate-12 hidden sm:flex items-center justify-center text-center font-stamp text-[11px] leading-tight">
-                  RSVP<br />NU
+                  {isUpcoming ? <>RSVP<br />NU</> : <>NET<br />LIVE</>}
                 </span>
                 <h3 className="font-poster uppercase text-brand-crm text-4xl sm:text-5xl pr-16">{upcomingShow.title}</h3>
                 <div className="flex flex-wrap gap-x-5 gap-y-1 my-2 font-stamp text-xs tracking-wide text-brand-tlbr">
@@ -151,13 +165,13 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
                   href={`/optredens/${upcomingShow.slug}`}
                   className="inline-block mt-1 font-poster uppercase tracking-wider text-base px-6 py-2.5 bg-brand-tlbr text-brand-base3 border-2 border-brand-tlbr hover:bg-transparent hover:text-brand-tlbr transition-colors"
                 >
-                  Meer details &amp; RSVP
+                  {isUpcoming ? "Meer details & RSVP" : "Bekijk de video's"}
                 </Link>
               </div>
             </div>
 
             <div className="mt-5 font-stamp text-xs tracking-wide text-brand-crm/60 flex flex-wrap items-center gap-3">
-              <span>Net gespeeld:</span>
+              <span>{isUpcoming ? "Net gespeeld:" : "Ook gespeeld:"}</span>
               <span className="border border-brand-pb text-brand-pb px-2.5 py-1">Backyard Sessions #1 &mdash; bekijk de video&rsquo;s</span>
               <Link href="/optredens" className="border border-brand-tlbr text-brand-tlbr px-2.5 py-1 hover:bg-brand-tlbr hover:text-brand-base3 transition-colors">
                 Alle optredens &rarr;
@@ -229,7 +243,7 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
           </button>
 
           <div ref={sliderRef} className="flex gap-5 overflow-x-auto snap-x snap-proximity pb-5 px-1">
-            {liveMoments.map((m) => (
+            {liveMoments.filter((m) => m.showSlug !== "havenpop-2026").map((m) => (
               <div key={m.id} className="snap-center shrink-0 w-[88%] sm:w-[560px]">
                 <div className="relative border border-brand-crm/20 shadow-[8px_8px_0_0_#5d2a58] overflow-hidden bg-brand-base3">
                   <LazyVideo src={m.video} poster={m.poster} className="w-full h-80 sm:h-96 object-cover" />

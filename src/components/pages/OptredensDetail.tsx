@@ -90,9 +90,9 @@ export default function OptredensDetail({ show }: OptredensDetailProps) {
                 <h3 className="font-display text-xl text-brand-amber uppercase tracking-wider mb-4 flex items-center gap-2">
                   <Film className="w-5 h-5 text-brand-red" /> LIVE MOMENTS
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex flex-wrap gap-4">
                   {showMoments.map((m) => (
-                    <figure key={m.id} className="bg-brand-bg-3 border-2 border-brand-cream rounded-xl overflow-hidden hard-shadow-cyan">
+                    <figure key={m.id} className={`bg-brand-bg-3 border-2 border-brand-cream rounded-xl overflow-hidden hard-shadow-cyan ${m.portrait ? "w-[calc(50%-0.5rem)] sm:w-[220px]" : "w-full sm:w-[380px]"}`}>
                       <video
                         src={m.video}
                         poster={m.poster}
@@ -102,7 +102,7 @@ export default function OptredensDetail({ show }: OptredensDetailProps) {
                         playsInline
                         preload="none"
                         aria-label={`Quarter Life Crisis spelen ${m.title} live`}
-                        className="w-full aspect-video object-cover bg-brand-bg-3"
+                        className={`w-full ${m.portrait ? "aspect-[9/16]" : "aspect-video"} object-cover bg-brand-bg-3`}
                       />
                       <figcaption className="px-3 py-2 text-xs font-display uppercase tracking-widest text-brand-cream border-t border-brand-cream/10">
                         {m.title}
