@@ -15,6 +15,17 @@ const CHECKOUT: Record<string, string> = {
   Brons: "",
 };
 
+/**
+ * Zichtbaarheid van tarieven.
+ * false = alleen Vriend & Brons tonen een prijs; Zilver/Goud/Hoofdsponsor staan
+ * op "prijs op aanvraag" (details + tarieven in de sponsor-flyer/voorstel).
+ * true  = alle tarieven volledig transparant op de site.
+ */
+const SHOW_ALL_PRICES = false;
+
+// Jaarbedrag hoofdsponsor (wordt alleen getoond als SHOW_ALL_PRICES = true).
+const HOOFD_PRICE = "€2.500";
+
 function sponsorMailto(pakket: string) {
   const subject = encodeURIComponent(`Sponsoring QLC — ${pakket}`);
   const body = encodeURIComponent(
@@ -145,7 +156,7 @@ export default function Sponsors() {
           <h2 className="font-poster uppercase text-brand-crm text-3xl sm:text-4xl tracking-[0.12em]">De pakketten</h2>
           <span className="flex-1 h-0.5 bg-gradient-to-r from-brand-pb to-transparent" />
         </div>
-        <p className="text-xs text-brand-crm/50 mb-8">Bedragen per jaar. Vriend &amp; Brons kun je direct online regelen, Zilver en hoger via een aanvraag (beperkte plekken &amp; branche-exclusiviteit).</p>
+        <p className="text-xs text-brand-crm/50 mb-8">Vriend &amp; Brons regel je direct online &mdash; tarief per jaar zichtbaar. Zilver en hoger stemmen we op maat af (beperkte plekken &amp; branche-exclusiviteit); die tarieven bespreken we in een persoonlijk voorstel.</p>
 
         {/* Hoofdsponsor — flagship */}
         <div className="relative overflow-hidden rounded-2xl border border-brand-tlbr/40 bg-gradient-to-br from-brand-pd to-brand-base2 shadow-[10px_10px_0_0_#1c857a] mb-6">
@@ -166,8 +177,14 @@ export default function Sponsors() {
                 QLC gekoppeld.
               </p>
               <div className="flex items-baseline gap-2 mt-1">
-                <span className="font-poster text-4xl text-brand-crm leading-none">€2.000</span>
-                <span className="font-stamp text-[11px] uppercase tracking-wider text-brand-crm/60">/ jaar &middot; looptijd 2 jaar</span>
+                {SHOW_ALL_PRICES ? (
+                  <>
+                    <span className="font-poster text-4xl text-brand-crm leading-none">{HOOFD_PRICE}</span>
+                    <span className="font-stamp text-[11px] uppercase tracking-wider text-brand-crm/60">/ jaar &middot; looptijd 2 jaar</span>
+                  </>
+                ) : (
+                  <span className="font-stamp text-xs uppercase tracking-widest text-brand-crm/70">Prijs op aanvraag &middot; looptijd 2 jaar</span>
+                )}
               </div>
               <a
                 href={sponsorMailto("Hoofdsponsor")}
@@ -224,10 +241,14 @@ export default function Sponsors() {
                   })}
                 </ul>
                 <div className="mt-5 pt-4 border-t border-brand-crm/10 flex flex-col gap-3">
-                  <div className="flex items-baseline gap-1.5">
-                    <span className="font-poster text-3xl text-brand-crm leading-none">{tier.price}</span>
-                    <span className="font-stamp text-[10px] uppercase tracking-wider text-brand-crm/50">/ jaar</span>
-                  </div>
+                  {tier.direct || SHOW_ALL_PRICES ? (
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="font-poster text-3xl text-brand-crm leading-none">{tier.price}</span>
+                      <span className="font-stamp text-[10px] uppercase tracking-wider text-brand-crm/50">/ jaar</span>
+                    </div>
+                  ) : (
+                    <span className="font-stamp text-xs uppercase tracking-widest text-brand-crm/60">Prijs op aanvraag</span>
+                  )}
                   {tier.direct && checkoutUrl ? (
                     <a
                       href={checkoutUrl}
