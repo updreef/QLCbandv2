@@ -1,3 +1,4 @@
+import Image from "next/image";
 import SquiggleUnderline from "../SquiggleUnderline";
 
 export default function OverOns() {
@@ -20,11 +21,13 @@ export default function OverOns() {
           {/* Photo */}
           <div className="relative justify-self-center lg:justify-self-start">
             <div className="absolute -inset-2 bg-brand-neon blob-about-photo border-3 border-brand-cream rotate-[2deg] -z-10" />
-            <img
+            <Image
               src="/images/band-live.jpg"
               alt="Quarter Life Crisis live op het podium"
-              className="w-full max-w-md object-cover blob-about-photo border-3 border-brand-cream hard-shadow-cyan"
-              referrerPolicy="no-referrer"
+              width={1200}
+              height={1600}
+              sizes="(max-width: 768px) 100vw, 448px"
+              className="w-full h-auto max-w-md object-cover blob-about-photo border-3 border-brand-cream hard-shadow-cyan"
             />
           </div>
 

@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Calendar, MapPin, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { liveMoments, type Show } from "../../data";
 import LazyVideo from "../LazyVideo";
@@ -19,6 +20,27 @@ export default function Home({ upcomingShow, isUpcoming = false }: { upcomingSho
     el.scrollBy({ left: dir * Math.min(el.clientWidth * 0.85, 380), behavior: "smooth" });
   };
 
+  // Hero-video pas na de eerste paint laden (poster is de LCP), en alleen de
+  // zichtbare variant — zo blokkeert de ~2,5 MB video de LCP niet.
+  useEffect(() => {
+    let done = false;
+    const start = () => {
+      if (done) return;
+      done = true;
+      document.querySelectorAll<HTMLVideoElement>("video[data-hero-src]").forEach((v) => {
+        if (v.offsetParent !== null && !v.getAttribute("src")) {
+          v.src = v.dataset.heroSrc as string;
+          v.load();
+          v.play().catch(() => {});
+        }
+      });
+    };
+    const onReady = () => window.setTimeout(start, 150);
+    if (document.readyState === "complete") onReady();
+    else window.addEventListener("load", onReady, { once: true });
+    return () => window.removeEventListener("load", onReady);
+  }, []);
+
   const showDate = upcomingShow ? new Date(upcomingShow.date + "T00:00:00") : null;
 
   return (
@@ -26,8 +48,9 @@ export default function Home({ upcomingShow, isUpcoming = false }: { upcomingSho
       {/* 1. HERO — full-bleed video, rustige donkere overlay */}
       <section className="relative min-h-[86vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          {/* Desktop/tablet: brede (vierkante) hero-video */}
+          {/* Desktop/tablet: brede (vierkante) hero-video — src wordt na load gezet */}
           <video
+            data-hero-src="/videos/hero/hero-movie.mp4"
             className="hidden sm:block w-full h-full object-cover object-[50%_35%]"
             poster="/images/hero-poster.jpg"
             autoPlay
@@ -36,11 +59,10 @@ export default function Home({ upcomingShow, isUpcoming = false }: { upcomingSho
             playsInline
             preload="none"
             aria-hidden="true"
-          >
-            <source src="/videos/hero/hero-movie.mp4" type="video/mp4" />
-          </video>
+          />
           {/* Mobiel: staande live-video (vult het scherm op telefoon) */}
           <video
+            data-hero-src="/videos/hero/hero2.mp4"
             className="block sm:hidden w-full h-full object-cover object-center"
             poster="/images/hero2-poster.jpg"
             autoPlay
@@ -49,9 +71,7 @@ export default function Home({ upcomingShow, isUpcoming = false }: { upcomingSho
             playsInline
             preload="none"
             aria-hidden="true"
-          >
-            <source src="/videos/hero/hero2.mp4" type="video/mp4" />
-          </video>
+          />
           {/* Donkere, rustige overlay zodat de tekst leesbaar blijft */}
           <div className="absolute inset-0 bg-gradient-to-b from-brand-base3/80 via-brand-base/60 to-brand-base3/90" />
           <div className="absolute inset-0 bg-brand-pd/20" />
@@ -125,9 +145,12 @@ export default function Home({ upcomingShow, isUpcoming = false }: { upcomingSho
               {/* Havenpop: poster op de plek van de datum-stub. Andere shows: gewone stub. */}
               {upcomingShow.slug === "havenpop-2026" ? (
                 <div className="overflow-hidden bg-brand-base3 lg:order-2">
-                  <img
+                  <Image
                     src="/images/havenpop-poster.jpg"
                     alt={upcomingShow.title}
+                    width={1080}
+                    height={1920}
+                    sizes="(max-width: 1024px) 100vw, 290px"
                     className="w-full h-auto object-cover block"
                   />
                 </div>
@@ -186,10 +209,13 @@ export default function Home({ upcomingShow, isUpcoming = false }: { upcomingSho
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           <div className="relative justify-self-center lg:justify-self-start w-full max-w-md">
             <span className="absolute -top-3 right-10 z-10 w-24 h-6 bg-brand-tlbr/40 border border-brand-crm/20 rotate-6" />
-            <img
+            <Image
               src="/images/band-live.jpg"
               alt="Quarter Life Crisis live op het podium"
-              className="w-full object-cover border border-brand-crm/20 shadow-[12px_12px_0_0_#5d2a58] -rotate-2"
+              width={1200}
+              height={1600}
+              sizes="(max-width: 1024px) 100vw, 448px"
+              className="w-full h-auto object-cover border border-brand-crm/20 shadow-[12px_12px_0_0_#5d2a58] -rotate-2"
             />
           </div>
           <div>
