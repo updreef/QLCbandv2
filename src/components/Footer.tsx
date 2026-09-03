@@ -8,6 +8,7 @@ const navItems: [string, string][] = [
   ["De Mannen", "/mannen"],
   ["Repertoire", "/muziek"],
   ["Onze Blog", "/blog"],
+  ["Word sponsor", "/sponsors"],
 ];
 
 export default function Footer() {

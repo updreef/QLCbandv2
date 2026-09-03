@@ -26,17 +26,31 @@ export default function Home({ upcomingShow }: { upcomingShow?: Show }) {
       {/* 1. HERO — full-bleed video, rustige donkere overlay */}
       <section className="relative min-h-[86vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
+          {/* Desktop/tablet: brede (vierkante) hero-video */}
           <video
-            className="w-full h-full object-cover object-[50%_35%]"
+            className="hidden sm:block w-full h-full object-cover object-[50%_35%]"
             poster="/images/hero-poster.jpg"
             autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="none"
             aria-hidden="true"
           >
             <source src="/videos/hero/hero-movie.mp4" type="video/mp4" />
+          </video>
+          {/* Mobiel: staande live-video (vult het scherm op telefoon) */}
+          <video
+            className="block sm:hidden w-full h-full object-cover object-center"
+            poster="/images/hero2-poster.jpg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
+            aria-hidden="true"
+          >
+            <source src="/videos/hero/hero2.mp4" type="video/mp4" />
           </video>
           {/* Donkere, rustige overlay zodat de tekst leesbaar blijft */}
           <div className="absolute inset-0 bg-gradient-to-b from-brand-base3/80 via-brand-base/60 to-brand-base3/90" />
