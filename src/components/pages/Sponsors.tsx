@@ -59,7 +59,7 @@ const TIERS: Tier[] = [
     direct: true,
     benefits: [
       "Naam op de sponsorpagina",
-      "Vermelding in onze jaarlijkse bedankpost",
+      "Vermelding in onze jaarlijkse bedank-post & -video",
     ],
   },
   {
@@ -71,8 +71,8 @@ const TIERS: Tier[] = [
     benefits: [
       "Alles van Vriend, plus:",
       "Logo mét link op de sponsorpagina",
-      "1 eigen social post per jaar",
-      "Uitnodiging per show",
+      "2 plekken op de gastenlijst bij een optreden in de regio",
+      "Persoonlijke shout-out vanaf het podium (1× per jaar)",
     ],
   },
   {
@@ -83,11 +83,10 @@ const TIERS: Tier[] = [
     direct: false,
     benefits: [
       "Alles van Brons, plus:",
-      "Logo op het podiumdoek",
+      "Je logo op ons podiumdoek — op elke foto & video",
       "Logo op flyers & posters",
-      "Naamsvermelding vanaf het podium",
-      "2 social posts per jaar",
-      "Korting op een optreden voor je personeel",
+      "Naamsvermelding bij elk optreden",
+      "Korting op een optreden voor je personeelsfeest",
     ],
   },
   {
@@ -100,9 +99,9 @@ const TIERS: Tier[] = [
       "Alles van Zilver, plus:",
       "Logo in de footer van de site",
       "Groot logo op het doek",
-      "Logo in onze videocontent",
+      "Logo in onze videocontent (aftermovies)",
       "Branche-exclusiviteit in de regio",
-      "4 social posts per jaar & naamsvermelding elke show",
+      "VIP: kijkje achter de schermen bij een show",
     ],
   },
 ];
@@ -111,8 +110,8 @@ const HOOFD_BENEFITS = [
   "Als enige groot bovenaan op het podiumdoek",
   "Naamskoppeling: “QLC powered by …”",
   "Logo in de footer, op flyers, posters en videocontent",
-  "6 eigen social posts per jaar",
-  "Één optreden inbegrepen",
+  "Genoemd in onze jaarlijkse bedank-post & -video",
+  "Eén optreden inbegrepen (bijv. jullie bedrijfsfeest)",
   "Branche-exclusiviteit in de regio",
 ];
 
