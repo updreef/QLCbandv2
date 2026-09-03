@@ -1,5 +1,27 @@
-import { Users, Image as ImageIcon, Megaphone, Percent, Check, Crown, Mail, Phone, ArrowRight } from "lucide-react";
+import { Users, Image as ImageIcon, Megaphone, Percent, Check, Crown, Mail, Phone, ArrowRight, CreditCard } from "lucide-react";
 import SquiggleUnderline from "../SquiggleUnderline";
+
+const SPONSOR_EMAIL = "hugenholtzjulian@gmail.com";
+
+/**
+ * Betaallinks per pakket (Mollie- of Stripe Payment Link).
+ * Leeg = nog niet actief: de knop valt dan terug op aanmelden via e-mail.
+ * Vul deze zodra de vereniging (KvK + zakelijke bankrekening) rond is en er
+ * een Mollie/Stripe-account is — dan wordt "Direct sponsor worden" een echte
+ * iDEAL-checkout. Alleen de lage pakketten zijn bedoeld voor directe betaling.
+ */
+const CHECKOUT: Record<string, string> = {
+  Vriend: "",
+  Brons: "",
+};
+
+function sponsorMailto(pakket: string) {
+  const subject = encodeURIComponent(`Sponsoring QLC — ${pakket}`);
+  const body = encodeURIComponent(
+    `Hoi Julian,\n\nWij willen graag sponsor worden van Quarter Life Crisis (pakket ${pakket}).\n\nBedrijf:\nContactpersoon:\nTelefoon:\nE-mail:\n\nGroet,`
+  );
+  return `mailto:${SPONSOR_EMAIL}?subject=${subject}&body=${body}`;
+}
 
 const WAAROM = [
   { icon: Users, title: "Live voor de regio", text: "Zo'n tien optredens per jaar voor een paar honderd man in Spakenburg, Amersfoort en omstreken." },
@@ -10,17 +32,20 @@ const WAAROM = [
 
 type Tier = {
   name: string;
+  price: string;
   plekken: string;
   looptijd: string;
-  intro?: string;
+  direct: boolean; // true = direct online af te rekenen (lage pakketten)
   benefits: string[];
 };
 
 const TIERS: Tier[] = [
   {
     name: "Vriend",
+    price: "€100",
     plekken: "onbeperkt",
     looptijd: "1 jaar",
+    direct: true,
     benefits: [
       "Naam op de sponsorpagina",
       "Vermelding in onze jaarlijkse bedankpost",
@@ -28,8 +53,10 @@ const TIERS: Tier[] = [
   },
   {
     name: "Brons",
+    price: "€250",
     plekken: "max. 8",
     looptijd: "2 jaar",
+    direct: true,
     benefits: [
       "Alles van Vriend, plus:",
       "Logo mét link op de sponsorpagina",
@@ -39,8 +66,10 @@ const TIERS: Tier[] = [
   },
   {
     name: "Zilver",
+    price: "€500",
     plekken: "max. 5",
     looptijd: "2 jaar",
+    direct: false,
     benefits: [
       "Alles van Brons, plus:",
       "Logo op het podiumdoek",
@@ -52,8 +81,10 @@ const TIERS: Tier[] = [
   },
   {
     name: "Goud",
+    price: "€1.000",
     plekken: "max. 3",
     looptijd: "2 jaar",
+    direct: false,
     benefits: [
       "Alles van Zilver, plus:",
       "Logo in de footer van de site",
@@ -91,7 +122,8 @@ export default function Sponsors() {
           <p className="text-brand-crm/70 mt-6 text-sm sm:text-base leading-relaxed">
             We verkopen geen goede wil, maar zichtbaarheid. Als sponsor hang je het hele jaar tussen
             een band die tien keer per jaar voor honderden mensen in de regio speelt &mdash; op het
-            podiumdoek, op onze socials en op deze site. Lokaal, zichtbaar en met een knipoog.
+            podiumdoek, op onze socials en op deze site. <span className="text-brand-crm">Vriend en Brons
+            regel je direct online</span>; de grotere pakketten gaan via een korte aanvraag.
           </p>
         </div>
 
@@ -109,10 +141,11 @@ export default function Sponsors() {
         </div>
 
         {/* Pakketten */}
-        <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center gap-4 mb-3">
           <h2 className="font-poster uppercase text-brand-crm text-3xl sm:text-4xl tracking-[0.12em]">De pakketten</h2>
           <span className="flex-1 h-0.5 bg-gradient-to-r from-brand-pb to-transparent" />
         </div>
+        <p className="text-xs text-brand-crm/50 mb-8">Bedragen per jaar. Vriend &amp; Brons kun je direct online regelen, Zilver en hoger via een aanvraag (beperkte plekken &amp; branche-exclusiviteit).</p>
 
         {/* Hoofdsponsor — flagship */}
         <div className="relative overflow-hidden rounded-2xl border border-brand-tlbr/40 bg-gradient-to-br from-brand-pd to-brand-base2 shadow-[10px_10px_0_0_#1c857a] mb-6">
@@ -132,7 +165,16 @@ export default function Sponsors() {
                 De meest zichtbare plek die we hebben. E&eacute;n bedrijf, twee jaar lang, overal aan
                 QLC gekoppeld.
               </p>
-              <span className="font-stamp text-xs text-brand-crm/50 mt-1">Looptijd 2 jaar &middot; prijs op aanvraag</span>
+              <div className="flex items-baseline gap-2 mt-1">
+                <span className="font-poster text-4xl text-brand-crm leading-none">€2.000</span>
+                <span className="font-stamp text-[11px] uppercase tracking-wider text-brand-crm/60">/ jaar &middot; looptijd 2 jaar</span>
+              </div>
+              <a
+                href={sponsorMailto("Hoofdsponsor")}
+                className="mt-2 w-fit font-poster uppercase tracking-wider text-sm px-6 py-2.5 bg-brand-tlbr text-brand-base3 border-2 border-brand-tlbr hover:bg-transparent hover:text-brand-tlbr transition-colors inline-flex items-center gap-2"
+              >
+                <Mail className="w-4 h-4" /> Hoofdsponsor aanvragen
+              </a>
             </div>
             <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2.5 self-center">
               {HOOFD_BENEFITS.map((b) => (
@@ -147,38 +189,72 @@ export default function Sponsors() {
 
         {/* Vier niveaus */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {TIERS.map((tier) => (
-            <div
-              key={tier.name}
-              className="flex flex-col bg-brand-base2 border border-brand-crm/15 rounded-2xl p-6 shadow-[6px_6px_0_0_#3c1138] hover:shadow-[6px_6px_0_0_#1c857a] transition-shadow"
-            >
-              <div className="flex items-center justify-between gap-2 mb-1">
-                <h3 className="font-poster uppercase text-brand-crm text-3xl tracking-wider leading-none">{tier.name}</h3>
+          {TIERS.map((tier) => {
+            const checkoutUrl = tier.direct ? CHECKOUT[tier.name] : "";
+            return (
+              <div
+                key={tier.name}
+                className="flex flex-col bg-brand-base2 border border-brand-crm/15 rounded-2xl p-6 shadow-[6px_6px_0_0_#3c1138] hover:shadow-[6px_6px_0_0_#1c857a] transition-shadow"
+              >
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <h3 className="font-poster uppercase text-brand-crm text-3xl tracking-wider leading-none">{tier.name}</h3>
+                  {tier.direct && (
+                    <span className="font-stamp text-[9px] uppercase tracking-wider text-brand-green-light border border-brand-green-light/40 rounded px-1.5 py-0.5">
+                      Direct
+                    </span>
+                  )}
+                </div>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <span className="font-stamp text-[10px] uppercase tracking-wider text-brand-tlbr border border-brand-tlbr/30 rounded px-2 py-0.5">
+                    {tier.plekken}
+                  </span>
+                  <span className="font-stamp text-[10px] uppercase tracking-wider text-brand-crm/50 border border-brand-crm/15 rounded px-2 py-0.5">
+                    {tier.looptijd}
+                  </span>
+                </div>
+                <ul className="flex flex-col gap-2.5 flex-1">
+                  {tier.benefits.map((b, i) => {
+                    const isHeader = b.endsWith("plus:");
+                    return (
+                      <li key={i} className={`flex items-start gap-2 text-sm ${isHeader ? "text-brand-crm/45 italic" : "text-brand-crm/80"}`}>
+                        {!isHeader && <Check className="w-4 h-4 text-brand-pb shrink-0 mt-0.5" />}
+                        <span>{b}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <div className="mt-5 pt-4 border-t border-brand-crm/10 flex flex-col gap-3">
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="font-poster text-3xl text-brand-crm leading-none">{tier.price}</span>
+                    <span className="font-stamp text-[10px] uppercase tracking-wider text-brand-crm/50">/ jaar</span>
+                  </div>
+                  {tier.direct && checkoutUrl ? (
+                    <a
+                      href={checkoutUrl}
+                      target="_blank"
+                      rel="noopener"
+                      className="text-center font-poster uppercase tracking-wider text-sm py-2.5 bg-brand-tlbr text-brand-base3 border-2 border-brand-tlbr hover:bg-transparent hover:text-brand-tlbr transition-colors inline-flex items-center justify-center gap-2"
+                    >
+                      <CreditCard className="w-4 h-4" /> Direct sponsor worden
+                    </a>
+                  ) : (
+                    <a
+                      href={sponsorMailto(tier.name)}
+                      className="text-center font-poster uppercase tracking-wider text-sm py-2.5 bg-brand-pm text-brand-crm border-2 border-brand-crm/25 hover:bg-brand-pd hover:border-brand-tlbr transition-colors"
+                    >
+                      {tier.direct ? "Word sponsor" : "Aanvragen"}
+                    </a>
+                  )}
+                  {tier.direct && !checkoutUrl && (
+                    <span className="font-stamp text-[10px] text-brand-crm/40 text-center">iDEAL-betaling volgt deze maand</span>
+                  )}
+                  {!tier.direct && (
+                    <span className="font-stamp text-[10px] text-brand-crm/40 text-center">Beperkte plekken &mdash; op aanvraag</span>
+                  )}
+                </div>
               </div>
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="font-stamp text-[10px] uppercase tracking-wider text-brand-tlbr border border-brand-tlbr/30 rounded px-2 py-0.5">
-                  {tier.plekken}
-                </span>
-                <span className="font-stamp text-[10px] uppercase tracking-wider text-brand-crm/50 border border-brand-crm/15 rounded px-2 py-0.5">
-                  {tier.looptijd}
-                </span>
-              </div>
-              <ul className="flex flex-col gap-2.5 flex-1">
-                {tier.benefits.map((b, i) => {
-                  const isHeader = b.endsWith("plus:");
-                  return (
-                    <li key={i} className={`flex items-start gap-2 text-sm ${isHeader ? "text-brand-crm/45 italic" : "text-brand-crm/80"}`}>
-                      {!isHeader && <Check className="w-4 h-4 text-brand-pb shrink-0 mt-0.5" />}
-                      <span className={isHeader ? "pl-0" : ""}>{b}</span>
-                    </li>
-                  );
-                })}
-              </ul>
-              <div className="mt-5 pt-4 border-t border-brand-crm/10">
-                <span className="font-stamp text-xs uppercase tracking-widest text-brand-crm/60">Prijs op aanvraag</span>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* In natura */}
@@ -196,12 +272,12 @@ export default function Sponsors() {
               Word sponsor van QLC
             </h2>
             <p className="text-sm text-brand-crm/70 max-w-xl mx-auto mt-4 leading-relaxed">
-              We stellen graag een voorstel op maat op, met een concrete tegenprestatie op papier.
-              Neem contact op met Julian &mdash; dan kijken we samen welk pakket past.
+              Vriend of Brons regel je zo online. Voor de grotere pakketten stellen we graag een
+              voorstel op maat op, met een concrete tegenprestatie op papier. Bel of mail Julian.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
               <a
-                href="mailto:hugenholtzjulian@gmail.com?subject=Sponsoring%20QLC"
+                href={sponsorMailto("algemeen")}
                 className="font-poster uppercase text-lg tracking-wider px-8 py-3 bg-brand-pm text-brand-crm border-2 border-brand-crm/25 hover:bg-brand-pd hover:border-brand-tlbr transition-colors inline-flex items-center justify-center gap-2"
               >
                 <Mail className="w-5 h-5" /> Word sponsor
