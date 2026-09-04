@@ -39,7 +39,8 @@ type Tier = {
   plekken: string;
   looptijd: string;
   direct: boolean;
-  pitch: string; // de concrete, grappige gunfactor-zin
+  pitch: string;   // vetgedrukte hoofdzin: waar helpt de bijdrage aan
+  detail: string;  // ondersteunende zin eronder
   price: string;
   benefits: string[];
 };
@@ -52,7 +53,8 @@ const TIERS: Tier[] = [
     plekken: "onbeperkt",
     looptijd: "1 jaar",
     direct: true,
-    pitch: "Voor €100 hou je ons een jaar in snaren, plectrums en tape. Glamour is anders, maar zonder dit geen show.",
+    pitch: "Voor €100 help je ons onze techniek en volgende repetities te betalen.",
+    detail: "Daarmee kunnen we blijven repeteren, nieuwe nummers leren en samen beter worden.",
     benefits: [
       "Naam op de sponsorpagina",
       "Vermelding in onze jaarlijkse bedank-post & -video",
@@ -65,7 +67,8 @@ const TIERS: Tier[] = [
     plekken: "max. 8",
     looptijd: "2 jaar",
     direct: true,
-    pitch: "€250 en er kan een fatsoenlijke microfoon bij — zodat Niels ook op de achterste rij te horen is.",
+    pitch: "Met €250 help je een heel optreden mogelijk te maken.",
+    detail: "Van repetitieruimte en apparatuur tot vervoer — alles wat nodig is om een goede show neer te zetten.",
     benefits: [
       "Alles van Vriend, plus:",
       "Logo mét link op de sponsorpagina",
@@ -80,7 +83,8 @@ const TIERS: Tier[] = [
     plekken: "max. 5",
     looptijd: "2 jaar",
     direct: false,
-    pitch: "Onze bas valt zowat uit elkaar. Met €500 lijmen we 'm niet — dan komt er een échte bij.",
+    pitch: "Met jouw bijdrage investeren we in betere shows.",
+    detail: "Denk aan apparatuur, techniek en repetities waarmee we QLC naar een hoger niveau tillen.",
     benefits: [
       "Alles van Brons, plus:",
       "Je logo op ons podiumdoek — op elke foto & video",
@@ -96,7 +100,8 @@ const TIERS: Tier[] = [
     plekken: "max. 3",
     looptijd: "2 jaar",
     direct: false,
-    pitch: "Voor €1.000 speelt Ruben eindelijk op een gitaar van ná 2009. Iedereen wint, vooral je oren.",
+    pitch: "Jouw bijdrage helpt ons eigen muziek te maken.",
+    detail: "Van opname en productie tot repetities — je helpt ons de stap zetten van coverband naar een band met eigen werk.",
     benefits: [
       "Alles van Zilver, plus:",
       "Logo in de footer van de site",
@@ -108,7 +113,8 @@ const TIERS: Tier[] = [
   },
 ];
 
-const HOOFD_PITCH = "€2.500 helpt de jongens aan hun eerste échte opname. Straks staat jouw naam op onze eerste plaat.";
+const HOOFD_PITCH = "Jij helpt ons onze droom werkelijkheid te maken.";
+const HOOFD_DETAIL = "Van lokale optredens naar grotere podia en festivals, eigen muziek, en een band die steeds verder groeit.";
 const HOOFD_BENEFITS = [
   "Als enige groot bovenaan op het podiumdoek",
   "Naamskoppeling: “QLC powered by …”",
@@ -178,14 +184,15 @@ export default function Sponsors() {
                 </span>
               </div>
               <h3 className="font-poster uppercase text-brand-crm text-5xl sm:text-6xl leading-[0.85] mt-1">Hoofdsponsor</h3>
-              <p className="text-brand-crm text-lg sm:text-xl leading-snug font-medium">{HOOFD_PITCH}</p>
+              <p className="text-brand-crm text-lg sm:text-xl leading-snug font-semibold">{HOOFD_PITCH}</p>
+              <p className="text-brand-crm/70 text-sm leading-relaxed">{HOOFD_DETAIL}</p>
               <a
                 href={sponsorMailto("Hoofdsponsor")}
                 className="mt-2 w-fit font-poster uppercase tracking-wider text-sm px-6 py-2.5 bg-brand-tlbr text-brand-base3 border-2 border-brand-tlbr hover:bg-transparent hover:text-brand-tlbr transition-colors inline-flex items-center gap-2"
               >
                 <Mail className="w-4 h-4" /> Hoofdsponsor worden
               </a>
-              <span className="font-stamp text-[11px] text-brand-crm/50">€2.500 / jaar &middot; looptijd 2 jaar &middot; op aanvraag</span>
+              <span className="font-stamp text-[11px] text-brand-crm/50">Looptijd 2 jaar &middot; op aanvraag</span>
             </div>
             <div className="self-center">
               <span className="font-stamp text-[10px] uppercase tracking-wider text-brand-crm/50">Je krijgt ook</span>
@@ -218,8 +225,9 @@ export default function Sponsors() {
                 </div>
               </div>
 
-              {/* De gunfactor-zin — voorop */}
-              <p className="text-brand-crm text-base sm:text-lg leading-snug mt-3 mb-4">{tier.pitch}</p>
+              {/* De hoofdzin — voorop, met detail eronder */}
+              <p className="text-brand-crm text-base sm:text-lg leading-snug mt-3 font-semibold">{tier.pitch}</p>
+              <p className="text-brand-crm/60 text-sm leading-relaxed mt-1.5 mb-4">{tier.detail}</p>
 
               {/* Voordelen — secundair */}
               <div className="mt-auto">
@@ -242,7 +250,7 @@ export default function Sponsors() {
                 <span className="font-stamp text-[10px] text-brand-crm/40 text-center">
                   {tier.direct
                     ? `${tier.price} · jaarlijks, opzegbaar${CHECKOUT[tier.name] ? "" : " · iDEAL volgt deze maand"}`
-                    : `${tier.price} · op aanvraag`}
+                    : "Op aanvraag"}
                 </span>
               </div>
             </div>
