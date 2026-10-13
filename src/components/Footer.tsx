@@ -135,9 +135,9 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-brand-crm/50 font-stamp">
           <p>© {currentYear} Quarter Life Crisis (QLC). Alle rechten voorbehouden.</p>
           <span>
-            Made with passion by{" "}
+            Website door{" "}
             <a
-              href="https://updreef.nl"
+              href="https://www.updreef.nl/diensten/websites"
               target="_blank"
               rel="noopener"
               className="text-brand-tlbr hover:text-brand-pb transition-colors underline underline-offset-4"
