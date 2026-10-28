@@ -266,7 +266,7 @@ export default function KuilLanding() {
       <section className="px-4 sm:px-6 py-16">
         <div className="max-w-5xl mx-auto">
           <h2 className="font-poster uppercase text-brand-crm text-4xl sm:text-5xl text-center leading-none">
-            Het <span className="text-brand-tlbr">knalfeest</span> van het jaar
+            Van live band naar <span className="text-brand-tlbr">dansvloer</span>
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-8">
             <div className="bg-brand-base2 border border-brand-crm/15 rounded-2xl p-6 shadow-[6px_6px_0_0_#5d2a58] flex flex-col gap-2">

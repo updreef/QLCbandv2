@@ -83,7 +83,7 @@ values (
   'upcoming',
   '/images/kerstcrisis-de-kuil.jpg',
   '/images/kerstcrisis-de-kuil.jpg',
-  array['Live QLC','DJ Chesto','Kerstsfeer in De Kuil','Het knalfeest van het jaar'],
+  array['Live QLC','DJ Chesto','Kerstsfeer in De Kuil','Dansen tot in de late uurtjes'],
   true
 )
 on conflict (slug) do nothing;

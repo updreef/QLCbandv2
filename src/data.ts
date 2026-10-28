@@ -137,7 +137,7 @@ export const shows: Show[] = [
     status: 'upcoming',
     image: "/images/kerstcrisis-de-kuil.jpg",
     poster: "/images/kerstcrisis-de-kuil.jpg",
-    highlights: ["Live QLC", "DJ Chesto", "Kerstsfeer in De Kuil", "Het knalfeest van het jaar"],
+    highlights: ["Live QLC", "DJ Chesto", "Kerstsfeer in De Kuil", "Dansen tot in de late uurtjes"],
     rsvp: true
   },
   {
