@@ -6,6 +6,9 @@
 alter table public.shows
   add column if not exists rsvp boolean not null default false;
 
+alter table public.shows
+  add column if not exists poster text;
+
 -- ── 2) Aanmeldingen ───────────────────────────────────────────
 create table if not exists public.event_rsvps (
   id uuid primary key default gen_random_uuid(),
@@ -51,19 +54,20 @@ grant execute on function public.rsvp_count(text) to anon, authenticated;
 -- ── 4) Het evenement van 12 december ──────────────────────────
 -- Eenmalig toevoegen; latere admin-edits blijven staan (do nothing bij bestaande slug).
 insert into public.shows
-  (slug, title, date, time, location, address, city, description, status, image, highlights, rsvp)
+  (slug, title, date, time, location, address, city, description, status, image, poster, highlights, rsvp)
 values (
   'feest-de-kuil',
-  'QLC-feest in De Kuil',
+  'Kerstcrisis in De Kuil',
   '2026-12-12',
   '20:00 - 01:00',
   'Sporthal De Kuil',
   '',
   'Bunschoten-Spakenburg',
-  'Op 12 december geven we een knalfeest in Sporthal De Kuil! Een avond vol live QLC, met DJ Chesto aan de knoppen. Kom los, zing mee en vier het jaar met ons uit. Meld je hieronder aan, dan weten we op hoeveel feestbeesten we kunnen rekenen.',
+  'Kerstcrisis in De Kuil! Op 12 december sluiten we het jaar af met een knalfeest in Sporthal De Kuil: live QLC én DJ Chesto, kerstsfeer en een volle vloer. Kom los, zing mee en wees erbij. Meld je hieronder aan, dan weten we op hoeveel feestbeesten we kunnen rekenen.',
   'upcoming',
-  '/images/band-live.jpg',
-  array['Live QLC','DJ Chesto','Sporthal De Kuil','Het knalfeest van het jaar'],
+  '/images/kerstcrisis-de-kuil.jpg',
+  '/images/kerstcrisis-de-kuil.jpg',
+  array['Live QLC','DJ Chesto','Kerstsfeer in De Kuil','Het knalfeest van het jaar'],
   true
 )
 on conflict (slug) do nothing;

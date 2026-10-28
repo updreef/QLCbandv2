@@ -41,6 +41,15 @@ export default function OptredensDetail({ show }: OptredensDetailProps) {
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Terug naar alle optredens
         </a>
 
+        {/* Event-poster (full-width banner) */}
+        {show.poster && (
+          <img
+            src={show.poster}
+            alt={show.title}
+            className="w-full rounded-2xl border-2 border-brand-cream mb-10 hard-shadow-cyan"
+          />
+        )}
+
         {/* Gig Detail Bento Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           
@@ -128,12 +137,14 @@ export default function OptredensDetail({ show }: OptredensDetailProps) {
           <div className="lg:col-span-5 flex flex-col gap-6">
             <div className="bg-brand-bg-3 border-3 border-brand-cream rounded-2xl overflow-hidden hard-shadow-red card-rotate-right">
               
-              <img 
-                src={show.image} 
-                alt={show.title} 
-                className="w-full h-48 object-cover border-b-2 border-brand-cream"
-                referrerPolicy="no-referrer"
-              />
+              {!show.poster && (
+                <img
+                  src={show.image}
+                  alt={show.title}
+                  className="w-full h-48 object-cover border-b-2 border-brand-cream"
+                  referrerPolicy="no-referrer"
+                />
+              )}
 
               <div className="p-6 flex flex-col gap-5">
                 <h3 className="font-display text-2xl text-brand-cream uppercase tracking-wider">

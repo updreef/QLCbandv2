@@ -26,6 +26,7 @@ interface ShowRow {
   image: string | null;
   highlights: string[] | null;
   rsvp: boolean | null;
+  poster: string | null;
 }
 
 interface BlogRow {
@@ -55,6 +56,7 @@ function rowToShow(r: ShowRow): Show {
     image: r.image ?? "/images/band-live.jpg",
     highlights: r.highlights ?? undefined,
     rsvp: r.rsvp ?? undefined,
+    poster: r.poster ?? undefined,
   };
 }
 
