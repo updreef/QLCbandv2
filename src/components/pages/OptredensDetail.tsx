@@ -3,6 +3,7 @@ import { liveMoments, type Show } from "../../data";
 import SquiggleUnderline from "../SquiggleUnderline";
 import EventRSVP from "../EventRSVP";
 
+const DAYS = ["zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"];
 const MONTHS = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
 
 interface OptredensDetailProps {
@@ -10,221 +11,179 @@ interface OptredensDetailProps {
 }
 
 export default function OptredensDetail({ show }: OptredensDetailProps) {
-  const showMoments = liveMoments.filter((m) => m.showSlug === show.slug);
-  const eventDate = new Date(show.date + "T00:00:00");
-  const rsvpDate = isNaN(eventDate.getTime()) ? "het feest" : `${eventDate.getDate()} ${MONTHS[eventDate.getMonth()]}`;
-
   if (!show) {
     return (
-      <div className="pt-36 pb-24 text-center min-h-screen">
-        <h2 className="font-display text-4xl text-brand-cream uppercase mb-4">Optreden niet gevonden</h2>
-        <p className="text-brand-text-muted mb-8">We konden het gevraagde optreden niet vinden.</p>
-        <a 
-          href="/optredens" 
-          className="font-display uppercase tracking-widest text-sm px-6 py-2.5 bg-brand-cream text-brand-bg border-2 border-brand-cream hard-shadow-cream"
+      <div className="pt-36 pb-24 px-4 text-center min-h-screen">
+        <h2 className="font-poster text-5xl text-brand-crm uppercase mb-4">Optreden niet gevonden</h2>
+        <p className="text-brand-crm/60 mb-8">We konden het gevraagde optreden niet vinden.</p>
+        <a
+          href="/optredens"
+          className="font-poster uppercase tracking-widest text-sm px-6 py-3 bg-brand-tlbr text-brand-base3 rounded-lg"
         >
-          TERUG NAAR OPTREDENS
+          Terug naar optredens
         </a>
       </div>
     );
   }
 
+  const showMoments = liveMoments.filter((m) => m.showSlug === show.slug);
+  const isUpcoming = show.status === "upcoming";
+  const d = new Date(show.date + "T00:00:00");
+  const validDate = !isNaN(d.getTime());
+  const dateLong = validDate ? `${DAYS[d.getDay()]} ${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}` : show.date;
+  const rsvpDate = validDate ? `${d.getDate()} ${MONTHS[d.getMonth()]}` : "het feest";
+
   return (
     <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 min-h-screen">
       <div className="max-w-5xl mx-auto">
-        
-        {/* Back Link */}
-        <a 
-          href="/optredens" 
-          className="inline-flex items-center gap-2 text-sm text-brand-neon font-mono uppercase mb-8 hover:underline group"
+
+        {/* Terug */}
+        <a
+          href="/optredens"
+          className="inline-flex items-center gap-2 font-stamp text-xs uppercase tracking-[0.18em] text-brand-tlbr mb-8 hover:text-brand-crm transition-colors group"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Terug naar alle optredens
         </a>
 
-        {/* Event-poster (full-width banner) */}
+        {/* Poster (full-width banner) */}
         {show.poster && (
           <img
             src={show.poster}
             alt={show.title}
-            className="w-full rounded-2xl border-2 border-brand-cream mb-10 hard-shadow-cyan"
+            className="w-full rounded-2xl border border-brand-crm/15 mb-10 shadow-[10px_10px_0_0_#5d2a58]"
           />
         )}
 
-        {/* Gig Detail Bento Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          
-          {/* Main Info Box (Left) */}
-          <div className="lg:col-span-7 flex flex-col gap-6">
-            <div className="flex flex-wrap gap-2">
-              <span className="text-xs font-mono font-bold bg-brand-red text-white px-3 py-1 border border-brand-cream uppercase tracking-wider rotate-[-1deg] shadow-[2px_2px_0_0_#f1f1f1]">
-                {show.status === 'upcoming' ? 'AANKOMENDE SHOW' : 'ARCHIEF DETAILS'}
-              </span>
-            </div>
+        {/* Kop */}
+        <span
+          className={`font-stamp text-[11px] uppercase tracking-[0.2em] inline-block px-3 py-1.5 rounded ${
+            isUpcoming ? "bg-brand-tlbr text-brand-base3" : "border border-brand-crm/25 text-brand-crm/70"
+          }`}
+        >
+          {isUpcoming ? "Aankomend" : "Archief"}
+        </span>
+        <h1 className="font-poster uppercase text-brand-crm text-5xl sm:text-6xl md:text-7xl leading-[0.85] mt-4">
+          {show.title}
+        </h1>
+        <SquiggleUnderline />
 
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-brand-cream uppercase tracking-wide leading-tight">
-              {show.title}
-            </h1>
-            <SquiggleUnderline />
-
-            <div className="flex flex-wrap gap-4 text-xs font-mono text-brand-text-muted mt-2">
-              <div className="flex items-center gap-1.5 bg-brand-bg-2 border border-brand-cream/10 px-3 py-1.5 rounded-lg text-brand-cream">
-                <Calendar className="w-4 h-4 text-brand-amber" /> {show.date}
-              </div>
-              <div className="flex items-center gap-1.5 bg-brand-bg-2 border border-brand-cream/10 px-3 py-1.5 rounded-lg text-brand-neon">
-                <Clock className="w-4 h-4 text-brand-neon" /> {show.time}
-              </div>
-            </div>
-
-            <div className="prose prose-invert mt-4">
-              <p className="text-brand-text-muted leading-relaxed text-sm sm:text-base">
-                {show.description}
-              </p>
-            </div>
-
-            {/* Highlights Checklist */}
-            {show.highlights && (
-              <div className="bg-brand-bg-2 border-2 border-brand-cream p-6 rounded-xl hard-shadow-cream mt-4">
-                <h3 className="font-display text-xl text-brand-amber uppercase tracking-wider mb-4 flex items-center gap-2">
-                  <Star className="w-5 h-5 fill-brand-amber text-brand-amber" /> {show.status === 'upcoming' ? 'WAT JE KUNT VERWACHTEN' : 'HOOGTEPUNTEN'}
-                </h3>
-                <ul className="space-y-3">
-                  {show.highlights.map((highlight, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-sm">
-                      <span className="text-brand-red font-bold text-lg leading-none mt-0.5">•</span>
-                      <span className="text-brand-text">{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {/* Aanmelden + live teller (alleen voor rsvp-events) */}
-            {show.rsvp && show.status === "upcoming" && (
-              <EventRSVP eventSlug={show.slug} dateLabel={rsvpDate} />
-            )}
-
-            {/* Live Moments from this show */}
-            {showMoments.length > 0 && (
-              <div className="mt-4">
-                <h3 className="font-display text-xl text-brand-amber uppercase tracking-wider mb-4 flex items-center gap-2">
-                  <Film className="w-5 h-5 text-brand-red" /> LIVE MOMENTS
-                </h3>
-                <div className="flex flex-wrap gap-4">
-                  {showMoments.map((m) => (
-                    <figure key={m.id} className={`bg-brand-bg-3 border-2 border-brand-cream rounded-xl overflow-hidden hard-shadow-cyan ${m.portrait ? "w-[calc(50%-0.5rem)] sm:w-[220px]" : "w-full sm:w-[380px]"}`}>
-                      <video
-                        src={m.video}
-                        poster={m.poster}
-                        controls
-                        muted
-                        loop
-                        playsInline
-                        preload="none"
-                        aria-label={`Quarter Life Crisis spelen ${m.title} live`}
-                        className={`w-full ${m.portrait ? "aspect-[9/16]" : "aspect-video"} object-cover bg-brand-bg-3`}
-                      />
-                      <figcaption className="px-3 py-2 text-xs font-display uppercase tracking-widest text-brand-cream border-t border-brand-cream/10">
-                        {m.title}
-                      </figcaption>
-                    </figure>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Quick Details Sidebar Card (Right) */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
-            <div className="bg-brand-bg-3 border-3 border-brand-cream rounded-2xl overflow-hidden hard-shadow-red card-rotate-right">
-              
-              {!show.poster && (
-                <img
-                  src={show.image}
-                  alt={show.title}
-                  className="w-full h-48 object-cover border-b-2 border-brand-cream"
-                  referrerPolicy="no-referrer"
-                />
-              )}
-
-              <div className="p-6 flex flex-col gap-5">
-                <h3 className="font-display text-2xl text-brand-cream uppercase tracking-wider">
-                  LOCATIE GEGEVENS
-                </h3>
-
-                <div className="flex flex-col gap-4 text-sm">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="w-5 h-5 text-brand-red shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-semibold text-brand-cream">{show.location}</p>
-                      <p className="text-xs text-brand-text-muted">{show.address}</p>
-                      <p className="text-xs text-brand-text-muted">{show.city}, NL</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <Clock className="w-5 h-5 text-brand-amber shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-semibold text-brand-cream">Tijdschema</p>
-                      <p className="text-xs text-brand-text-muted">Aanvang optreden: {show.time.split(" - ")[0]}</p>
-                      <p className="text-xs text-brand-text-muted">Einde show: {show.time.split(" - ")[1] || "Laat"}</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-brand-cream/10">
-                  {show.status === 'upcoming' ? (
-                    show.rsvp ? (
-                      <div className="flex flex-col gap-3">
-                        <a
-                          href="#aanmelden"
-                          className="font-display text-center uppercase tracking-widest text-sm py-3 bg-brand-amber text-brand-bg-3 font-bold border-2 border-brand-cream hard-shadow-cream hover-bounce"
-                        >
-                          Meld je aan
-                        </a>
-                        <p className="text-center text-[10px] text-brand-text-muted font-mono">
-                          Laat weten dat je komt. Hoe meer zielen, hoe meer vreugd!
-                        </p>
-                      </div>
-                    ) : (
-                      <div className="flex flex-col gap-3">
-                        <a
-                          href="/boek-ons"
-                          className="font-display text-center uppercase tracking-widest text-sm py-3 bg-brand-amber text-brand-bg-3 font-bold border-2 border-brand-cream hard-shadow-cream hover-bounce"
-                        >
-                          BOEK ONS VOOR JOUW FEEST
-                        </a>
-                        <p className="text-center text-[10px] text-brand-text-muted font-mono">
-                          Gratis entree • Gezellige rock sfeer gegarandeerd!
-                        </p>
-                      </div>
-                    )
-                  ) : (
-                    <div className="text-center py-2 bg-brand-bg-2 border border-brand-cream/10 rounded-lg">
-                      <p className="font-mono text-xs text-brand-amber">ARCHIEF SHOW AFGELOPEN</p>
-                      <p className="text-[10px] text-brand-text-muted mt-1">Bedankt voor de fantastische energie!</p>
-                    </div>
-                  )}
-                </div>
-
-              </div>
-            </div>
-
-            {/* General booking helper banner */}
-            <div className="bg-brand-bg-2 border-2 border-brand-cream p-6 rounded-xl hard-shadow-cream text-center">
-              <h4 className="font-display text-lg text-brand-cream uppercase tracking-wider mb-2">QLC IN JOUW ACHTERTUIN?</h4>
-              <p className="text-xs text-brand-text-muted mb-4 leading-relaxed">
-                Wil je zelf een intiem concert in je tuin, net als de legendarische Backyard Sessions? Neem contact op!
-              </p>
-              <a 
-                href="/boek-ons"
-                className="font-display inline-block uppercase text-xs tracking-widest px-4 py-2 bg-brand-red text-white border-2 border-brand-cream font-bold hover-bounce"
-              >
-                VRAAG OFFERTE AAN
-              </a>
-            </div>
-          </div>
-
+        {/* Info-chips */}
+        <div className="flex flex-wrap gap-2.5 mt-5">
+          <span className="inline-flex items-center gap-1.5 bg-brand-base2 border border-brand-crm/15 rounded-lg px-3 py-2 text-sm text-brand-crm">
+            <Calendar className="w-4 h-4 text-brand-tlbr shrink-0" /> {dateLong}
+          </span>
+          {show.time && (
+            <span className="inline-flex items-center gap-1.5 bg-brand-base2 border border-brand-crm/15 rounded-lg px-3 py-2 text-sm text-brand-crm">
+              <Clock className="w-4 h-4 text-brand-tlbr shrink-0" /> {show.time}
+            </span>
+          )}
+          {show.location && (
+            <span className="inline-flex items-center gap-1.5 bg-brand-base2 border border-brand-crm/15 rounded-lg px-3 py-2 text-sm text-brand-crm">
+              <MapPin className="w-4 h-4 text-brand-tlbr shrink-0" /> {show.location}
+              {show.city ? `, ${show.city}` : ""}
+            </span>
+          )}
         </div>
+
+        {/* Omschrijving */}
+        <p className="text-brand-crm/75 leading-relaxed text-sm sm:text-base max-w-3xl mt-7">{show.description}</p>
+
+        {/* Aanmelden + teller */}
+        {show.rsvp && isUpcoming && (
+          <div className="mt-8">
+            <EventRSVP eventSlug={show.slug} dateLabel={rsvpDate} />
+          </div>
+        )}
+
+        {/* Highlights + praktisch */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-10">
+          {show.highlights && (
+            <div className="bg-brand-base2 border border-brand-crm/15 rounded-2xl p-6 shadow-[6px_6px_0_0_#5d2a58]">
+              <h3 className="font-poster uppercase tracking-wider text-brand-crm text-2xl flex items-center gap-2">
+                <Star className="w-5 h-5 text-brand-tlbr" /> {isUpcoming ? "Wat je kunt verwachten" : "Hoogtepunten"}
+              </h3>
+              <ul className="flex flex-col gap-2.5 mt-4">
+                {show.highlights.map((h, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-sm text-brand-crm/80">
+                    <span className="text-brand-pb font-bold leading-none mt-0.5">&bull;</span>
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <div className="bg-brand-base2 border border-brand-crm/15 rounded-2xl p-6 shadow-[6px_6px_0_0_#1c857a] flex flex-col gap-4">
+            <h3 className="font-poster uppercase tracking-wider text-brand-crm text-2xl">Praktisch</h3>
+            <div className="flex items-start gap-3 text-sm">
+              <MapPin className="w-5 h-5 text-brand-tlbr shrink-0 mt-0.5" />
+              <div>
+                <p className="font-semibold text-brand-crm">{show.location || "Locatie volgt"}</p>
+                {show.address && <p className="text-xs text-brand-crm/55">{show.address}</p>}
+                {show.city && <p className="text-xs text-brand-crm/55">{show.city}</p>}
+              </div>
+            </div>
+            {show.time && (
+              <div className="flex items-start gap-3 text-sm">
+                <Clock className="w-5 h-5 text-brand-tlbr shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-semibold text-brand-crm">Tijd</p>
+                  <p className="text-xs text-brand-crm/55">{show.time}</p>
+                </div>
+              </div>
+            )}
+            {isUpcoming && !show.rsvp && (
+              <a
+                href="/boek-ons"
+                className="mt-1 text-center font-poster uppercase tracking-wider text-sm py-2.5 bg-brand-tlbr text-brand-base3 rounded-lg hover:bg-brand-crm transition-colors"
+              >
+                Boek ons voor jouw feest
+              </a>
+            )}
+            {isUpcoming && show.rsvp && (
+              <a
+                href="#aanmelden"
+                className="mt-1 text-center font-poster uppercase tracking-wider text-sm py-2.5 bg-brand-tlbr text-brand-base3 rounded-lg hover:bg-brand-crm transition-colors"
+              >
+                Meld je aan
+              </a>
+            )}
+          </div>
+        </div>
+
+        {/* Live Moments */}
+        {showMoments.length > 0 && (
+          <div className="mt-12">
+            <h3 className="font-poster uppercase tracking-wider text-brand-crm text-2xl flex items-center gap-2 mb-5">
+              <Film className="w-5 h-5 text-brand-tlbr" /> Live moments
+            </h3>
+            <div className="flex flex-wrap gap-4">
+              {showMoments.map((m) => (
+                <figure
+                  key={m.id}
+                  className={`bg-brand-base3 border border-brand-crm/15 rounded-xl overflow-hidden shadow-[6px_6px_0_0_#5d2a58] ${
+                    m.portrait ? "w-[calc(50%-0.5rem)] sm:w-[220px]" : "w-full sm:w-[380px]"
+                  }`}
+                >
+                  <video
+                    src={m.video}
+                    poster={m.poster}
+                    controls
+                    muted
+                    loop
+                    playsInline
+                    preload="none"
+                    aria-label={`Quarter Life Crisis spelen ${m.title} live`}
+                    className={`w-full ${m.portrait ? "aspect-[9/16]" : "aspect-video"} object-cover bg-brand-base3`}
+                  />
+                  <figcaption className="px-3 py-2 text-xs font-stamp uppercase tracking-widest text-brand-crm/80 border-t border-brand-crm/10">
+                    {m.title}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        )}
 
       </div>
     </div>
