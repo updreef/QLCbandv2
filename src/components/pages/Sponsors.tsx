@@ -18,7 +18,7 @@ const CHECKOUT: Record<string, string> = {
 };
 
 function sponsorMailto(pakket: string) {
-  const subject = encodeURIComponent(`Sponsoring QLC — ${pakket}`);
+  const subject = encodeURIComponent(`Sponsoring QLC: ${pakket}`);
   const body = encodeURIComponent(
     `Hoi Julian,\n\nWij willen graag ${pakket === "algemeen" ? "sponsor" : pakket + "-sponsor"} worden van Quarter Life Crisis.\n\nBedrijf:\nContactpersoon:\nTelefoon:\nE-mail:\n\nGroet,`
   );
@@ -28,9 +28,9 @@ function sponsorMailto(pakket: string) {
 // Wat je ook nog terugkrijgt — de nuchtere reclamekant onder de gunfactor.
 const WAAROM = [
   { icon: Users, title: "Live voor de regio", text: "±10 shows per jaar voor honderden mensen in Spakenburg, Amersfoort e.o." },
-  { icon: ImageIcon, title: "Op het podiumdoek", text: "Je logo op ons doek — en dus op elke foto en video van de avond." },
+  { icon: ImageIcon, title: "Op het podiumdoek", text: "Je logo op ons doek, en dus op elke foto en video van de avond." },
   { icon: Megaphone, title: "Socials & site", text: "Vermelding op onze socials en op quarterlifecrisis.nl, het hele jaar door." },
-  { icon: Percent, title: "Korting op een optreden", text: "Personeelsfeest? Als sponsor spelen we met korting — of inbegrepen." },
+  { icon: Percent, title: "Korting op een optreden", text: "Personeelsfeest? Als sponsor spelen we met korting, of zelfs inbegrepen." },
 ];
 
 type Tier = {
@@ -68,11 +68,10 @@ const TIERS: Tier[] = [
     looptijd: "2 jaar",
     direct: true,
     pitch: "Met €250 help je een heel optreden mogelijk te maken.",
-    detail: "Van repetitieruimte en apparatuur tot vervoer — alles wat nodig is om een goede show neer te zetten.",
+    detail: "Van repetitieruimte en apparatuur tot vervoer: alles wat nodig is om een goede show neer te zetten.",
     benefits: [
       "Alles van Vriend, plus:",
       "Logo mét link op de sponsorpagina",
-      "2 plekken op de gastenlijst bij een optreden",
       "Shout-out vanaf het podium (1× per jaar)",
     ],
   },
@@ -87,7 +86,7 @@ const TIERS: Tier[] = [
     detail: "Denk aan apparatuur, techniek en repetities waarmee we QLC naar een hoger niveau tillen.",
     benefits: [
       "Alles van Brons, plus:",
-      "Je logo op ons podiumdoek — op elke foto & video",
+      "Je logo op ons podiumdoek, op elke foto & video",
       "Logo op flyers & posters",
       "Naamsvermelding bij elk optreden",
       "Korting op een optreden voor je personeelsfeest",
@@ -101,7 +100,7 @@ const TIERS: Tier[] = [
     looptijd: "2 jaar",
     direct: false,
     pitch: "Jouw bijdrage helpt ons eigen muziek te maken.",
-    detail: "Van opname en productie tot repetities — je helpt ons de stap zetten van coverband naar een band met eigen werk.",
+    detail: "Van opname en productie tot repetities: je helpt ons de stap zetten van coverband naar een band met eigen werk.",
     benefits: [
       "Alles van Zilver, plus:",
       "Logo in de footer van de site",
@@ -157,7 +156,7 @@ export default function Sponsors() {
           <SquiggleUnderline />
           <p className="text-brand-crm/75 mt-6 text-sm sm:text-base leading-relaxed">
             Zes vrienden uit Spakenburg en Amersfoort, één droom: QLC laten groeien tot een band die mensen
-            samenbrengt op podia, feesten en festivals. We spelen met hart en ziel &mdash; maar snaren,
+            samenbrengt op podia, feesten en festivals. We spelen met hart en ziel, maar snaren,
             versterkers en studiotijd kosten nou eenmaal geld. Sponsor je ons, dan help je heel concreet mee:
             <span className="text-brand-crm"> van nieuwe snaren tot onze eerste opname</span>.
           </p>
@@ -165,7 +164,7 @@ export default function Sponsors() {
 
         {/* Pakketten */}
         <div className="flex items-center gap-4 mb-3">
-          <h2 className="font-poster uppercase text-brand-crm text-3xl sm:text-4xl tracking-[0.12em]">Kies wat je gunt</h2>
+          <h2 className="font-poster uppercase text-brand-crm text-3xl sm:text-4xl tracking-[0.12em]">Kies wat je wilt</h2>
           <span className="flex-1 h-0.5 bg-gradient-to-r from-brand-pb to-transparent" />
         </div>
         <p className="text-xs text-brand-crm/50 mb-8">Elk pakket helpt heel concreet. Vriend &amp; Brons regel je direct online (jaarlijks, altijd opzegbaar); Zilver en hoger via een korte aanvraag.</p>
@@ -273,7 +272,7 @@ export default function Sponsors() {
             ))}
           </div>
           <p className="text-xs text-brand-crm/50 mt-6 text-center leading-relaxed">
-            Sponsoring in natura kan ook &mdash; denk aan drukwerk, transport, techniek of repetitieruimte.
+            Sponsoring in natura kan ook: denk aan drukwerk, transport, techniek of repetitieruimte.
             We waarderen dat tegen inkoopwaarde en leggen het netjes vast op één A4, zodat je het als reclamekosten kunt boeken.
           </p>
         </div>
@@ -287,7 +286,7 @@ export default function Sponsors() {
               Help de droom groeien
             </h2>
             <p className="text-sm text-brand-crm/70 max-w-xl mx-auto mt-4 leading-relaxed">
-              Vriend of Brons regel je zo online. Twijfel je of wil je een groter pakket? Bel of mail Julian &mdash;
+              Vriend of Brons regel je zo online. Twijfel je of wil je een groter pakket? Bel of mail Julian,
               dan kijken we samen wat past.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">

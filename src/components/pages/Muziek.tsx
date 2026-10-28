@@ -18,7 +18,7 @@ export default function Muziek() {
             Setlist
           </h1>
           <p className="text-brand-crm/60 max-w-2xl mt-5 text-sm sm:text-base leading-relaxed">
-            Onze vaste setlist &mdash; twee sets vol meezingers en rockhits. Wil je ons live zien? Bekijk de video&rsquo;s op de{" "}
+            Onze vaste setlist: twee sets vol meezingers en rockhits. Wil je ons live zien? Bekijk de video&rsquo;s op de{" "}
             <a href="/optredens" className="text-brand-tlbr underline underline-offset-2">optredens-pagina</a>. Een verzoeknummer voor je feest? Geef het door bij je{" "}
             <a href="/boek-ons" className="text-brand-tlbr underline underline-offset-2">boeking</a>.
           </p>
@@ -104,7 +104,7 @@ function SetColumn({ title, songs, pauze = false }: { title: string; songs: Song
       {pauze && (
         <div className="flex items-center gap-4 mt-6 justify-center">
           <span className="h-px w-14 bg-brand-crm/15" />
-          <span className="font-stamp uppercase tracking-[0.3em] text-xs text-brand-tlbr">&mdash; Pauze &mdash;</span>
+          <span className="font-stamp uppercase tracking-[0.3em] text-xs text-brand-tlbr">Pauze</span>
           <span className="h-px w-14 bg-brand-crm/15" />
         </div>
       )}
