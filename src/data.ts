@@ -23,6 +23,7 @@ export interface Show {
   status: 'upcoming' | 'past';
   image: string;
   highlights?: string[];
+  rsvp?: boolean; // true = toon aanmeld-blok + teller op de detailpagina
 }
 
 export interface Song {
@@ -122,6 +123,21 @@ export const members: Member[] = [
 ];
 
 export const shows: Show[] = [
+  {
+    id: "feest-de-kuil",
+    slug: "feest-de-kuil",
+    title: "QLC-feest in De Kuil",
+    date: "2026-12-12",
+    time: "20:00 - 01:00", // TODO: definitieve tijd bevestigen
+    location: "Sporthal De Kuil",
+    address: "", // TODO: adres invullen
+    city: "Bunschoten-Spakenburg",
+    description: "Op 12 december geven we een knalfeest in Sporthal De Kuil! Een avond vol live QLC, met DJ Chesto aan de knoppen. Kom los, zing mee en vier het jaar met ons uit. Meld je hieronder aan, dan weten we op hoeveel feestbeesten we kunnen rekenen.",
+    status: 'upcoming',
+    image: "/images/band-live.jpg",
+    highlights: ["Live QLC", "DJ Chesto", "Sporthal De Kuil", "Het knalfeest van het jaar"],
+    rsvp: true
+  },
   {
     id: "backyard-sessions-1",
     slug: "backyard-sessions-1",

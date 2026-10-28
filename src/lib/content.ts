@@ -25,6 +25,7 @@ interface ShowRow {
   status: string;
   image: string | null;
   highlights: string[] | null;
+  rsvp: boolean | null;
 }
 
 interface BlogRow {
@@ -53,6 +54,7 @@ function rowToShow(r: ShowRow): Show {
     status: r.status === "past" ? "past" : "upcoming",
     image: r.image ?? "/images/band-live.jpg",
     highlights: r.highlights ?? undefined,
+    rsvp: r.rsvp ?? undefined,
   };
 }
 

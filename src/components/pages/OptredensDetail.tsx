@@ -1,6 +1,9 @@
 import { ArrowLeft, Calendar, MapPin, Clock, Star, Film } from "lucide-react";
 import { liveMoments, type Show } from "../../data";
 import SquiggleUnderline from "../SquiggleUnderline";
+import EventRSVP from "../EventRSVP";
+
+const MONTHS = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
 
 interface OptredensDetailProps {
   show: Show;
@@ -8,6 +11,8 @@ interface OptredensDetailProps {
 
 export default function OptredensDetail({ show }: OptredensDetailProps) {
   const showMoments = liveMoments.filter((m) => m.showSlug === show.slug);
+  const eventDate = new Date(show.date + "T00:00:00");
+  const rsvpDate = isNaN(eventDate.getTime()) ? "het feest" : `${eventDate.getDate()} ${MONTHS[eventDate.getMonth()]}`;
 
   if (!show) {
     return (
@@ -84,6 +89,11 @@ export default function OptredensDetail({ show }: OptredensDetailProps) {
               </div>
             )}
 
+            {/* Aanmelden + live teller (alleen voor rsvp-events) */}
+            {show.rsvp && show.status === "upcoming" && (
+              <EventRSVP eventSlug={show.slug} dateLabel={rsvpDate} />
+            )}
+
             {/* Live Moments from this show */}
             {showMoments.length > 0 && (
               <div className="mt-4">
@@ -152,17 +162,31 @@ export default function OptredensDetail({ show }: OptredensDetailProps) {
 
                 <div className="pt-4 border-t border-brand-cream/10">
                   {show.status === 'upcoming' ? (
-                    <div className="flex flex-col gap-3">
-                      <a 
-                        href="/boek-ons"
-                        className="font-display text-center uppercase tracking-widest text-sm py-3 bg-brand-amber text-brand-bg-3 font-bold border-2 border-brand-cream hard-shadow-cream hover-bounce"
-                      >
-                        BOEK ONS VOOR JOUW FEEST
-                      </a>
-                      <p className="text-center text-[10px] text-brand-text-muted font-mono">
-                        Gratis entree • Gezellige rock sfeer gegarandeerd!
-                      </p>
-                    </div>
+                    show.rsvp ? (
+                      <div className="flex flex-col gap-3">
+                        <a
+                          href="#aanmelden"
+                          className="font-display text-center uppercase tracking-widest text-sm py-3 bg-brand-amber text-brand-bg-3 font-bold border-2 border-brand-cream hard-shadow-cream hover-bounce"
+                        >
+                          Meld je aan
+                        </a>
+                        <p className="text-center text-[10px] text-brand-text-muted font-mono">
+                          Laat weten dat je komt. Hoe meer zielen, hoe meer vreugd!
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col gap-3">
+                        <a
+                          href="/boek-ons"
+                          className="font-display text-center uppercase tracking-widest text-sm py-3 bg-brand-amber text-brand-bg-3 font-bold border-2 border-brand-cream hard-shadow-cream hover-bounce"
+                        >
+                          BOEK ONS VOOR JOUW FEEST
+                        </a>
+                        <p className="text-center text-[10px] text-brand-text-muted font-mono">
+                          Gratis entree • Gezellige rock sfeer gegarandeerd!
+                        </p>
+                      </div>
+                    )
                   ) : (
                     <div className="text-center py-2 bg-brand-bg-2 border border-brand-cream/10 rounded-lg">
                       <p className="font-mono text-xs text-brand-amber">ARCHIEF SHOW AFGELOPEN</p>
