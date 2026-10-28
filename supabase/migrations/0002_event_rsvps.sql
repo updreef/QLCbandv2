@@ -51,6 +51,22 @@ $$;
 
 grant execute on function public.rsvp_count(text) to anon, authenticated;
 
+-- Recente aanmeldingen voor de sociale-bewijskracht: ALLEEN voornamen (geen e-mail/achternaam).
+create or replace function public.rsvp_recent_names(p_event_slug text, p_limit int default 12)
+returns table(first_name text)
+language sql
+security definer
+set search_path = public
+as $$
+  select first_name
+  from public.event_rsvps
+  where event_slug = p_event_slug and coming = true
+  order by created_at desc
+  limit greatest(0, least(p_limit, 50));
+$$;
+
+grant execute on function public.rsvp_recent_names(text, int) to anon, authenticated;
+
 -- ── 4) Het evenement van 12 december ──────────────────────────
 -- Eenmalig toevoegen; latere admin-edits blijven staan (do nothing bij bestaande slug).
 insert into public.shows
