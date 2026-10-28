@@ -72,7 +72,7 @@ export default function Footer() {
                   <Phone className="w-4 h-4 text-brand-tlbr" />
                 </div>
                 <div>
-                  <p className="text-xs text-brand-crm/50 font-stamp">Boekingen &mdash; Julian Hugenholtz</p>
+                  <p className="text-xs text-brand-crm/50 font-stamp">Boekingen &middot; Julian Hugenholtz</p>
                   <p className="font-semibold">+31 6 40 08 19 79</p>
                 </div>
               </a>

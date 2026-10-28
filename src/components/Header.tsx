@@ -30,7 +30,7 @@ export default function Header() {
         {/* Beeldmerk — wit QLC-logo op donker. Zie BRANDBOOK.md */}
         <Link
           href="/"
-          aria-label="Quarter Life Crisis — home"
+          aria-label="Quarter Life Crisis, home"
           className="group inline-flex items-center"
         >
           <img

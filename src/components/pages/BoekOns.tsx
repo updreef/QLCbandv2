@@ -43,7 +43,7 @@ export default function BoekOns() {
           <p className="font-stamp text-brand-tlbr uppercase text-xs tracking-[0.25em]">Boekingen &amp; offertes</p>
           <h1 className="font-poster uppercase text-brand-crm text-6xl sm:text-7xl mt-2">Boek QLC</h1>
           <p className="text-brand-crm/60 max-w-2xl mt-4 text-sm sm:text-base leading-relaxed">
-            Bruiloft, tuinfeest, café of festival? Vul het formulier in &mdash; we sturen binnen 24 uur een vrijblijvende offerte terug. Hoe meer je invult, hoe scherper we de show kunnen afstemmen.
+            Bruiloft, tuinfeest, café of festival? Vul het formulier in, dan sturen we binnen 24 uur een vrijblijvende offerte terug. Hoe meer je invult, hoe scherper we de show kunnen afstemmen.
           </p>
         </div>
 
@@ -110,7 +110,7 @@ export default function BoekOns() {
                   <Mail className="w-4 h-4 text-brand-red shrink-0" /> hugenholtzjulian@gmail.com
                 </a>
                 <a href="tel:+31640081979" className="flex items-center gap-2 text-brand-cream hover:text-brand-neon transition-colors">
-                  <Phone className="w-4 h-4 text-brand-amber" /> Julian Hugenholtz — +31 6 40 08 19 79
+                  <Phone className="w-4 h-4 text-brand-amber" /> Julian Hugenholtz · +31 6 40 08 19 79
                 </a>
                 <a href="https://instagram.com/quarterlifecrisis.band" target="_blank" rel="noopener" className="flex items-center gap-2 text-brand-cream hover:text-brand-neon transition-colors">
                   <Instagram className="w-4 h-4 text-brand-amber" /> @quarterlifecrisis.band

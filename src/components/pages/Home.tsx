@@ -172,7 +172,7 @@ export default function Home({ upcomingShow, isUpcoming = false }: { upcomingSho
 
             <div className="mt-5 font-stamp text-xs tracking-wide text-brand-crm/60 flex flex-wrap items-center gap-3">
               <span>{isUpcoming ? "Net gespeeld:" : "Ook gespeeld:"}</span>
-              <span className="border border-brand-pb text-brand-pb px-2.5 py-1">Backyard Sessions #1 &mdash; bekijk de video&rsquo;s</span>
+              <span className="border border-brand-pb text-brand-pb px-2.5 py-1">Backyard Sessions #1 &middot; bekijk de video&rsquo;s</span>
               <Link href="/optredens" className="border border-brand-tlbr text-brand-tlbr px-2.5 py-1 hover:bg-brand-tlbr hover:text-brand-base3 transition-colors">
                 Alle optredens &rarr;
               </Link>
@@ -223,7 +223,7 @@ export default function Home({ upcomingShow, isUpcoming = false }: { upcomingSho
           <h2 className="font-poster uppercase text-brand-crm text-5xl sm:text-6xl mt-3">
             QLC <span className="text-brand-tlbr">live in beeld</span>
           </h2>
-          <p className="text-brand-crm/70 mt-2 max-w-xl mx-auto">Beelden van onze optredens &mdash; swipe erdoorheen.</p>
+          <p className="text-brand-crm/70 mt-2 max-w-xl mx-auto">Beelden van onze optredens. Swipe erdoorheen.</p>
         </div>
 
         <div className="max-w-[1800px] mx-auto relative">
