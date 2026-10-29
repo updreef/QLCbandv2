@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { PartyPopper, Check, Loader2, Clock, MapPin, Users } from "lucide-react";
+import { PartyPopper, Check, Loader2, Clock, MapPin } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 const EVENT_SLUG = "feest-de-kuil";
@@ -36,7 +36,6 @@ type CD = { d: number; h: number; m: number; s: number };
 
 export default function KuilLanding() {
   const [realCount, setRealCount] = useState<number | null>(null);
-  const [recent, setRecent] = useState<string[]>([]);
   const [cd, setCd] = useState<CD | null>(null);
 
   const [open, setOpen] = useState(false);
@@ -54,13 +53,8 @@ export default function KuilLanding() {
     let active = true;
     (async () => {
       if (!supabase) return;
-      const [{ data: c }, { data: r }] = await Promise.all([
-        supabase.rpc("rsvp_count", { p_event_slug: EVENT_SLUG }),
-        supabase.rpc("rsvp_recent_names", { p_event_slug: EVENT_SLUG, p_limit: 14 }),
-      ]);
-      if (!active) return;
-      if (typeof c === "number") setRealCount(c);
-      if (Array.isArray(r)) setRecent(r.map((x: { first_name: string }) => x.first_name).filter(Boolean));
+      const { data: c } = await supabase.rpc("rsvp_count", { p_event_slug: EVENT_SLUG });
+      if (active && typeof c === "number") setRealCount(c);
     })();
     return () => {
       active = false;
@@ -109,7 +103,6 @@ export default function KuilLanding() {
     }
     setStatus("done");
     setRealCount((c) => (c ?? 0) + 1);
-    setRecent((r) => [first.trim(), ...r].slice(0, 14));
   }
 
   const input =
@@ -236,26 +229,6 @@ export default function KuilLanding() {
           </div>
         </div>
       </section>
-
-      {/* ── SOCIALE BEWIJSKRACHT ───────────────────────── */}
-      {recent.length > 0 && (
-        <section className="px-4 sm:px-6 py-8 bg-brand-base border-y border-brand-crm/10">
-          <div className="max-w-4xl mx-auto text-center">
-            <span className="font-stamp text-[11px] uppercase tracking-[0.22em] text-brand-tlbr">Zij gaan ook</span>
-            <div className="flex flex-wrap items-center justify-center gap-2.5 mt-4">
-              {recent.map((naam, i) => (
-                <span key={i} className="inline-flex items-center gap-2 bg-brand-base2 border border-brand-crm/15 rounded-full pl-1.5 pr-3 py-1.5 text-sm text-brand-crm">
-                  <span className="w-6 h-6 rounded-full bg-brand-pm flex items-center justify-center text-[11px] font-bold">{naam.slice(0, 1).toUpperCase()}</span>
-                  {naam}
-                </span>
-              ))}
-              {realCount !== null && realCount > recent.length && (
-                <span className="font-stamp text-sm text-brand-crm/60">en nog {realCount - recent.length} anderen…</span>
-              )}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* ── LINE-UP (met foto's) ───────────────────────── */}
       <section className="relative px-4 sm:px-6 py-16">
