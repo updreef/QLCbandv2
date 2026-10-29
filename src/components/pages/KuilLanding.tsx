@@ -7,8 +7,8 @@ import { supabase } from "@/lib/supabase";
 
 const EVENT_SLUG = "feest-de-kuil";
 const TARGET = new Date("2026-12-12T20:00:00+01:00").getTime();
-// Startgetal (band + crew + vrienden die er sowieso zijn). 0 = eerlijke start vanaf nul.
-const BASE_COUNT = 0;
+// Startgetal: de teller begint hier en telt elke echte aanmelding erbovenop (28 = "0").
+const BASE_COUNT = 28;
 
 function useCountUp(target: number | null, duration = 1500) {
   const [val, setVal] = useState(0);

@@ -91,7 +91,7 @@ export default function OptredensDetail({ show }: OptredensDetailProps) {
         {/* Aanmelden + teller */}
         {show.rsvp && isUpcoming && (
           <div className="mt-8">
-            <EventRSVP eventSlug={show.slug} dateLabel={rsvpDate} />
+            <EventRSVP eventSlug={show.slug} dateLabel={rsvpDate} baseCount={show.slug === "feest-de-kuil" ? 28 : 0} />
           </div>
         )}
 

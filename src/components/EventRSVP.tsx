@@ -13,9 +13,11 @@ import { supabase } from "@/lib/supabase";
 export default function EventRSVP({
   eventSlug,
   dateLabel = "het feest",
+  baseCount = 0,
 }: {
   eventSlug: string;
   dateLabel?: string;
+  baseCount?: number;
 }) {
   const [count, setCount] = useState<number | null>(null);
   const [open, setOpen] = useState(false);
@@ -73,6 +75,9 @@ export default function EventRSVP({
   const inputClass =
     "w-full bg-brand-base3/70 border border-brand-crm/20 rounded-lg px-3.5 py-3 text-sm text-brand-crm placeholder:text-brand-crm/40 focus:outline-none focus:border-brand-tlbr";
 
+  // Weergegeven teller = startgetal + echte aanmeldingen.
+  const shown = baseCount + (count ?? 0);
+
   return (
     <div
       id="aanmelden"
@@ -86,11 +91,11 @@ export default function EventRSVP({
         </div>
 
         {/* Teller */}
-        {count !== null && count > 0 ? (
+        {shown > 0 ? (
           <p className="mt-2 flex items-baseline gap-2 flex-wrap">
-            <span className="font-poster text-6xl sm:text-7xl text-brand-green-light leading-none">{count}</span>
+            <span className="font-poster text-6xl sm:text-7xl text-brand-green-light leading-none">{shown}</span>
             <span className="font-poster uppercase text-brand-crm text-2xl sm:text-3xl tracking-wide">
-              {count === 1 ? "feestbeest is erbij! 🎉" : "feestbeesten zijn erbij! 🎉"}
+              {shown === 1 ? "feestbeest is erbij! 🎉" : "feestbeesten zijn erbij! 🎉"}
             </span>
           </p>
         ) : (
