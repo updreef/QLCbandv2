@@ -230,6 +230,19 @@ export default function KuilLanding() {
         </div>
       </section>
 
+      {/* ── ZO WORDT DE AVOND (intro) ────────────────────── */}
+      <section className="relative px-4 sm:px-6 py-14">
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(760px 380px at 50% 0%, rgba(93,42,88,0.28), transparent 72%)" }} />
+        <div className="relative max-w-2xl mx-auto text-center">
+          <span className="qlc-stamp text-brand-tlbr -rotate-2 inline-block mb-5">Zo wordt de avond</span>
+          <div className="space-y-4 text-brand-crm/80 leading-relaxed text-base sm:text-lg">
+            <p>We gooien de hele Kuil vol! Met vrienden, volle glazen en vooral heel veel gezelligheid. De Spakenburgse liveband <span className="font-semibold text-brand-crm">Quarter Life Crisis</span> trapt af: armen omhoog en ongegeneerd meezingen met hits als <em className="text-brand-crm/90">Het Is Een Nacht</em> van Guus Meeuwis, <em className="text-brand-crm/90">Stil in Mij</em> van Van Dik Hout, <em className="text-brand-crm/90">Alles is Liefde</em> van BLØF en <em className="text-brand-crm/90">Wonderwall</em> van Oasis. Zuiver hoeft niet, enthousiast wel.</p>
+            <p>Daarna neemt <span className="font-semibold text-brand-crm">DJ Chesto</span> het over en gaan we van zingen naar dansen. Heerlijke disco, meezingers, house en eurotrance houden je tot in de late uurtjes op de vloer.</p>
+            <p>Trommel je vrienden op, meld je aan en zet die kerstmuts maar vast klaar. Op 12 december zingen we samen de Kuil vol en dansen we &rsquo;m uit. <span className="font-semibold text-brand-tlbr">Ben jij erbij?</span></p>
+          </div>
+        </div>
+      </section>
+
       {/* ── LINE-UP (met foto's) ───────────────────────── */}
       <section className="relative px-4 sm:px-6 py-16">
         <div className="qlc-halftone absolute inset-0 opacity-[0.05] pointer-events-none" />
@@ -252,7 +265,7 @@ export default function KuilLanding() {
               <img src="/images/chesto.jpg" alt="DJ Chesto" className="w-full h-56 object-cover object-[50%_25%] border-b border-brand-crm/15" />
               <div className="p-6">
                 <h3 className="font-poster uppercase text-brand-crm text-3xl leading-none">DJ Chesto</h3>
-                <p className="text-sm text-brand-crm/65 leading-relaxed mt-2">Daarna neemt Chesto het over en gaat de vloer door tot in de late uurtjes. Kerst, disco en een volle dansvloer.</p>
+                <p className="text-sm text-brand-crm/65 leading-relaxed mt-2">Daarna neemt Chesto het over en dansen we door tot in de late uurtjes. Verwacht heerlijke disco, house en eurotrance, en wellicht ook een stuk of 4 kerstplaatjes. 🎄</p>
               </div>
             </div>
           </div>
