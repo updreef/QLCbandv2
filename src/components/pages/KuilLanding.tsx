@@ -243,6 +243,19 @@ export default function KuilLanding() {
         </div>
       </section>
 
+      {/* ── SETLIST-TEASER ───────────────────────────────── */}
+      <section className="relative px-4 sm:px-6 -mt-6 pb-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <span className="font-stamp text-[11px] uppercase tracking-[0.22em] text-brand-tlbr">Verwacht onder andere 🎶</span>
+          <div className="flex flex-wrap items-center justify-center gap-2.5 mt-4">
+            {["Het Is Een Nacht", "Stil in Mij", "Alles is Liefde", "Het Regent Zonnestralen", "Wonderwall", "Chelsea Dagger", "Seven Nation Army", "Angels"].map((t) => (
+              <span key={t} className="text-sm text-brand-crm/85 bg-brand-base2 border border-brand-crm/15 rounded-full px-3.5 py-1.5">{t}</span>
+            ))}
+            <span className="font-stamp text-xs uppercase tracking-wider text-brand-crm/45 px-2 py-1.5">en meer</span>
+          </div>
+        </div>
+      </section>
+
       {/* ── LINE-UP (met foto's) ───────────────────────── */}
       <section className="relative px-4 sm:px-6 py-16">
         <div className="qlc-halftone absolute inset-0 opacity-[0.05] pointer-events-none" />
