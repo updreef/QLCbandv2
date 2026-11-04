@@ -32,9 +32,10 @@ export interface Song {
   id: string;
   title: string;
   originalArtist: string;
-  set: 1 | 2;
-  position: number; // volgorde binnen de set
-  roles?: string;   // bv. "Ruben rhythm · Joel bass"
+  set?: 1 | 2;        // alleen voor nummers in de vaste live-set
+  position?: number;  // volgorde binnen de set
+  roles?: string;     // bv. "Ruben rhythm · Joel bass"
+  language?: "nl" | "en"; // voor het taalfilter; onvermeld = Engels
   spotifyUrl?: string;
   youtubeUrl?: string;
 }
@@ -270,7 +271,7 @@ export const repertoire: Song[] = [
   { id: "s1-5", set: 1, position: 5, title: "Iris", originalArtist: "Goo Goo Dolls", roles: "Ruben bass · Tristan rhythm · Joel lead" },
   { id: "s1-6", set: 1, position: 6, title: "End of Beginning", originalArtist: "Djo", roles: "Ruben bass · Joel lead · Tristan rhythm" },
   { id: "s1-7", set: 1, position: 7, title: "Three Little Birds", originalArtist: "Bob Marley", roles: "Ruben bass · Joel lead · Tristan rhythm" },
-  { id: "s1-8", set: 1, position: 8, title: "Stil in Mij", originalArtist: "Van Dik Hout", roles: "Ruben bass · Joel lead · Tristan rhythm" },
+  { id: "s1-8", set: 1, position: 8, title: "Stil in Mij", originalArtist: "Van Dik Hout", language: "nl", roles: "Ruben bass · Joel lead · Tristan rhythm" },
 
   // ─── SET 2 ───────────────────────────────────────────
   { id: "s2-1", set: 2, position: 1, title: "Take Me Out", originalArtist: "Franz Ferdinand", roles: "Ruben rhythm · Tristan bass · Joel lead" },
@@ -280,7 +281,19 @@ export const repertoire: Song[] = [
   { id: "s2-5", set: 2, position: 5, title: "Angels", originalArtist: "Robbie Williams", roles: "Ruben rhythm · Tristan bass · Joel lead" },
   { id: "s2-6", set: 2, position: 6, title: "Dani California", originalArtist: "Red Hot Chili Peppers", roles: "Ruben bass · Joel lead · Tristan rhythm" },
   { id: "s2-7", set: 2, position: 7, title: "Narcotic", originalArtist: "Liquido", roles: "Ruben bass · Joel lead · Tristan rhythm" },
-  { id: "s2-8", set: 2, position: 8, title: "Mr Brightside", originalArtist: "The Killers", roles: "Ruben bass · Joel lead · Tristan rhythm" }
+  { id: "s2-8", set: 2, position: 8, title: "Mr Brightside", originalArtist: "The Killers", roles: "Ruben bass · Joel lead · Tristan rhythm" },
+
+  // ─── Extra repertoire (buiten de vaste 2 sets) ───────
+  { id: "r-1", title: "Wonderwall", originalArtist: "Oasis" },
+  { id: "r-2", title: "Don't Look Back in Anger", originalArtist: "Oasis" },
+  { id: "r-3", title: "Losing My Religion", originalArtist: "R.E.M." },
+  { id: "r-4", title: "Hey Jude", originalArtist: "The Beatles" },
+  { id: "r-5", title: "Are You Gonna Be My Girl", originalArtist: "Jet" },
+  { id: "r-6", title: "You'll Never Walk Alone", originalArtist: "Gerry & The Pacemakers" },
+  { id: "r-7", title: "Take Me Home, Country Roads", originalArtist: "John Denver" },
+  { id: "r-8", title: "Het Regent Zonnestralen", originalArtist: "Acda en de Munnik", language: "nl" },
+  { id: "r-9", title: "Het Is Een Nacht (Levensecht)", originalArtist: "Guus Meeuwis", language: "nl" },
+  { id: "r-10", title: "Alles is Liefde", originalArtist: "BLØF", language: "nl" }
 ];
 
 export const blogPosts: BlogPost[] = [

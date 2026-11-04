@@ -1,36 +1,125 @@
-import { Music, Disc, Radio } from "lucide-react";
+"use client";
+
+import { useMemo, useState } from "react";
+import { Music, Disc, Radio, Search } from "lucide-react";
 import { repertoire, type Song } from "../../data";
 
+const isNL = (s: Song) => s.language === "nl";
+
+const FILTERS: { id: "all" | "nl" | "en"; label: string }[] = [
+  { id: "all", label: "Alles" },
+  { id: "nl", label: "Nederlands" },
+  { id: "en", label: "Engels" },
+];
+
 export default function Muziek() {
-  const set1 = repertoire.filter((s) => s.set === 1).sort((a, b) => a.position - b.position);
-  const set2 = repertoire.filter((s) => s.set === 2).sort((a, b) => a.position - b.position);
+  const [q, setQ] = useState("");
+  const [lang, setLang] = useState<"all" | "nl" | "en">("all");
+
+  const set1 = repertoire.filter((s) => s.set === 1).sort((a, b) => (a.position ?? 0) - (b.position ?? 0));
+  const set2 = repertoire.filter((s) => s.set === 2).sort((a, b) => (a.position ?? 0) - (b.position ?? 0));
+
+  const filtered = useMemo(() => {
+    const needle = q.trim().toLowerCase();
+    return repertoire
+      .filter((s) => (lang === "all" ? true : lang === "nl" ? isNL(s) : !isNL(s)))
+      .filter((s) => !needle || s.title.toLowerCase().includes(needle) || s.originalArtist.toLowerCase().includes(needle))
+      .sort((a, b) => a.title.localeCompare(b.title, "nl"));
+  }, [q, lang]);
 
   return (
     <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 min-h-screen">
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
-        <div className="mb-14">
+        <div className="mb-10">
           <p className="font-stamp text-brand-tlbr uppercase text-xs tracking-[0.28em]">
             Band &middot; Spakenburg / Amersfoort
           </p>
           <h1 className="font-poster uppercase text-brand-crm text-6xl sm:text-7xl mt-2 leading-[0.85]">
-            Setlist
+            Repertoire
           </h1>
           <p className="text-brand-crm/60 max-w-2xl mt-5 text-sm sm:text-base leading-relaxed">
-            Onze vaste setlist: twee sets vol meezingers en rockhits. Wil je ons live zien? Bekijk de video&rsquo;s op de{" "}
-            <a href="/optredens" className="text-brand-tlbr underline underline-offset-2">optredens-pagina</a>. Een verzoeknummer voor je feest? Geef het door bij je{" "}
-            <a href="/boek-ons" className="text-brand-tlbr underline underline-offset-2">boeking</a>.
+            Alle nummers die we live spelen, van meezingers tot rockhits. Zoek je verzoeknummer op of filter op taal. Staat je nummer er niet bij? Geef het door bij je{" "}
+            <a href="/boek-ons" className="text-brand-tlbr underline underline-offset-2">boeking</a>, grote kans dat we het erbij leren.
           </p>
         </div>
 
-        {/* Setlist — twee kolommen, PDF-stijl */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-14 gap-y-12">
-          <SetColumn title="Set 1" songs={set1} pauze />
-          <SetColumn title="Set 2" songs={set2} />
+        {/* Zoek + taalfilter */}
+        <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
+          <div className="relative flex-1 sm:max-w-md">
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-crm/40" />
+            <input
+              type="search"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="Zoek een nummer of artiest…"
+              aria-label="Zoek in het repertoire"
+              className="w-full bg-brand-base2 border border-brand-crm/15 rounded-xl pl-10 pr-4 py-3 text-brand-crm placeholder:text-brand-crm/40 focus:outline-none focus:border-brand-tlbr"
+            />
+          </div>
+          <div className="flex gap-2">
+            {FILTERS.map((f) => (
+              <button
+                key={f.id}
+                onClick={() => setLang(f.id)}
+                className={`font-stamp uppercase tracking-wider text-xs px-4 py-2.5 rounded-xl border transition-colors ${
+                  lang === f.id
+                    ? "bg-brand-tlbr text-brand-base3 border-brand-tlbr"
+                    : "bg-brand-base2 text-brand-crm/70 border-brand-crm/15 hover:border-brand-tlbr"
+                }`}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Spotify + waarom live — compact */}
+        <p className="font-stamp text-xs tracking-wide text-brand-crm/50 mt-4 mb-2">
+          {filtered.length} {filtered.length === 1 ? "nummer" : "nummers"}
+        </p>
+
+        {/* Repertoire-lijst */}
+        {filtered.length === 0 ? (
+          <div className="bg-brand-base2 border border-brand-crm/15 rounded-2xl p-10 text-center">
+            <p className="font-poster uppercase text-2xl text-brand-crm">Niks gevonden</p>
+            <p className="text-sm text-brand-crm/60 mt-2">
+              Staat je nummer er niet bij?{" "}
+              <a href="/boek-ons" className="text-brand-tlbr underline underline-offset-2">Vraag het aan bij je boeking</a>.
+            </p>
+          </div>
+        ) : (
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10">
+            {filtered.map((s) => (
+              <li key={s.id} className="flex items-baseline justify-between gap-3 py-3 border-b border-brand-crm/10">
+                <span className="min-w-0 leading-snug">
+                  <span className="font-semibold text-brand-crm">{s.title}</span>
+                  <span className="text-brand-crm/45 text-sm"> &middot; {s.originalArtist}</span>
+                </span>
+                {isNL(s) && (
+                  <span className="font-stamp text-[9px] uppercase tracking-wider text-brand-tlbr border border-brand-tlbr/40 rounded px-1.5 py-0.5 shrink-0">
+                    NL
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {/* Zo ziet een avond eruit — de vaste 2-set */}
+        <div className="mt-24">
+          <span className="qlc-stamp text-brand-pb -rotate-2 inline-block">Zo ziet een avond eruit</span>
+          <h2 className="font-poster uppercase text-brand-crm text-4xl sm:text-5xl mt-3 leading-none">Onze vaste live-set</h2>
+          <p className="text-brand-crm/60 text-sm mt-2 max-w-2xl leading-relaxed">
+            Twee sets met een pauze ertussen. Zo bouwen we een avond op: van meezingers naar volle bak.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-14 gap-y-10 mt-8">
+            <SetColumn title="Set 1" songs={set1} pauze />
+            <SetColumn title="Set 2" songs={set2} />
+          </div>
+        </div>
+
+        {/* Spotify + waarom live */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-24">
           <div className="flex flex-col gap-4">
             <h3 className="font-poster text-2xl text-brand-crm uppercase tracking-wider flex items-center gap-2">
@@ -68,7 +157,7 @@ export default function Muziek() {
         </div>
 
         <div className="mt-10 p-5 border border-brand-crm/10 rounded-xl bg-brand-base2/60 text-xs text-brand-crm/60 text-center leading-relaxed">
-          <span className="font-bold text-brand-crm">Verzoeknummer voor je feest?</span> We spelen deze setlist live, en studeren met plezier een specifiek verzoek in voor je bruiloft of evenement. Geef het door bij je boeking.
+          <span className="font-bold text-brand-crm">Verzoeknummer voor je feest?</span> We studeren met plezier een specifiek verzoek in voor je bruiloft of evenement. Geef het door bij je boeking.
         </div>
 
       </div>
@@ -80,24 +169,19 @@ function SetColumn({ title, songs, pauze = false }: { title: string; songs: Song
   return (
     <div>
       <div className="flex items-center gap-4 mb-5">
-        <h2 className="font-poster uppercase text-brand-crm text-3xl tracking-[0.15em]">{title}</h2>
+        <h3 className="font-poster uppercase text-brand-crm text-3xl tracking-[0.15em]">{title}</h3>
         <span className="flex-1 h-0.5 bg-gradient-to-r from-brand-pb to-transparent" />
       </div>
       <ol className="flex flex-col">
         {songs.map((song) => (
-          <li key={song.id} className="flex items-baseline gap-4 py-3.5 border-b border-brand-crm/10">
+          <li key={song.id} className="flex items-baseline gap-4 py-3 border-b border-brand-crm/10">
             <span className="font-poster text-brand-pb text-2xl leading-none w-8 shrink-0 tabular-nums">
-              {String(song.position).padStart(2, "0")}
+              {String(song.position ?? 0).padStart(2, "0")}
             </span>
-            <div className="min-w-0">
-              <p className="font-bold text-brand-crm text-base sm:text-lg leading-snug">
-                {song.title}
-                <span className="font-normal text-brand-crm/40 text-sm"> &middot; {song.originalArtist}</span>
-              </p>
-              {song.roles && (
-                <p className="text-[11px] text-brand-crm/45 font-stamp tracking-wide mt-1">{song.roles}</p>
-              )}
-            </div>
+            <p className="font-bold text-brand-crm text-base sm:text-lg leading-snug min-w-0">
+              {song.title}
+              <span className="font-normal text-brand-crm/40 text-sm"> &middot; {song.originalArtist}</span>
+            </p>
           </li>
         ))}
       </ol>
