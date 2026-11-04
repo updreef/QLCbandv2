@@ -137,7 +137,7 @@ export default function Footer() {
           <span>
             Website door{" "}
             <a
-              href="https://www.updreef.nl/diensten/websites"
+              href="https://www.updreef.nl"
               target="_blank"
               rel="noopener"
               className="text-brand-tlbr hover:text-brand-pb transition-colors underline underline-offset-4"

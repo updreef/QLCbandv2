@@ -200,7 +200,7 @@ export default function Home({ upcomingShow, isUpcoming = false }: { upcomingSho
           <div>
             <span className="qlc-stamp text-brand-pb -rotate-2 inline-block">Wie we zijn</span>
             <h2 className="font-poster uppercase text-brand-crm text-5xl sm:text-6xl mt-3 leading-[0.9]">
-              Zes mannen, een <span className="text-brand-tlbr">quarter life crisis</span>
+              Zes mannen,<br />een <span className="text-brand-tlbr">quarter life crisis</span>
             </h2>
             <p className="text-brand-crm/75 mt-4 leading-relaxed max-w-lg">
               Het begon zoals de beste ideeën beginnen: met een biertje in de tuin. Zes mannen, midden twintig, en die ene vraag die maar bleef hangen, waarom zijn we eigenlijk gestopt met muziek maken?

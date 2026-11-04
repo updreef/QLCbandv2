@@ -21,7 +21,7 @@ export default function Mannen() {
           </h1>
           <SquiggleUnderline className="mx-auto md:mx-0" />
           <p className="text-brand-text-muted max-w-2xl mt-4 text-sm sm:text-base">
-            Muzikanten uit Bunschoten-Spakenburg en Amersfoort. Van jongs af aan altijd al bezig met muziek en op hun 25e besloten dat ze er nooit meer mee zouden stoppen. Klik op een muzikant voor de volledige bio. En ja, we zoeken nog een fantastische drummer!
+            Een zeskoppige band uit Bunschoten-Spakenburg en Amersfoort. Van jongs af aan altijd al bezig met muziek en op hun 25e besloten dat ze er nooit meer mee zouden stoppen. Klik op een muzikant voor de volledige bio. En ja, achter het drumstel is nu een plek vrij, dus wie weet sta jij hier straks!
           </p>
         </div>
 
