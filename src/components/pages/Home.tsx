@@ -9,6 +9,11 @@ import LazyVideo from "../LazyVideo";
 const WEEKDAYS = ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
 const MONTHS = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"];
 const SHOW_LABELS: Record<string, string> = { "bruiloft-te": "Bruiloft T&E", "backyard-sessions-1": "Backyard Sessions #1" };
+// Shows die in de spotlight hun poster tonen i.p.v. de datum-stub.
+const STUB_POSTER: Record<string, string> = {
+  "havenpop-2026": "/images/havenpop-poster.jpg",
+  "feest-de-kuil": "/images/kerstcrisis-poster.jpg",
+};
 
 export default function Home({ upcomingShow, isUpcoming = false }: { upcomingShow?: Show; isUpcoming?: boolean }) {
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -122,13 +127,13 @@ export default function Home({ upcomingShow, isUpcoming = false }: { upcomingSho
             </div>
 
             <div className="grid lg:grid-cols-[1fr_290px] bg-brand-base2 border border-brand-crm/15 shadow-[12px_12px_0_0_#1c857a]">
-              {/* Havenpop: poster op de plek van de datum-stub. Andere shows: gewone stub. */}
-              {upcomingShow.slug === "havenpop-2026" ? (
+              {/* Shows met een poster tonen die op de plek van de datum-stub; anders de datum-stub. */}
+              {STUB_POSTER[upcomingShow.slug] ? (
                 <div className="overflow-hidden bg-brand-base3 lg:order-2">
                   <img
-                    src="/images/havenpop-poster.jpg"
+                    src={STUB_POSTER[upcomingShow.slug]}
                     alt={upcomingShow.title}
-                    className="w-full h-auto object-cover block"
+                    className="w-full h-full object-cover block"
                   />
                 </div>
               ) : (

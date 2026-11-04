@@ -7,6 +7,7 @@ export interface Member {
   funFact: string;
   instagram: string;
   gear: string[];
+  open?: boolean; // open vacature-kaart (drummer gezocht) i.p.v. een echt lid
 }
 
 export interface Show {
@@ -82,13 +83,14 @@ export const members: Member[] = [
     gear: []
   },
   {
-    name: "Peter Baas",
-    role: "Drums",
-    avatar: "/images/members/peter.png",
-    video: "/videos/members/peter.mp4",
-    bio: "Nog nooit een drumles gehad. Slaat ze toch allemaal raak. Peter is een alleskunner: voormalig Nederlands kampioen skiën, tegenwoordig timmerman, en achter het drumstel een beest met Metallica in zijn bloed.",
-    funFact: "Voormalig Nederlands kampioen skiën. Nooit een drumles gehad.",
-    instagram: "https://instagram.com/peterrrbaas",
+    name: "Drummer gezocht",
+    role: "Drums · open plek",
+    open: true,
+    avatar: "",
+    video: "",
+    bio: "Achter het drumstel is een plek vrij! QLC zoekt een fantastische drummer die houdt van stevige meezingers, een volle zaal en lekker samen knallen. Ben of ken jij die drummer? Laat van je horen.",
+    funFact: "",
+    instagram: "",
     gear: []
   },
   {
@@ -141,21 +143,6 @@ export const shows: Show[] = [
     rsvp: true
   },
   {
-    id: "backyard-sessions-1",
-    slug: "backyard-sessions-1",
-    title: "QLC Backyard Sessions #1",
-    date: "2026-08-01",
-    time: "19:00 - 23:00",
-    location: "Scholekster 57",
-    address: "Scholekster 57",
-    city: "Bunschoten-Spakenburg",
-    description: "Na ons spetterende debuut van maar liefst twee optredens vinden we het tijd voor de volgende stap: een tuinconcert. We spelen ongeveer een uur onze favoriete nummers en zorgen daarna samen voor een gezellige zomeravond. Statistisch gezien is de kans groot dat het prachtig weer wordt.",
-    status: 'past',
-    // Frame uit een eigen Backyard-video.
-    image: "/videos/live-moments/backyard-2.jpg",
-    highlights: ["Live QLC", "DJ Chesto", "Beer Pong", "Borrels", "BYOB"]
-  },
-  {
     id: "havenpop-2026",
     slug: "havenpop-2026",
     title: "Havenpop 2026",
@@ -169,6 +156,21 @@ export const shows: Show[] = [
     // Eigen Havenpop-foto (haven Spakenburg).
     image: "/images/havenpop.jpg",
     highlights: ["Live QLC", "Openluchtfestival", "Haven Spakenburg"]
+  },
+  {
+    id: "backyard-sessions-1",
+    slug: "backyard-sessions-1",
+    title: "QLC Backyard Sessions #1",
+    date: "2026-08-01",
+    time: "19:00 - 23:00",
+    location: "Scholekster 57",
+    address: "Scholekster 57",
+    city: "Bunschoten-Spakenburg",
+    description: "Na ons spetterende debuut van maar liefst twee optredens vinden we het tijd voor de volgende stap: een tuinconcert. We spelen ongeveer een uur onze favoriete nummers en zorgen daarna samen voor een gezellige zomeravond. Statistisch gezien is de kans groot dat het prachtig weer wordt.",
+    status: 'past',
+    // Frame uit een eigen Backyard-video.
+    image: "/videos/live-moments/backyard-2.jpg",
+    highlights: ["Live QLC", "DJ Chesto", "Beer Pong", "Borrels", "BYOB"]
   },
   {
     id: "bruiloft-te",

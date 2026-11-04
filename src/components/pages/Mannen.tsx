@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { members } from "../../data";
-import { Star, Sliders, Zap, X, Instagram } from "lucide-react";
+import { Star, Sliders, Zap, X, Instagram, Music } from "lucide-react";
 import SquiggleUnderline from "../SquiggleUnderline";
 import LazyVideo from "../LazyVideo";
 
@@ -21,7 +21,7 @@ export default function Mannen() {
           </h1>
           <SquiggleUnderline className="mx-auto md:mx-0" />
           <p className="text-brand-text-muted max-w-2xl mt-4 text-sm sm:text-base">
-            Zes muzikanten uit Bunschoten-Spakenburg en Amersfoort. Van jongs af aan altijd al bezig met muziek en op hun 25e besloten dat ze er nooit meer mee zouden stoppen. Klik op een muzikant voor de volledige bio.
+            Muzikanten uit Bunschoten-Spakenburg en Amersfoort. Van jongs af aan altijd al bezig met muziek en op hun 25e besloten dat ze er nooit meer mee zouden stoppen. Klik op een muzikant voor de volledige bio. En ja, we zoeken nog een fantastische drummer!
           </p>
         </div>
 
@@ -29,6 +29,33 @@ export default function Mannen() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {members.map((member, idx) => {
             const isEven = idx % 2 === 0;
+            if (member.open) {
+              return (
+                <div
+                  key={member.name}
+                  className={`bg-brand-bg-2 border-3 border-dashed border-brand-tlbr/60 rounded-2xl overflow-hidden ${
+                    isEven ? "card-rotate-left hard-shadow-cyan" : "card-rotate-right hard-shadow-cyan"
+                  }`}
+                >
+                  <div className="relative aspect-[4/5] overflow-hidden border-b-2 border-dashed border-brand-tlbr/50 bg-brand-bg-3 flex flex-col items-center justify-center text-center p-6">
+                    <div className="bg-brand-tlbr/15 border-2 border-brand-tlbr rounded-full p-5 mb-4">
+                      <Music className="w-8 h-8 text-brand-tlbr" />
+                    </div>
+                    <h3 className="font-display text-2xl text-brand-cream uppercase tracking-wide">{member.name}</h3>
+                    <p className="text-xs font-mono text-brand-tlbr uppercase tracking-wider mt-1">{member.role}</p>
+                  </div>
+                  <div className="p-5">
+                    <p className="text-xs text-brand-text-muted">{member.bio}</p>
+                    <a
+                      href="/boek-ons"
+                      className="inline-block text-[10px] font-mono text-brand-amber mt-3 uppercase tracking-wider font-semibold hover:text-brand-neon transition-colors"
+                    >
+                      Reageer, neem contact op →
+                    </a>
+                  </div>
+                </div>
+              );
+            }
             return (
               <div
                 key={member.name}
