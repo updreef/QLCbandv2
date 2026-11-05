@@ -16,9 +16,6 @@ export default function Muziek() {
   const [q, setQ] = useState("");
   const [lang, setLang] = useState<"all" | "nl" | "en">("all");
 
-  const set1 = repertoire.filter((s) => s.set === 1).sort((a, b) => (a.position ?? 0) - (b.position ?? 0));
-  const set2 = repertoire.filter((s) => s.set === 2).sort((a, b) => (a.position ?? 0) - (b.position ?? 0));
-
   const filtered = useMemo(() => {
     const needle = q.trim().toLowerCase();
     return repertoire
@@ -75,47 +72,67 @@ export default function Muziek() {
           </div>
         </div>
 
-        <p className="font-stamp text-xs tracking-wide text-brand-crm/50 mt-4 mb-2">
-          {filtered.length} {filtered.length === 1 ? "nummer" : "nummers"}
-        </p>
+        {/* Repertoire als setlist-poster: donker paneel, halftoon, plakband
+            en grote riso-cijfers. Een kale lijst viel uit de toon op een site
+            die verder helemaal poster is. */}
+        <div className="relative mt-10">
+          {/* Plakband linksboven en rechtsboven */}
+          <span className="absolute -top-3 left-8 z-10 w-24 h-6 bg-brand-tlbr/40 border border-brand-crm/20 -rotate-3" aria-hidden />
+          <span className="absolute -top-3 right-12 z-10 w-20 h-6 bg-brand-pb/40 border border-brand-crm/20 rotate-6" aria-hidden />
 
-        {/* Repertoire-lijst */}
-        {filtered.length === 0 ? (
-          <div className="bg-brand-base2 border border-brand-crm/15 rounded-2xl p-10 text-center">
-            <p className="font-poster uppercase text-2xl text-brand-crm">Niks gevonden</p>
-            <p className="text-sm text-brand-crm/60 mt-2">
-              Staat je nummer er niet bij?{" "}
-              <a href="/boek-ons" className="text-brand-tlbr underline underline-offset-2">Vraag het aan bij je boeking</a>.
-            </p>
-          </div>
-        ) : (
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10">
-            {filtered.map((s) => (
-              <li key={s.id} className="flex items-baseline justify-between gap-3 py-3 border-b border-brand-crm/10">
-                <span className="min-w-0 leading-snug">
-                  <span className="font-semibold text-brand-crm">{s.title}</span>
-                  <span className="text-brand-crm/45 text-sm"> &middot; {s.originalArtist}</span>
+          <div className="relative overflow-hidden bg-brand-base2 border border-brand-crm/15 shadow-[12px_12px_0_0_#5d2a58] p-6 sm:p-10">
+            <div className="qlc-halftone absolute inset-0 opacity-[0.07] pointer-events-none" aria-hidden />
+
+            {/* Kop van de poster: titel links, aantal als rond stempel rechts */}
+            <div className="relative flex items-start justify-between gap-4 mb-8">
+              <div>
+                <span className="qlc-stamp text-brand-tlbr -rotate-2 inline-block">Wat we spelen</span>
+                <h2 className="font-poster uppercase text-brand-crm text-3xl sm:text-4xl mt-3 leading-none">
+                  De setlist
+                </h2>
+              </div>
+              <span className="shrink-0 w-[74px] h-[74px] rounded-full border-2 border-brand-pb text-brand-pb -rotate-12 hidden sm:flex flex-col items-center justify-center text-center font-stamp leading-tight">
+                <span className="text-xl">{filtered.length}</span>
+                <span className="text-[9px] tracking-wider uppercase">
+                  {filtered.length === 1 ? "nummer" : "nummers"}
                 </span>
-                {isNL(s) && (
-                  <span className="font-stamp text-[9px] uppercase tracking-wider text-brand-tlbr border border-brand-tlbr/40 rounded px-1.5 py-0.5 shrink-0">
-                    NL
-                  </span>
-                )}
-              </li>
-            ))}
-          </ul>
-        )}
+              </span>
+            </div>
 
-        {/* Zo ziet een avond eruit — de vaste 2-set */}
-        <div className="mt-24">
-          <span className="qlc-stamp text-brand-pb -rotate-2 inline-block">Zo ziet een avond eruit</span>
-          <h2 className="font-poster uppercase text-brand-crm text-4xl sm:text-5xl mt-3 leading-none">Onze vaste live-set</h2>
-          <p className="text-brand-crm/60 text-sm mt-2 max-w-2xl leading-relaxed">
-            Twee sets met een pauze ertussen. Zo bouwen we een avond op: van meezingers naar volle bak.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-14 gap-y-10 mt-8">
-            <SetColumn title="Set 1" songs={set1} pauze />
-            <SetColumn title="Set 2" songs={set2} />
+            {filtered.length === 0 ? (
+              <div className="relative text-center py-14">
+                <p className="font-poster uppercase text-3xl text-brand-crm">Niks gevonden</p>
+                <p className="text-sm text-brand-crm/60 mt-3">
+                  Staat je nummer er niet bij?{" "}
+                  <a href="/boek-ons" className="text-brand-tlbr underline underline-offset-2">Vraag het aan bij je boeking</a>.
+                </p>
+              </div>
+            ) : (
+              // CSS-kolommen en geen grid: een grid vult van links naar rechts,
+              // waardoor je 01 03 05 onder elkaar krijgt. Zo loopt 01 t/m 13
+              // netjes door in de linkerkolom.
+              <ol className="relative md:columns-2 md:gap-x-12">
+                {filtered.map((s, i) => (
+                  <li
+                    key={s.id}
+                    className="group flex items-baseline gap-4 py-3.5 border-b border-brand-crm/10 transition-colors hover:border-brand-tlbr/50 break-inside-avoid"
+                  >
+                    <span className="font-poster text-2xl leading-none w-9 shrink-0 tabular-nums text-brand-pb transition-colors group-hover:text-brand-tlbr">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <p className="min-w-0 leading-snug flex-1">
+                      <span className="font-bold text-brand-crm text-base sm:text-lg">{s.title}</span>
+                      <span className="font-normal text-brand-crm/45 text-sm"> &middot; {s.originalArtist}</span>
+                    </p>
+                    {isNL(s) && (
+                      <span className="font-stamp text-[9px] uppercase tracking-wider text-brand-tlbr border border-brand-tlbr/40 rounded px-1.5 py-0.5 shrink-0 self-center">
+                        NL
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            )}
           </div>
         </div>
 
@@ -161,37 +178,6 @@ export default function Muziek() {
         </div>
 
       </div>
-    </div>
-  );
-}
-
-function SetColumn({ title, songs, pauze = false }: { title: string; songs: Song[]; pauze?: boolean }) {
-  return (
-    <div>
-      <div className="flex items-center gap-4 mb-5">
-        <h3 className="font-poster uppercase text-brand-crm text-3xl tracking-[0.15em]">{title}</h3>
-        <span className="flex-1 h-0.5 bg-gradient-to-r from-brand-pb to-transparent" />
-      </div>
-      <ol className="flex flex-col">
-        {songs.map((song) => (
-          <li key={song.id} className="flex items-baseline gap-4 py-3 border-b border-brand-crm/10">
-            <span className="font-poster text-brand-pb text-2xl leading-none w-8 shrink-0 tabular-nums">
-              {String(song.position ?? 0).padStart(2, "0")}
-            </span>
-            <p className="font-bold text-brand-crm text-base sm:text-lg leading-snug min-w-0">
-              {song.title}
-              <span className="font-normal text-brand-crm/40 text-sm"> &middot; {song.originalArtist}</span>
-            </p>
-          </li>
-        ))}
-      </ol>
-      {pauze && (
-        <div className="flex items-center gap-4 mt-6 justify-center">
-          <span className="h-px w-14 bg-brand-crm/15" />
-          <span className="font-stamp uppercase tracking-[0.3em] text-xs text-brand-tlbr">Pauze</span>
-          <span className="h-px w-14 bg-brand-crm/15" />
-        </div>
-      )}
     </div>
   );
 }

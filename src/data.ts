@@ -32,8 +32,10 @@ export interface Song {
   id: string;
   title: string;
   originalArtist: string;
-  set?: 1 | 2;        // alleen voor nummers in de vaste live-set
-  position?: number;  // volgorde binnen de set
+  // De vaste 2-set staat niet meer op de site; deze twee velden bewaren wel
+  // welke nummers in welke set zaten, zodat die volgorde niet verloren gaat.
+  set?: 1 | 2;
+  position?: number;
   roles?: string;     // bv. "Ruben rhythm · Joel bass"
   language?: "nl" | "en"; // voor het taalfilter; onvermeld = Engels
   spotifyUrl?: string;
@@ -275,7 +277,7 @@ export const repertoire: Song[] = [
 
   // ─── SET 2 ───────────────────────────────────────────
   { id: "s2-1", set: 2, position: 1, title: "Take Me Out", originalArtist: "Franz Ferdinand", roles: "Ruben rhythm · Tristan bass · Joel lead" },
-  { id: "s2-2", set: 2, position: 2, title: "Valerie", originalArtist: "The Zutons / Amy Winehouse", roles: "Ruben rhythm · Tristan bass · Joel lead" },
+  { id: "s2-2", set: 2, position: 2, title: "Valerie", originalArtist: "The Runarounds", roles: "Ruben rhythm · Tristan bass · Joel lead" },
   { id: "s2-3", set: 2, position: 3, title: "Chelsea Dagger", originalArtist: "The Fratellis", roles: "Ruben rhythm · Tristan bass · Joel lead" },
   { id: "s2-4", set: 2, position: 4, title: "Seven Nation Army", originalArtist: "The White Stripes", roles: "Ruben rhythm · Tristan bass · Joel lead" },
   { id: "s2-5", set: 2, position: 5, title: "Angels", originalArtist: "Robbie Williams", roles: "Ruben rhythm · Tristan bass · Joel lead" },

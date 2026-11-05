@@ -11,6 +11,7 @@ const navLinks = [
   { label: "Muziek", href: "/muziek" },
   { label: "Over ons", href: "/over-ons" },
   { label: "Blog", href: "/blog" },
+  { label: "Sponsors", href: "/sponsors" },
 ];
 
 export default function Header() {
