@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { PartyPopper, Check, Loader2, Clock, MapPin } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import KaartenAppen from "../KaartenAppen";
 
 const EVENT_SLUG = "feest-de-kuil";
 const TARGET = new Date("2026-12-12T20:00:00+01:00").getTime();
@@ -116,12 +117,14 @@ export default function KuilLanding() {
           <div className="text-4xl">🎉🤘</div>
           <p className="font-poster uppercase text-brand-crm text-3xl mt-1">Je bent erbij!</p>
           <p className="text-sm text-brand-crm/75 mt-1">Zie je 12 december in De Kuil. Sleep je crew mee 🔥</p>
+          <KaartenAppen naam={`${first.trim()} ${last.trim()}`.trim()} />
         </div>
       );
     if (status === "dup")
       return (
         <div className="bg-brand-base3/70 border border-brand-tlbr/40 rounded-xl p-5 text-center">
           <p className="font-poster uppercase text-brand-crm text-2xl">Je staat al op de lijst 🎉</p>
+          <KaartenAppen naam={`${first.trim()} ${last.trim()}`.trim()} />
         </div>
       );
     if (!open)

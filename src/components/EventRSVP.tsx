@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { PartyPopper, Check, Loader2, Users } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import KaartenAppen from "./KaartenAppen";
 
 /**
  * Aanmeld-blok met live teller voor een evenement.
@@ -75,6 +76,10 @@ export default function EventRSVP({
   const inputClass =
     "w-full bg-brand-base3/70 border border-brand-crm/20 rounded-lg px-3.5 py-3 text-sm text-brand-crm placeholder:text-brand-crm/40 focus:outline-none focus:border-brand-tlbr";
 
+  // Alleen voor De Kuil: daar haal je kaarten op en app je Dave.
+  const kaartenBijDeKuil = eventSlug === "feest-de-kuil";
+  const naam = `${first.trim()} ${last.trim()}`.trim();
+
   // Weergegeven teller = startgetal + echte aanmeldingen.
   const shown = baseCount + (count ?? 0);
 
@@ -110,12 +115,16 @@ export default function EventRSVP({
             <div>
               <p className="text-sm font-semibold text-brand-crm">Yes, je staat op de lijst!</p>
               <p className="text-xs text-brand-crm/70 mt-0.5">Tot {dateLabel}. We gaan los. 🤘</p>
+              {kaartenBijDeKuil && <KaartenAppen naam={naam} />}
             </div>
           </div>
         ) : status === "dup" ? (
           <div className="mt-5 flex items-start gap-3 bg-brand-base3/60 border border-brand-tlbr/40 rounded-xl p-4">
             <Check className="w-5 h-5 text-brand-tlbr shrink-0 mt-0.5" />
-            <p className="text-sm text-brand-crm">Je bent al aangemeld, tot dan! 🎉</p>
+            <div>
+              <p className="text-sm text-brand-crm">Je bent al aangemeld, tot dan! 🎉</p>
+              {kaartenBijDeKuil && <KaartenAppen naam={naam} />}
+            </div>
           </div>
         ) : !open ? (
           <button
