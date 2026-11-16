@@ -27,9 +27,9 @@ function sponsorMailto(pakket: string) {
 
 // Wat je ook nog terugkrijgt — de nuchtere reclamekant onder de gunfactor.
 const WAAROM = [
-  { icon: Users, title: "Live voor de regio", text: "±10 shows per jaar voor honderden mensen in Spakenburg, Amersfoort e.o." },
+  { icon: Users, title: "Live voor de regio", text: "5 concerten per jaar voor honderden mensen in Spakenburg, Amersfoort e.o." },
   { icon: ImageIcon, title: "Op het podiumdoek", text: "Je logo op ons doek, en dus op elke foto en video van de avond." },
-  { icon: Megaphone, title: "Socials & site", text: "Vermelding op onze socials en op quarterlifecrisis.nl, het hele jaar door." },
+  { icon: Megaphone, title: "Actieve social media", text: "We posten het hele jaar door, en je staat erbij. Ook op quarterlifecrisis.nl." },
   { icon: Percent, title: "Korting op een optreden", text: "Personeelsfeest? Als sponsor spelen we met korting, of zelfs inbegrepen." },
 ];
 
